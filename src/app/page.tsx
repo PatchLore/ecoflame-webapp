@@ -1,26 +1,36 @@
 import Link from 'next/link'
-import { Calculator, Wrench, Zap, Thermometer, Droplets } from 'lucide-react'
+import { Calculator, Wrench, Thermometer, Droplets, AlertTriangle, Home } from 'lucide-react'
 
 const services = [
   {
-    icon: Wrench,
-    title: 'Plumbing',
-    description: 'Expert plumbing services for all your home and business needs'
-  },
-  {
-    icon: Zap,
-    title: 'Electrical',
-    description: 'Professional electrical work with safety as our priority'
+    icon: AlertTriangle,
+    title: 'Emergency Plumbing',
+    description: '24/7 emergency callouts for urgent plumbing issues and leaks'
   },
   {
     icon: Thermometer,
-    title: 'Heating',
-    description: 'Complete heating solutions to keep you warm and comfortable'
+    title: 'Boiler Repair & Service',
+    description: 'Expert boiler maintenance, repairs, and annual servicing'
+  },
+  {
+    icon: Home,
+    title: 'Bathroom Installation',
+    description: 'Complete bathroom fitting and renovation services'
   },
   {
     icon: Droplets,
-    title: 'Drainage',
-    description: 'Efficient drainage solutions for residential and commercial properties'
+    title: 'Leak Detection & Repair',
+    description: 'Professional leak detection and repair for all pipework'
+  },
+  {
+    icon: Wrench,
+    title: 'Drain Unblocking',
+    description: 'Fast drain clearing and unblocking for all drainage systems'
+  },
+  {
+    icon: Calculator,
+    title: 'General Plumbing',
+    description: 'All general plumbing work including taps, toilets, and pipework'
   }
 ]
 
@@ -35,7 +45,7 @@ export default function HomePage() {
               Get Your <span className="text-blue-600">Instant Plumbing Quote</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Fast, transparent plumbing quotes in 30 seconds.
+              Professional plumbing services with transparent pricing. Get instant quotes for emergency repairs, boiler work, bathroom installations, and more.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -49,7 +59,7 @@ export default function HomePage() {
                 href="#services"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-lg hover:shadow-xl border-2 border-blue-600"
               >
-                Plumbing Services
+                Our Services
               </Link>
             </div>
             <p className="mt-6 text-sm text-gray-500">No obligation. Free quote. Transparent pricing.</p>
@@ -62,10 +72,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Professional Plumbing Services</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Experts for leaks, boilers, bathrooms, drains and heating</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Expert plumbing solutions for homes and businesses across the UK</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -94,7 +104,7 @@ export default function HomePage() {
               Why Choose Us?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We make getting professional tradesmen services simple and transparent
+              We make getting professional plumbing services simple and transparent
             </p>
           </div>
           
@@ -116,10 +126,10 @@ export default function HomePage() {
                 <Wrench className="h-8 w-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Expert Tradesmen
+                Expert Plumbers
               </h3>
               <p className="text-gray-600">
-                Professional, licensed, and experienced tradesmen for all your needs
+                Professional, licensed, and experienced plumbers for all your needs
               </p>
             </div>
             
@@ -196,7 +206,7 @@ export default function HomePage() {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Get your instant quote in minutes and connect with professional tradesmen
+            Get your instant plumbing quote in minutes and connect with professional plumbers
           </p>
           <Link
             href="/calculator"
@@ -213,7 +223,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto text-center">
           <h3 className="text-2xl font-bold mb-4">Quote Calculator</h3>
           <p className="text-gray-400 mb-6">
-            Professional tradesmen services with transparent pricing
+            Professional plumbing services with transparent pricing
           </p>
           <div className="flex justify-center space-x-6">
             <Link href="/calculator" className="text-gray-400 hover:text-white transition-colors">

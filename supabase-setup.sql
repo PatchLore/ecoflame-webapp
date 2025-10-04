@@ -62,3 +62,4 @@ SELECT
   COUNT(DISTINCT postcode) as unique_postcodes,
   AVG(estimated_quote) as average_quote
 FROM leads;
+
