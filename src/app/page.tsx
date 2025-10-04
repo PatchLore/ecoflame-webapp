@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Calculator, Wrench, Thermometer, Droplets, AlertTriangle, Home } from 'lucide-react'
 
-const services = [
+const plumbingServices = [
   {
     icon: AlertTriangle,
     title: 'Emergency Plumbing',
@@ -77,7 +77,7 @@ export default function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {plumbingServices.map((service, index) => (
               <div
                 key={index}
                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100"
