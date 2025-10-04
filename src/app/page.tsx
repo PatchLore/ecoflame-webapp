@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calculator, Wrench, Thermometer, Droplets, AlertTriangle, Home } from 'lucide-react'
+import { Calculator, Wrench, Thermometer, Droplets, AlertTriangle, Home, Zap } from 'lucide-react'
 
 const plumbingServices = [
   {
