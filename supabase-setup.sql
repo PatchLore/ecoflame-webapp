@@ -63,3 +63,5 @@ SELECT
   AVG(estimated_quote) as average_quote
 FROM leads;
 
+
+
