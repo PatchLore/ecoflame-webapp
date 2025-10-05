@@ -52,7 +52,7 @@ export default function QuoteFlowPitchPage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Lost Revenue</h3>
               <p className="text-gray-600">
-                Customers go elsewhere when they can't get instant, transparent pricing
+                Customers go elsewhere when they can&apos;t get instant, transparent pricing
               </p>
             </div>
             
@@ -62,7 +62,7 @@ export default function QuoteFlowPitchPage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Customer Frustration</h3>
               <p className="text-gray-600">
-                "Call for a quote" creates friction and reduces conversion rates
+                &quot;Call for a quote&quot; creates friction and reduces conversion rates
               </p>
             </div>
           </div>
@@ -286,7 +286,7 @@ export default function QuoteFlowPitchPage() {
                   <span className="text-green-500 text-xl mr-3">✓</span>
                   <div>
                     <h4 className="font-semibold text-gray-900">Transparent Pricing</h4>
-                    <p className="text-gray-600">Customers see exactly what they're paying for</p>
+                    <p className="text-gray-600">Customers see exactly what they&apos;re paying for</p>
                   </div>
                 </li>
                 <li className="flex items-start">
@@ -358,13 +358,13 @@ export default function QuoteFlowPitchPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-blue-50 rounded-lg p-6">
                 <p className="text-gray-700 italic mb-4">
-                  "QuoteFlow has transformed my business. I save hours every week and my customers love the transparency!"
+                  &quot;QuoteFlow has transformed my business. I save hours every week and my customers love the transparency!&quot;
                 </p>
                 <p className="font-semibold text-blue-700">- Mark T., Local Plumber</p>
               </div>
               <div className="bg-green-50 rounded-lg p-6">
                 <p className="text-gray-700 italic mb-4">
-                  "Easy to use, professional, and helps me close deals faster. Highly recommend for any plumbing professional."
+                  &quot;Easy to use, professional, and helps me close deals faster. Highly recommend for any plumbing professional.&quot;
                 </p>
                 <p className="font-semibold text-green-700">- Sarah L., Plumbing Contractor</p>
               </div>
