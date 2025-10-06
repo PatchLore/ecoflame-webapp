@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { createSupabaseClient, Lead } from '@/lib/supabase-client'
 import { 
   Search, 
-  Filter, 
   Download, 
   LogOut, 
   Settings, 
@@ -13,7 +12,6 @@ import {
   Mail,
   MapPin,
   Clock,
-  DollarSign,
   User
 } from 'lucide-react'
 
@@ -29,7 +27,7 @@ export default function AdminDashboard() {
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [serviceFilter, setServiceFilter] = useState<string>('all')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ email?: string } | null>(null)
 
   useEffect(() => {
     checkAuth()
@@ -43,7 +41,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     filterLeads()
-  }, [leads, searchTerm, statusFilter, serviceFilter])
+  }, [leads, searchTerm, statusFilter, serviceFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkAuth = async () => {
     const supabase = createSupabaseClient()
@@ -134,7 +132,7 @@ export default function AdminDashboard() {
 
       // Update local state
       setLeads(leads.map(lead => 
-        lead.id === leadId ? { ...lead, status: newStatus as any } : lead
+        lead.id === leadId ? { ...lead, status: newStatus as 'New' | 'Contacted' | 'Completed' } : lead
       ))
     } catch (error) {
       console.error('Error:', error)

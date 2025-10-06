@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { createSupabaseClient } from '@/lib/supabase-client'
 import { LogIn, Eye, EyeOff } from 'lucide-react'
 
@@ -35,7 +36,7 @@ export default function AdminSignIn() {
         // Redirect to dashboard
         window.location.href = '/admin/dashboard'
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred')
     } finally {
       setLoading(false)
@@ -112,12 +113,12 @@ export default function AdminSignIn() {
         </form>
 
         <div className="mt-6 text-center">
-          <a
+          <Link
             href="/"
             className="text-blue-600 hover:text-blue-700 text-sm"
           >
             ← Back to Quote Calculator
-          </a>
+          </Link>
         </div>
 
         <div className="mt-8 p-4 bg-gray-50 rounded-lg">
