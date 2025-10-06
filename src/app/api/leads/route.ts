@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     // Try database first, but don't fail if it doesn't work
     try {
       const supabase = getServerSupabase()
-      const { error } = await supabase.from('leads').insert([{
+      const { data, error } = await supabase.from('leads').insert([{
         name: body.name,
         email: body.email,
         phone: body.phone,
@@ -25,11 +25,13 @@ export async function POST(req: NextRequest) {
         urgency: body.urgency,
         job_details: body.job_details ?? null,
         estimated_quote: body.estimated_quote,
-      }])
+      }]).select()
 
       if (error) {
-        console.log('Database error:', error.message)
+        console.log('Database insert error:', error.message, error.details)
         // Continue anyway - don't fail the request
+      } else {
+        console.log('Lead saved successfully:', data)
       }
     } catch (dbError) {
       console.log('Database connection failed:', dbError)

@@ -13,7 +13,13 @@ export function createSupabaseClient() {
     return null
   }
 
-  return createClient(supabaseUrl, supabaseAnonKey)
+  return createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true
+    }
+  })
 }
 
 // Database types
@@ -34,6 +40,7 @@ export interface Lead {
   urgency: string
   job_details: string | null
   estimated_quote: number
+  status?: string
   created_at: string
 }
 
@@ -51,6 +58,8 @@ export const URGENCY_MULTIPLIERS: UrgencyMultiplier = {
 
 export const TRAVEL_FEE_THRESHOLD = 10 // miles
 export const TRAVEL_FEE_AMOUNT = 25 // £25 for distances > 10 miles
+
+
 
 
 
