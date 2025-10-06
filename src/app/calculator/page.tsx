@@ -100,7 +100,13 @@ export default function CalculatorPage() {
   }
 
   const handleLeadSubmit = async (leadData: { name: string; email: string; phone: string }) => {
-    if (!pricingResult) return
+    console.log('handleLeadSubmit called with:', leadData)
+    console.log('pricingResult:', pricingResult)
+    
+    if (!pricingResult) {
+      console.log('No pricing result, returning early')
+      return
+    }
 
     setIsSubmitting(true)
     try {
@@ -121,21 +127,31 @@ export default function CalculatorPage() {
         estimated_quote: pricingResult.totalPrice,
       }
 
+      console.log('Sending payload:', payload)
+
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
 
+      console.log('Response status:', res.status)
+      console.log('Response ok:', res.ok)
+
       if (!res.ok) {
-        await res.json().catch(() => ({}))
+        const errorData = await res.json().catch(() => ({}))
+        console.log('Error response:', errorData)
         alert('Error saving your details. Please try again.')
         return
       }
 
+      const responseData = await res.json()
+      console.log('Success response:', responseData)
+
       setSubmitSuccess(true)
       setShowLeadCapture(false)
-    } catch {
+    } catch (error) {
+      console.log('Catch error:', error)
       alert('Error saving your details. Please try again.')
     } finally {
       setIsSubmitting(false)
