@@ -43,6 +43,36 @@ export default function AdminSignIn() {
     }
   }
 
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const supabase = createSupabaseClient()
+    if (!supabase) {
+      setError('Database connection not available')
+      setLoading(false)
+      return
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      })
+
+      if (error) {
+        setError(error.message)
+      } else if (data.user) {
+        setError('Account created! Please check your email to confirm your account, then sign in.')
+      }
+    } catch {
+      setError('An unexpected error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
@@ -96,20 +126,31 @@ export default function AdminSignIn() {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            ) : (
-              <>
-                <LogIn className="h-4 w-4 mr-2" />
-                Sign In
-              </>
-            )}
-          </button>
+          <div className="space-y-3">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                <>
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </>
+              )}
+            </button>
+            
+            <button
+              type="button"
+              onClick={handleSignUp}
+              disabled={loading}
+              className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Create Admin Account
+            </button>
+          </div>
         </form>
 
         <div className="mt-6 text-center">
