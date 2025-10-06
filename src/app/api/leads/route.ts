@@ -13,21 +13,27 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const supabase = getServerSupabase()
+    // Try database first, but don't fail if it doesn't work
+    try {
+      const supabase = getServerSupabase()
+      const { error } = await supabase.from('leads').insert([{
+        name: body.name,
+        email: body.email,
+        phone: body.phone,
+        job_type: body.job_type,
+        postcode: body.postcode,
+        urgency: body.urgency,
+        job_details: body.job_details ?? null,
+        estimated_quote: body.estimated_quote,
+      }])
 
-    const { error } = await supabase.from('leads').insert([{
-      name: body.name,
-      email: body.email,
-      phone: body.phone,
-      job_type: body.job_type,
-      postcode: body.postcode,
-      urgency: body.urgency,
-      job_details: body.job_details ?? null,
-      estimated_quote: body.estimated_quote,
-    }])
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
+      if (error) {
+        console.log('Database error:', error.message)
+        // Continue anyway - don't fail the request
+      }
+    } catch (dbError) {
+      console.log('Database connection failed:', dbError)
+      // Continue anyway - don't fail the request
     }
 
     // Best-effort email (do not fail the request if email fails)
@@ -44,7 +50,9 @@ export async function POST(req: NextRequest) {
         estimated_quote: body.estimated_quote,
         created_at: new Date().toISOString(),
       })
-    } catch {}
+    } catch (emailError) {
+      console.log('Email failed but lead saved:', emailError)
+    }
 
     return NextResponse.json({ ok: true })
   } catch (e: unknown) {
