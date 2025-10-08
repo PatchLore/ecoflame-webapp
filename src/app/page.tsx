@@ -278,7 +278,7 @@ export default function HomePage() {
             <ul className="space-y-2 list-none">
               <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Get in Touch</Link></li>
               <li><a href="mailto:info@fixblox.com" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">info@fixblox.com</a></li>
-              <li><a href="tel:+448001234567" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">0800 123 4567</a></li>
+              <li><a href="tel:+447925990923" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">07925990923</a></li>
             </ul>
           </div>
         </div>
