@@ -45,20 +45,6 @@ export default function QuoteFlowLandingPage() {
             </Link>
           </div>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-white/80">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                No setup fees
-        </div>
-              <div className="flex items-center gap-2 text-white/80">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                14-day free trial
-      </div>
-              <div className="flex items-center gap-2 text-white/80">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                Cancel anytime
-              </div>
-            </div>
               </div>
 
           {/* Demo Preview */}
@@ -177,7 +163,7 @@ export default function QuoteFlowLandingPage() {
       <section className="py-24 px-[5%] bg-white">
         <div className="text-center max-w-[800px] mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Simple, Transparent Pricing</h2>
-          <p className="text-xl text-[#8B92A7]">No hidden fees. Cancel anytime.</p>
+          <p className="text-xl text-[#8B92A7]">Professional pricing for professional solutions.</p>
         </div>
 
         <div className="max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -223,7 +209,7 @@ export default function QuoteFlowLandingPage() {
       </div>
 
         <p className="text-center text-[#8B92A7] mt-12">
-          All plans include 14-day free trial • No credit card required • Cancel anytime
+          Custom solutions tailored to your business needs
         </p>
       </section>
 
