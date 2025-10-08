@@ -14,7 +14,6 @@ export default function QuoteFlowLandingPage() {
           <li><Link href="/" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Home</Link></li>
           <li><Link href="/quoteflow" className="text-[#0066FF] no-underline font-semibold">QuoteFlow</Link></li>
           <li><Link href="/contact" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Contact</Link></li>
-          <li><Link href="/admin/sign-in" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Login</Link></li>
         </ul>
         <Link href="/quoteflow/calculator" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(0,102,255,0.3)] hover:shadow-[0_6px_25px_rgba(0,102,255,0.4)]">
           Try Calculator
@@ -41,8 +40,8 @@ export default function QuoteFlowLandingPage() {
               <Link href="/quoteflow/calculator" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)] hover:shadow-[0_15px_40px_rgba(0,102,255,0.5)] text-center">
                 Try the Calculator
             </Link>
-              <Link href="/admin/sign-in" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27] text-center">
-                Plumber Login
+              <Link href="/contact" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27] text-center">
+                Get in Touch
             </Link>
           </div>
 
@@ -195,8 +194,8 @@ export default function QuoteFlowLandingPage() {
               <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Admin dashboard</li>
               <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Basic support</li>
             </ul>
-            <Link href="/admin/sign-in" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
-              Start Free Trial
+            <Link href="/contact" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
+              Get Started
             </Link>
           </div>
 
@@ -217,8 +216,8 @@ export default function QuoteFlowLandingPage() {
               <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Priority support</li>
               <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Advanced analytics</li>
             </ul>
-            <Link href="/admin/sign-in" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
-              Start Free Trial
+            <Link href="/contact" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
+              Get Started
             </Link>
         </div>
       </div>
@@ -241,8 +240,8 @@ export default function QuoteFlowLandingPage() {
             <Link href="/quoteflow/calculator" className="inline-block bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-12 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)]">
               Try the Calculator
             </Link>
-            <Link href="/admin/sign-in" className="inline-block bg-transparent text-white px-12 py-5 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
-              Start Free Trial
+            <Link href="/contact" className="inline-block bg-transparent text-white px-12 py-5 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
+              Contact Us
             </Link>
           </div>
         </div>
@@ -273,7 +272,6 @@ export default function QuoteFlowLandingPage() {
               <li><a href="#how-it-works" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">How It Works</a></li>
               <li><a href="#apps" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Our Apps</a></li>
               <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Contact</Link></li>
-              <li><Link href="/admin/sign-in" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Admin Login</Link></li>
             </ul>
           </div>
           <div>

@@ -14,7 +14,6 @@ export default function HomePage() {
           <li><a href="#apps" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Apps</a></li>
           <li><a href="#how-it-works" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">How It Works</a></li>
           <li><Link href="/contact" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Contact</Link></li>
-          <li><Link href="/admin/sign-in" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Login</Link></li>
         </ul>
         <Link href="/quoteflow" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(0,102,255,0.3)] hover:shadow-[0_6px_25px_rgba(0,102,255,0.4)]">
           Explore Apps
@@ -272,7 +271,6 @@ export default function HomePage() {
               <li><a href="#how-it-works" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">How It Works</a></li>
               <li><a href="#apps" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Our Apps</a></li>
               <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Contact</Link></li>
-              <li><Link href="/admin/sign-in" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Admin Login</Link></li>
             </ul>
           </div>
           <div>
