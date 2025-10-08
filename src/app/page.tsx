@@ -1,246 +1,301 @@
-import Link from 'next/link'
-import { Calculator, Wrench, Thermometer, Droplets, AlertTriangle, Home, Zap } from 'lucide-react'
+'use client'
 
-const plumbingServices = [
-  {
-    icon: AlertTriangle,
-    title: 'Emergency Plumbing',
-    description: '24/7 emergency callouts for urgent plumbing issues and leaks'
-  },
-  {
-    icon: Thermometer,
-    title: 'Boiler Repair & Service',
-    description: 'Expert boiler maintenance, repairs, and annual servicing'
-  },
-  {
-    icon: Home,
-    title: 'Bathroom Installation',
-    description: 'Complete bathroom fitting and renovation services'
-  },
-  {
-    icon: Droplets,
-    title: 'Leak Detection & Repair',
-    description: 'Professional leak detection and repair for all pipework'
-  },
-  {
-    icon: Wrench,
-    title: 'Drain Unblocking',
-    description: 'Fast drain clearing and unblocking for all drainage systems'
-  },
-  {
-    icon: Calculator,
-    title: 'General Plumbing',
-    description: 'All general plumbing work including taps, toilets, and pipework'
-  }
-]
+import Link from 'next/link'
 
 export default function HomePage() {
-  // Plumbing-specific homepage
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="overflow-x-hidden bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md px-[5%] py-6 flex justify-between items-center z-[1000] shadow-[0_2px_20px_rgba(0,0,0,0.05)]">
+        <Link href="/" className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">
+          FixBlox
+        </Link>
+        <ul className="hidden md:flex gap-10 list-none">
+          <li><a href="#apps" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Apps</a></li>
+          <li><a href="#how-it-works" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">How It Works</a></li>
+          <li><Link href="/contact" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Contact</Link></li>
+          <li><Link href="/admin/sign-in" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Login</Link></li>
+        </ul>
+        <Link href="/quoteflow" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(0,102,255,0.3)] hover:shadow-[0_6px_25px_rgba(0,102,255,0.4)]">
+          Explore Apps
+        </Link>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Get Your <span className="text-blue-600">Instant Plumbing Quote</span>
+      <section className="mt-20 min-h-[95vh] flex items-center px-[5%] py-16 bg-gradient-to-br from-[#0A0E27] to-[#1a1f3a] relative overflow-hidden">
+        <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,102,255,0.3)_0%,transparent_70%)] top-[-300px] right-[-300px] animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(0,217,255,0.2)_0%,transparent_70%)] bottom-[-200px] left-[-200px] animate-[pulse_5s_ease-in-out_infinite]"></div>
+        
+        <div className="max-w-[1400px] mx-auto text-center relative z-10 w-full">
+          <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-extrabold leading-tight text-white mb-6">
+            Web App Solutions for <span className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">Tradespeople</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Professional plumbing services with transparent pricing. Get instant quotes for emergency repairs, boiler work, bathroom installations, and more.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/calculator"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-              >
-                <Calculator className="mr-2 h-6 w-6" />
-                Get Instant Quote
-              </Link>
-              <Link
-                href="#services"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-lg hover:shadow-xl border-2 border-blue-600"
-              >
-                Our Services
-              </Link>
+          <p className="text-xl md:text-2xl text-white/85 mb-10 max-w-[800px] mx-auto">
+            Professional web applications designed to streamline your trade business. From instant quotes to job management — built for traders, by traders.
+          </p>
+          
+          <div className="flex flex-wrap gap-6 justify-center mb-12">
+            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
+              💻 Modern Tech Stack
             </div>
-            <p className="mt-6 text-sm text-gray-500">No obligation. Free quote. Transparent pricing.</p>
+            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
+              📱 Mobile-First Design
+            </div>
+            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
+              🚀 Quick Setup
+            </div>
+            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
+              💼 Trade-Specific
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="#apps" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-14 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)] hover:shadow-[0_15px_40px_rgba(0,102,255,0.5)] inline-block">
+              Explore Our Apps
+            </a>
+            <Link href="/contact" className="bg-transparent text-white px-14 py-5 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27] inline-block text-center">
+              Get in Touch
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Professional Plumbing Services</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Expert plumbing solutions for homes and businesses across the UK - Updated</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {plumbingServices.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100"
-              >
-                <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-lg mb-4 mx-auto">
-                  <service.icon className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
-                  {service.title}
+      {/* Trust Bar */}
+      <section className="bg-white py-12 px-[5%] shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          {[
+            { number: '1000+', label: 'Active Tradespeople' },
+            { number: '24/7', label: 'Platform Uptime' },
+            { number: '100%', label: 'Cloud-Based' },
+            { number: '4.9★', label: 'User Rating' }
+          ].map((item, index) => (
+            <div key={index}>
+              <h3 className="text-[2.5rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent mb-2">
+                {item.number}
                 </h3>
-                <p className="text-gray-600 text-center">
-                  {service.description}
-                </p>
+              <p className="text-[#8B92A7] font-medium">{item.label}</p>
               </div>
             ))}
+        </div>
+      </section>
+
+      {/* Our Apps Section */}
+      <section id="apps" className="py-24 px-[5%] bg-[#F5F7FA]">
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Our Web Applications</h2>
+          <p className="text-xl text-[#8B92A7]">Industry-specific solutions designed to help your trade business grow</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
+          {/* QuoteFlow - Live */}
+          <div className="bg-white p-10 rounded-[20px] border-2 border-[#0066FF] relative overflow-hidden">
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-3 py-1 rounded-full text-xs font-bold">
+              LIVE NOW
+            </div>
+            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
+              📊
+            </div>
+            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">QuoteFlow</h3>
+            <p className="text-[#8B92A7] leading-[1.7] mb-4">
+              Instant quote calculator for plumbers. Give customers transparent pricing in 30 seconds, capture qualified leads, and manage jobs from your admin dashboard.
+            </p>
+            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
+              <li className="flex items-center gap-2">✓ Instant quote calculator</li>
+              <li className="flex items-center gap-2">✓ Lead capture & notifications</li>
+              <li className="flex items-center gap-2">✓ Admin dashboard included</li>
+              <li className="flex items-center gap-2">✓ Mobile responsive</li>
+            </ul>
+            <Link href="/quoteflow" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
+              Learn More →
+            </Link>
+          </div>
+          
+          {/* JobTracker - Coming Soon */}
+          <div className="bg-white p-10 rounded-[20px] border-2 border-gray-200 relative opacity-75">
+            <div className="absolute top-4 right-4 bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">
+              COMING SOON
+              </div>
+            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
+              🔧
+            </div>
+            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">JobTracker</h3>
+            <p className="text-[#8B92A7] leading-[1.7] mb-4">
+              Job management and scheduling for electricians and builders. Track jobs, manage teams, and keep customers updated in real-time.
+            </p>
+            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
+              <li className="flex items-center gap-2">✓ Job scheduling calendar</li>
+              <li className="flex items-center gap-2">✓ Team management</li>
+              <li className="flex items-center gap-2">✓ Customer notifications</li>
+              <li className="flex items-center gap-2">✓ Real-time updates</li>
+            </ul>
+            <Link href="/contact" className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all hover:bg-gray-200">
+              Get Notified
+            </Link>
+            </div>
+            
+          {/* TradeHub - Coming Soon */}
+          <div className="bg-white p-10 rounded-[20px] border-2 border-gray-200 relative opacity-75">
+            <div className="absolute top-4 right-4 bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">
+              COMING SOON
+            </div>
+            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
+              💼
+            </div>
+            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">TradeHub</h3>
+            <p className="text-[#8B92A7] leading-[1.7] mb-4">
+              All-in-one business management for trade contractors. Quotes, jobs, invoicing, payments, and customer management in one platform.
+            </p>
+            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
+              <li className="flex items-center gap-2">✓ Complete business suite</li>
+              <li className="flex items-center gap-2">✓ Invoicing & payments</li>
+              <li className="flex items-center gap-2">✓ Customer CRM</li>
+              <li className="flex items-center gap-2">✓ Financial reporting</li>
+            </ul>
+            <Link href="/contact" className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all hover:bg-gray-200">
+              Get Notified
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Us?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We make getting professional plumbing services simple and transparent
-            </p>
+      {/* Value Props */}
+      <section className="py-24 px-[5%] bg-white">
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Why Tradespeople Choose FixBlox</h2>
+          <p className="text-xl text-[#8B92A7]">We build powerful tools that help you win more jobs and run your business efficiently</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calculator className="h-8 w-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Instant Quotes
-              </h3>
-              <p className="text-gray-600">
-                Get an immediate estimate for your project with our transparent pricing calculator
-              </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto">
+          {[
+            { icon: '🎯', title: 'Built for Traders', desc: 'Industry-specific solutions designed by people who understand your business. Each app is tailored to the unique needs of your trade.' },
+            { icon: '⚡', title: 'Complete Solutions', desc: 'From lead generation to job completion and invoicing. Everything you need to run a modern trade business in one place.' },
+            { icon: '💰', title: 'Fair Pricing', desc: 'Transparent subscription models with no hidden fees. Pay monthly, cancel anytime. No long-term contracts or setup fees.' }
+          ].map((prop, index) => (
+            <div key={index} className="text-center p-8">
+              <div className="w-[90px] h-[90px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-full flex items-center justify-center text-[2.5rem] mx-auto mb-6 shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
+                {prop.icon}
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Wrench className="h-8 w-8 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Expert Plumbers
-              </h3>
-              <p className="text-gray-600">
-                Professional, licensed, and experienced plumbers for all your needs
-              </p>
+              <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">{prop.title}</h3>
+              <p className="text-[#8B92A7] leading-[1.7]">{prop.desc}</p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Quick Response
-              </h3>
-              <p className="text-gray-600">
-                Fast response times for emergency calls and same-day service options
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-lg text-gray-600">Three simple steps to get your job booked</p>
+      <section id="how-it-works" className="py-24 px-[5%] bg-[#F5F7FA]">
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">How FixBlox Works</h2>
+          <p className="text-xl text-[#8B92A7]">Get started with our platform in three simple steps</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto">
+          {[
+            { num: '1', title: 'Choose Your App', desc: 'Select the solution that fits your trade. QuoteFlow for plumbers, JobTracker for electricians, or TradeHub for complete business management.' },
+            { num: '2', title: 'Quick Setup', desc: 'Create your account, customize your settings, and connect your business. Get up and running in minutes with our guided onboarding.' },
+            { num: '3', title: 'Grow Your Business', desc: 'Start generating leads, managing jobs, and scaling your operations. All your tools in one powerful platform.' }
+          ].map((step, index) => (
+            <div key={index} className="text-center">
+              <div className="w-[90px] h-[90px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-full flex items-center justify-center text-[2.5rem] font-extrabold text-white mx-auto mb-6 shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
+                {step.num}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-              <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mb-4">1</div>
-              <h3 className="text-xl font-semibold mb-2">Tell us about the job</h3>
-              <p className="text-gray-600">Choose the trade, enter your postcode, urgency, and add any details.</p>
+              <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">{step.title}</h3>
+              <p className="text-[#8B92A7] leading-[1.7]">{step.desc}</p>
             </div>
-            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-              <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mb-4">2</div>
-              <h3 className="text-xl font-semibold mb-2">Get an instant estimate</h3>
-              <p className="text-gray-600">See a clear price breakdown with no surprises.</p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-              <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mb-4">3</div>
-              <h3 className="text-xl font-semibold mb-2">Send your details</h3>
-              <p className="text-gray-600">We’ll confirm and get your job booked—often the same day.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Trusted by Local Homeowners</h2>
-            <p className="text-lg text-gray-600">Real feedback from recent jobs</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow p-6 border border-gray-100">
-              <p className="text-gray-700 italic">“Got a fair price instantly and they fixed our leak the same day.”</p>
-              <p className="mt-4 text-sm text-gray-500">— Emma, SW1</p>
+      {/* Who It's For */}
+      <section className="py-24 px-[5%] bg-white">
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Built for Every Trade</h2>
+          <p className="text-xl text-[#8B92A7]">Whether you&apos;re a plumber, electrician, builder, or contractor — we have solutions for you</p>
             </div>
-            <div className="bg-white rounded-xl shadow p-6 border border-gray-100">
-              <p className="text-gray-700 italic">“Clear pricing, great communication, and tidy work. Highly recommend.”</p>
-              <p className="mt-4 text-sm text-gray-500">— Daniel, M1</p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[1000px] mx-auto">
+          {[
+            { icon: '🔧', name: 'Plumbers' },
+            { icon: '⚡', name: 'Electricians' },
+            { icon: '🏗️', name: 'Builders' },
+            { icon: '🛠️', name: 'Contractors' },
+            { icon: '🏠', name: 'Renovators' },
+            { icon: '🌡️', name: 'HVAC' },
+            { icon: '🪟', name: 'Glaziers' },
+            { icon: '🎨', name: 'Decorators' }
+          ].map((trade, index) => (
+            <div key={index} className="bg-[#F5F7FA] p-6 rounded-2xl text-center hover:bg-gradient-to-r hover:from-[#0066FF] hover:to-[#00D9FF] hover:text-white transition-all cursor-pointer group">
+              <div className="text-4xl mb-2">{trade.icon}</div>
+              <p className="font-semibold text-[#0A0E27] group-hover:text-white">{trade.name}</p>
             </div>
-            <div className="bg-white rounded-xl shadow p-6 border border-gray-100">
-              <p className="text-gray-700 italic">“Emergency callout was quick and the quote matched the final bill.”</p>
-              <p className="mt-4 text-sm text-gray-500">— Priya, EH3</p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-blue-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Get your instant plumbing quote in minutes and connect with professional plumbers
+      {/* Final CTA */}
+      <section className="py-24 px-[5%] bg-gradient-to-br from-[#0A0E27] to-[#1a1f3a] text-center text-white relative overflow-hidden">
+        <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(0,217,255,0.2)_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[pulse_3s_ease-in-out_infinite]"></div>
+        
+        <div className="relative z-10">
+          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold mb-4">Ready to Modernize Your Trade Business?</h2>
+          <p className="text-xl md:text-2xl mb-10 opacity-90 max-w-[700px] mx-auto">
+            Join hundreds of tradespeople already using FixBlox to generate more leads and streamline their operations
           </p>
-          <Link
-            href="/calculator"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg hover:shadow-xl"
-          >
-            <Calculator className="mr-2 h-6 w-6" />
-            Get Your Quote Now
+          <Link href="/quoteflow" className="inline-block bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-14 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)] hover:shadow-[0_15px_40px_rgba(0,102,255,0.5)]">
+            Start with QuoteFlow
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4">Quote Calculator</h3>
-          <p className="text-gray-400 mb-6">
-            Professional plumbing services with transparent pricing
-          </p>
-          <div className="flex justify-center space-x-6">
-            <Link href="/calculator" className="text-gray-400 hover:text-white transition-colors">
-              Calculator
-            </Link>
-            <Link href="/admin" className="text-gray-400 hover:text-white transition-colors">
-              Admin
-            </Link>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800">
-            <p className="text-gray-400 text-sm">
-              © 2024 Quote Calculator. All rights reserved.
+      <footer className="bg-[#0A0E27] text-white py-16 px-[5%]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
+          <div>
+            <h3 className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent mb-4">
+              FixBlox
+            </h3>
+            <p className="opacity-70 leading-[1.7]">
+              Building powerful web applications for tradespeople. Modern solutions that help you win more jobs and grow your business.
             </p>
           </div>
+          <div>
+            <h4 className="mb-4 text-lg font-semibold">Our Apps</h4>
+            <ul className="space-y-2 list-none">
+              <li><Link href="/quoteflow" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">QuoteFlow (Plumbers)</Link></li>
+              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">JobTracker (Soon)</Link></li>
+              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">TradeHub (Soon)</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="mb-4 text-lg font-semibold">Company</h4>
+            <ul className="space-y-2 list-none">
+              <li><a href="#how-it-works" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">How It Works</a></li>
+              <li><a href="#apps" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Our Apps</a></li>
+              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Contact</Link></li>
+              <li><Link href="/admin/sign-in" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Admin Login</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="mb-4 text-lg font-semibold">Support</h4>
+            <ul className="space-y-2 list-none">
+              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Get in Touch</Link></li>
+              <li><a href="mailto:info@fixblox.com" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">info@fixblox.com</a></li>
+              <li><a href="tel:+448001234567" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">0800 123 4567</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="border-t border-white/10 pt-8 text-center opacity-70">
+          <p>&copy; 2025 FixBlox. Web app solutions for tradespeople. Built on Next.js, Supabase, and Vercel.</p>
         </div>
       </footer>
+
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 0.5; }
+          50% { transform: scale(1.1); opacity: 0.8; }
+        }
+      `}</style>
     </div>
   )
 }
