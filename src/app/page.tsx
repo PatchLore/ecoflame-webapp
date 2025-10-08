@@ -169,7 +169,7 @@ export default function HomePage() {
           {[
             { icon: '🎯', title: 'Built for Traders', desc: 'Industry-specific solutions designed by people who understand your business. Each app is tailored to the unique needs of your trade.' },
             { icon: '⚡', title: 'Complete Solutions', desc: 'From lead generation to job completion and invoicing. Everything you need to run a modern trade business in one place.' },
-            { icon: '💰', title: 'Fair Pricing', desc: 'Transparent subscription models with no hidden fees. Pay monthly, cancel anytime. No long-term contracts or setup fees.' }
+            { icon: '💰', title: 'Simple One-Time Pricing', desc: 'Pay once, own it forever. No subscriptions, no hidden fees, and full access to your customised web app solution.' }
           ].map((prop, index) => (
             <div key={index} className="text-center p-8">
               <div className="w-[90px] h-[90px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-full flex items-center justify-center text-[2.5rem] mx-auto mb-6 shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
