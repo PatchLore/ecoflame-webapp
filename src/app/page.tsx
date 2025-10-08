@@ -31,7 +31,7 @@ export default function HomePage() {
             Web App Solutions for <span className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">Tradespeople</span>
             </h1>
           <p className="text-xl md:text-2xl text-white/85 mb-10 max-w-[800px] mx-auto">
-            Professional web applications designed to streamline your trade business. From instant quotes to job management — built for traders, by traders.
+            Professional web applications designed to streamline trade businesses. From instant quotes to job management — built specifically for the trades industry.
           </p>
           
           <div className="flex flex-wrap gap-6 justify-center mb-12">
