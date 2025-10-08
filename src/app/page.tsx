@@ -190,8 +190,8 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto">
           {[
-            { num: '1', title: 'Choose Your App', desc: 'Select the solution that fits your trade. QuoteFlow for plumbers, JobTracker for electricians, or TradeHub for complete business management.' },
-            { num: '2', title: 'Quick Setup', desc: 'Create your account, customize your settings, and connect your business. Get up and running in minutes with our guided onboarding.' },
+            { num: '1', title: 'Built for Tradesmen', desc: 'Industry-specific solutions created by people who understand your trade. Each tool is crafted to help you quote faster, look more professional, and win more work.' },
+            { num: '2', title: 'Complete Solutions', desc: 'From instant quoting to lead management and client communication — everything you need to run a modern trade business in one place.' },
             { num: '3', title: 'Grow Your Business', desc: 'Start generating leads, managing jobs, and scaling your operations. All your tools in one powerful platform.' }
           ].map((step, index) => (
             <div key={index} className="text-center">
