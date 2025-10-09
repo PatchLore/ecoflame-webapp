@@ -284,7 +284,11 @@ export default function HomePage() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center opacity-70">
-          <p>&copy; 2025 FixBlox. Web app solutions for tradespeople. Built on Next.js, Supabase, and Vercel.</p>
+          <p className="mb-3">&copy; 2025 FixBlox. Web app solutions for tradespeople.</p>
+          <div className="space-x-4">
+            <Link href="/terms" className="text-white/70 hover:text-white transition-colors text-sm">Terms of Service</Link>
+            <Link href="/privacy" className="text-white/70 hover:text-white transition-colors text-sm">Privacy Policy</Link>
+          </div>
         </div>
       </footer>
 
