@@ -26,7 +26,7 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-[#0A0E27] mb-4">1. Agreement to Terms</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Welcome to FixBlox. By purchasing and using our white-label web application solutions (including QuoteFlow, JobTracker, TradeHub, and any other applications we may offer), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not purchase or use our services.
+              Welcome to FixBlox. By purchasing and using our white-label web application solutions (including QuoteFlow, JobTracker, TradeHub, and any other applications we may offer), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, please do not purchase or use our services.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               These Terms constitute a legally binding agreement between you (whether personally or on behalf of an entity) and FixBlox concerning your purchase and use of our white-label application solutions.
@@ -273,9 +273,9 @@ export default function TermsOfService() {
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-[#0A0E27] mb-4">9. Disclaimers and Limitations of Liability</h2>
-            <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">9.1 "As Is" Basis</h3>
+            <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">9.1 &quot;As Is&quot; Basis</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              THE SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR THAT THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE.
+              THE SERVICES ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR THAT THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE.
             </p>
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">9.2 Limitation of Liability</h3>
@@ -395,7 +395,7 @@ export default function TermsOfService() {
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">15.3 Waiver</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              No waiver of any term of these Terms shall be deemed a further or continuing waiver of such term or any other term, and FixBlox's failure to assert any right or provision under these Terms shall not constitute a waiver of such right or provision.
+              No waiver of any term of these Terms shall be deemed a further or continuing waiver of such term or any other term, and FixBlox&apos;s failure to assert any right or provision under these Terms shall not constitute a waiver of such right or provision.
             </p>
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">15.4 Assignment</h3>
