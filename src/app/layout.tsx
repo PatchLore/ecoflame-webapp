@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   title: "FixBlox Custom QuoteFlow Solution",
   description: "Get your brand new website setup with our customised QuoteFlow solution including WhatsApp link and QR code integration.",
   metadataBase: new URL("https://www.fixblox.com"),
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "FixBlox Custom QuoteFlow Solution",
     description: "Get your brand new website setup with our customised QuoteFlow solution including WhatsApp link and QR code integration.",
