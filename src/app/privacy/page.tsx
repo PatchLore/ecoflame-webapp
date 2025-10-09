@@ -221,7 +221,7 @@ export default function PrivacyPolicy() {
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">6.3 Managing Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
-              Most web browsers allow you to control cookies through their settings. However, if you disable cookies, some features of our services may not function properly. You can usually find cookie controls in your browser's privacy or security settings.
+              Most web browsers allow you to control cookies through their settings. However, if you disable cookies, some features of our services may not function properly. You can usually find cookie controls in your browser&apos;s privacy or security settings.
             </p>
           </section>
 
@@ -273,7 +273,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-[#0A0E27] mb-4">9. Children's Privacy</h2>
+            <h2 className="text-2xl font-bold text-[#0A0E27] mb-4">9. Children&apos;s Privacy</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.
             </p>
@@ -294,7 +294,7 @@ export default function PrivacyPolicy() {
               You can opt out of receiving marketing communications at any time by:
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
-              <li>Clicking the "unsubscribe" link in any marketing email</li>
+              <li>Clicking the &quot;unsubscribe&quot; link in any marketing email</li>
               <li>Adjusting your account communication preferences</li>
               <li>Contacting us at info@fixblox.com</li>
             </ul>
@@ -336,7 +336,7 @@ export default function PrivacyPolicy() {
               For customer lead data collected through your white-label application (such as QuoteFlow):
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
-              <li><strong>You are the data controller:</strong> You determine what data is collected, how it's used, and how long it's retained</li>
+              <li><strong>You are the data controller:</strong> You determine what data is collected, how it&apos;s used, and how long it&apos;s retained</li>
               <li><strong>FixBlox acts as a data processor:</strong> We provide the technical infrastructure and may process this data on your behalf when hosting or supporting your application</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -410,7 +410,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
               <li>Posting the updated Privacy Policy on our website</li>
-              <li>Updating the "Last Updated" date at the top of this policy</li>
+              <li>Updating the &quot;Last Updated&quot; date at the top of this policy</li>
               <li>Sending you an email notification (for significant changes)</li>
             </ul>
             <p className="text-gray-700 leading-relaxed">

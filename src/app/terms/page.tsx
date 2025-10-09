@@ -118,7 +118,7 @@ export default function TermsOfService() {
               <li>Use, operate, and publicly display your customized application</li>
               <li>Brand the application with your business name, logo, and identity</li>
               <li>Collect and process data from your customers through the application</li>
-              <li>Modify configuration settings and content within the application's user interface</li>
+              <li>Modify configuration settings and content within the application&apos;s user interface</li>
               <li>Use the application for your business operations indefinitely</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -299,7 +299,7 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-[#0A0E27] mb-4">10. Indemnification</h2>
             <p className="text-gray-700 leading-relaxed">
-              You agree to defend, indemnify, and hold harmless FixBlox and its officers, directors, employees, contractors, agents, licensors, and suppliers from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the services.
+              You agree to defend, indemnify, and hold harmless FixBlox and its officers, directors, employees, contractors, agents, licensors, and suppliers from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms or your use of the services.
             </p>
           </section>
 
@@ -331,7 +331,7 @@ export default function TermsOfService() {
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">12.3 Hosted Services Termination</h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If FixBlox hosts your white-label application, we may terminate hosting services with 30 days' written notice if:
+              If FixBlox hosts your white-label application, we may terminate hosting services with 30 days&apos; written notice if:
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
               <li>You fail to pay any ongoing hosting or support fees (if applicable)</li>
