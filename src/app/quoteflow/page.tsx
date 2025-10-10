@@ -166,7 +166,7 @@ export default function QuoteFlowLandingPage() {
         <div className="relative z-10">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">Ready to Start Generating Leads?</h2>
           <p className="text-xl md:text-2xl mb-10 opacity-90 max-w-[700px] mx-auto">
-            Join hundreds of plumbers already using QuoteFlow to win more jobs and grow their business
+            Start using QuoteFlow to win more jobs and grow your plumbing business
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/quoteflow/calculator" className="inline-block bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-12 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)]">
