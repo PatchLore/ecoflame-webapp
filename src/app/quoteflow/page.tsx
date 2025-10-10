@@ -159,60 +159,6 @@ export default function QuoteFlowLandingPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-24 px-[5%] bg-white">
-        <div className="text-center max-w-[800px] mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Simple, Transparent Pricing</h2>
-          <p className="text-xl text-[#8B92A7]">Professional pricing for professional solutions.</p>
-        </div>
-
-        <div className="max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Starter Plan */}
-          <div className="bg-[#F5F7FA] p-10 rounded-3xl border-2 border-gray-200">
-            <h3 className="text-2xl font-bold text-[#0A0E27] mb-2">Starter</h3>
-            <div className="mb-6">
-              <span className="text-5xl font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">£29</span>
-              <span className="text-[#8B92A7]">/month</span>
-            </div>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Unlimited quotes</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Email notifications</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Admin dashboard</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Basic support</li>
-            </ul>
-            <Link href="/contact" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Pro Plan */}
-          <div className="bg-white p-10 rounded-3xl border-2 border-[#0066FF] relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-4 py-1 rounded-full text-sm font-bold">
-              MOST POPULAR
-            </div>
-            <h3 className="text-2xl font-bold text-[#0A0E27] mb-2">Pro</h3>
-            <div className="mb-6">
-              <span className="text-5xl font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">£79</span>
-              <span className="text-[#8B92A7]">/month</span>
-              </div>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Everything in Starter</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Custom domain</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Custom branding</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Priority support</li>
-              <li className="flex items-center gap-2 text-[#0A0E27]"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg> Advanced analytics</li>
-            </ul>
-            <Link href="/contact" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
-              Get Started
-            </Link>
-        </div>
-      </div>
-
-        <p className="text-center text-[#8B92A7] mt-12">
-          Custom solutions tailored to your business needs
-        </p>
-      </section>
-
       {/* Final CTA */}
       <section className="py-24 px-[5%] bg-gradient-to-br from-[#0A0E27] to-[#1a1f3a] text-center text-white relative overflow-hidden">
         <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(0,217,255,0.2)_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[pulse_3s_ease-in-out_infinite]"></div>
@@ -271,7 +217,7 @@ export default function QuoteFlowLandingPage() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center opacity-70">
-          <p>&copy; 2025 FixBlox. Web app solutions for tradespeople. Built on Next.js, Supabase, and Vercel.</p>
+          <p>&copy; 2025 FixBlox. Web app solutions for tradespeople.</p>
       </div>
       </footer>
 
