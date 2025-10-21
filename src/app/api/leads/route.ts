@@ -6,12 +6,15 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
 
-    const required = ['name','email','phone','job_type','postcode','urgency','estimated_quote']
+    const required = ['name','email','phone','job_type','postcode','urgency']
     for (const key of required) {
       if (!body[key]) {
         return NextResponse.json({ error: `Missing field: ${key}` }, { status: 400 })
       }
     }
+    
+    // estimated_quote is optional - use 0 as default for "contact for quote"
+    const estimatedQuote = body.estimated_quote !== undefined && body.estimated_quote !== null ? body.estimated_quote : 0
 
     // Try database first, but don't fail if it doesn't work
     try {
@@ -24,7 +27,7 @@ export async function POST(req: NextRequest) {
         postcode: body.postcode,
         urgency: body.urgency,
         job_details: body.job_details ?? null,
-        estimated_quote: body.estimated_quote,
+        estimated_quote: estimatedQuote,
       }]).select()
 
       if (error) {
@@ -49,7 +52,7 @@ export async function POST(req: NextRequest) {
         postcode: body.postcode,
         urgency: body.urgency,
         job_details: body.job_details ?? null,
-        estimated_quote: body.estimated_quote,
+        estimated_quote: estimatedQuote,
         created_at: new Date().toISOString(),
       })
     } catch (emailError) {

@@ -17,3 +17,8 @@ CHECK (status IN ('New', 'Contacted', 'Completed'));
 
 -- Create an index on the status column for better query performance
 CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
+
+
+
+
+

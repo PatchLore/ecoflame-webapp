@@ -6,7 +6,6 @@ import {
   Search, 
   Download, 
   LogOut, 
-  Settings, 
   LayoutDashboard,
   Phone,
   Mail,
@@ -27,7 +26,6 @@ export default function AdminDashboard() {
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [serviceFilter, setServiceFilter] = useState<string>('all')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [user, setUser] = useState<{ email?: string } | null>(null)
 
   useEffect(() => {
     checkAuth()
@@ -57,7 +55,6 @@ export default function AdminDashboard() {
       return
     }
 
-    setUser(user)
     setIsAuthenticated(true)
   }
 
@@ -163,7 +160,7 @@ export default function AdminDashboard() {
         `"${lead.job_type}"`,
         `"${lead.postcode}"`,
         `"${lead.urgency}"`,
-        `"£${lead.estimated_quote}"`,
+        `"${lead.estimated_quote ? `£${lead.estimated_quote}` : 'Contact for quote'}"`,
         `"${lead.status || 'New'}"`,
         `"${new Date(lead.created_at).toLocaleDateString()}"`
       ].join(','))
@@ -226,18 +223,17 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg">
         <div className="p-6">
-          <h1 className="text-2xl font-bold text-blue-600">QuoteFlow</h1>
+          <div className="flex items-center gap-2">
+            <div className="w-[30px] h-[30px] bg-gradient-to-br from-[#FF6B35] to-[#E63946] rounded-[50%_50%_0_50%]"></div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent">Eco Flame</h1>
+          </div>
         </div>
         
         <nav className="mt-8">
           <div className="px-6">
-            <div className="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-lg">
+            <div className="flex items-center px-3 py-2 text-orange-600 bg-orange-50 rounded-lg">
               <LayoutDashboard className="h-5 w-5 mr-3" />
               Dashboard
-            </div>
-            <div className="flex items-center px-3 py-2 text-gray-600 hover:text-gray-900 mt-2">
-              <Settings className="h-5 w-5 mr-3" />
-              Settings
             </div>
           </div>
         </nav>
@@ -389,7 +385,7 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm font-medium text-gray-900">
-                            £{lead.estimated_quote}
+                            {lead.estimated_quote ? `£${lead.estimated_quote}` : 'Contact for quote'}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

@@ -1,303 +1,221 @@
 'use client'
 
 import Link from 'next/link'
+import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 export default function HomePage() {
   return (
-    <div className="overflow-x-hidden bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md px-[5%] py-6 flex justify-between items-center z-[1000] shadow-[0_2px_20px_rgba(0,0,0,0.05)]">
-        <Link href="/" className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">
-          FixBlox
-        </Link>
-        <ul className="hidden md:flex gap-10 list-none">
-          <li><a href="#apps" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Apps</a></li>
-          <li><a href="#how-it-works" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">How It Works</a></li>
-          <li><Link href="/contact" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Contact</Link></li>
-        </ul>
-        <Link href="/quoteflow" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(0,102,255,0.3)] hover:shadow-[0_6px_25px_rgba(0,102,255,0.4)]">
-          Explore Apps
-        </Link>
-      </nav>
-
+    <EcoFlameLayout>
       {/* Hero Section */}
-      <section className="mt-20 min-h-[95vh] flex items-center px-[5%] py-16 bg-gradient-to-br from-[#0A0E27] to-[#1a1f3a] relative overflow-hidden">
-        <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,102,255,0.3)_0%,transparent_70%)] top-[-300px] right-[-300px] animate-[pulse_4s_ease-in-out_infinite]"></div>
-        <div className="absolute w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(0,217,255,0.2)_0%,transparent_70%)] bottom-[-200px] left-[-200px] animate-[pulse_5s_ease-in-out_infinite]"></div>
-        
-        <div className="max-w-[1400px] mx-auto text-center relative z-10 w-full">
-          <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-extrabold leading-tight text-white mb-6">
-            Web App Solutions for <span className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">Tradespeople</span>
-            </h1>
-          <p className="text-xl md:text-2xl text-white/85 mb-10 max-w-[800px] mx-auto">
-            Professional web applications designed to streamline trade businesses. From instant quotes to job management — built specifically for the trades industry.
+      <section id="home" className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-8 py-20">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Professional <span className="bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent">Heating & Plumbing</span> Services
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+            Expert boiler installation, repairs, and heating services across London and Surrey. 
+            Gas Safe registered, fully insured, and available 24/7 for emergencies.
           </p>
-          
-          <div className="flex flex-wrap gap-6 justify-center mb-12">
-            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
-              💻 Modern Tech Stack
-            </div>
-            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
-              📱 Mobile-First Design
-            </div>
-            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
-              🚀 Quick Setup
-            </div>
-            <div className="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full text-white font-semibold border border-white/20">
-              💼 Trade-Specific
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="#apps" className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-14 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)] hover:shadow-[0_15px_40px_rgba(0,102,255,0.5)] inline-block">
-              Explore Our Apps
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
+              Get Instant Quote
             </a>
-            <Link href="/contact" className="bg-transparent text-white px-14 py-5 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27] inline-block text-center">
-              Get in Touch
-            </Link>
+            <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
+              Call Now: 07921 064 352
+            </a>
+          </div>
+          
+          {/* Trust Indicators */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-4xl mb-2">🛡️</div>
+              <h3 className="text-white font-semibold mb-2">Gas Safe Registered</h3>
+              <p className="text-white/70 text-sm">Fully qualified and certified</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-2">⏰</div>
+              <h3 className="text-white font-semibold mb-2">24/7 Emergency Service</h3>
+              <p className="text-white/70 text-sm">Available when you need us most</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-2">⭐</div>
+              <h3 className="text-white font-semibold mb-2">9.96/10 Rating</h3>
+              <p className="text-white/70 text-sm">Based on 586+ reviews</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <section className="bg-white py-12 px-[5%] shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {[
-            { number: '1000+', label: 'Active Tradespeople' },
-            { number: '24/7', label: 'Platform Uptime' },
-            { number: '100%', label: 'Cloud-Based' },
-            { number: '4.9★', label: 'User Rating' }
-          ].map((item, index) => (
-            <div key={index}>
-              <h3 className="text-[2.5rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent mb-2">
-                {item.number}
-                </h3>
-              <p className="text-[#8B92A7] font-medium">{item.label}</p>
+      {/* Services Section */}
+      <section id="services" className="py-24 px-8 bg-white">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1D3557] mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Complete heating and plumbing solutions for homes and businesses across London and Surrey
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '🔥',
+                title: 'Boiler Installation',
+                description: 'Professional boiler installation and replacement services with warranty coverage.',
+                features: ['New boiler installation', 'Boiler replacement', 'System upgrades', 'Warranty included']
+              },
+              {
+                icon: '🔧',
+                title: 'Boiler Repairs',
+                description: 'Expert boiler repair services to get your heating back up and running quickly.',
+                features: ['Emergency repairs', 'Fault diagnosis', 'Component replacement', 'Same-day service']
+              },
+              {
+                icon: '📋',
+                title: 'Boiler Servicing',
+                description: 'Regular boiler maintenance to ensure efficiency and prevent breakdowns.',
+                features: ['Annual servicing', 'Safety checks', 'Efficiency optimization', 'Preventive maintenance']
+              },
+              {
+                icon: '🚰',
+                title: 'Plumbing Services',
+                description: 'Complete plumbing solutions for all your water and drainage needs.',
+                features: ['Leak repairs', 'Pipe installation', 'Bathroom plumbing', 'Drainage solutions']
+              },
+              {
+                icon: '⚡',
+                title: 'Emergency Callouts',
+                description: '24/7 emergency heating and plumbing services when you need them most.',
+                features: ['24/7 availability', 'Rapid response', 'Emergency repairs', 'No call-out charges']
+              },
+              {
+                icon: '📄',
+                title: 'Landlord Certificates',
+                description: 'Gas safety certificates and compliance services for landlords.',
+                features: ['Gas safety certificates', 'Landlord compliance', 'Property inspections', 'Documentation']
+              }
+            ].map((service, index) => (
+              <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
+                <div className="text-5xl mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-bold text-[#1D3557] mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-sm text-gray-700">
+                      <span className="text-[#FF6B35] mr-2">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
-        </div>
-      </section>
-
-      {/* Our Apps Section */}
-      <section id="apps" className="py-24 px-[5%] bg-[#F5F7FA]">
-        <div className="text-center max-w-[800px] mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Our Web Applications</h2>
-          <p className="text-xl text-[#8B92A7]">Industry-specific solutions designed to help your trade business grow</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
-          {/* QuoteFlow - Live */}
-          <div className="bg-white p-10 rounded-[20px] border-2 border-[#0066FF] relative overflow-hidden">
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-3 py-1 rounded-full text-xs font-bold">
-              LIVE NOW
-            </div>
-            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
-              📊
-            </div>
-            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">QuoteFlow</h3>
-            <p className="text-[#8B92A7] leading-[1.7] mb-4">
-              Instant quote calculator for plumbers. Give customers transparent pricing in 30 seconds, capture qualified leads, and manage jobs from your admin dashboard.
-            </p>
-            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
-              <li className="flex items-center gap-2">✓ Instant quote calculator</li>
-              <li className="flex items-center gap-2">✓ Lead capture & notifications</li>
-              <li className="flex items-center gap-2">✓ Admin dashboard included</li>
-              <li className="flex items-center gap-2">✓ Mobile responsive</li>
-            </ul>
-            <Link href="/quoteflow" className="block w-full text-center bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
-              Learn More →
-            </Link>
-          </div>
-          
-          {/* JobTracker - Coming Soon */}
-          <div className="bg-white p-10 rounded-[20px] border-2 border-gray-200 relative opacity-75">
-            <div className="absolute top-4 right-4 bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">
-              COMING SOON
-              </div>
-            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
-              🔧
-            </div>
-            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">JobTracker</h3>
-            <p className="text-[#8B92A7] leading-[1.7] mb-4">
-              Job management and scheduling for electricians and builders. Track jobs, manage teams, and keep customers updated in real-time.
-            </p>
-            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
-              <li className="flex items-center gap-2">✓ Job scheduling calendar</li>
-              <li className="flex items-center gap-2">✓ Team management</li>
-              <li className="flex items-center gap-2">✓ Customer notifications</li>
-              <li className="flex items-center gap-2">✓ Real-time updates</li>
-            </ul>
-            <Link href="/contact" className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all hover:bg-gray-200">
-              Get Notified
-            </Link>
-            </div>
-            
-          {/* TradeHub - Coming Soon */}
-          <div className="bg-white p-10 rounded-[20px] border-2 border-gray-200 relative opacity-75">
-            <div className="absolute top-4 right-4 bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">
-              COMING SOON
-            </div>
-            <div className="w-[70px] h-[70px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-[18px] flex items-center justify-center text-[2.2rem] mb-6">
-              💼
-            </div>
-            <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">TradeHub</h3>
-            <p className="text-[#8B92A7] leading-[1.7] mb-4">
-              All-in-one business management for trade contractors. Quotes, jobs, invoicing, payments, and customer management in one platform.
-            </p>
-            <ul className="space-y-2 text-sm text-[#8B92A7] mb-6">
-              <li className="flex items-center gap-2">✓ Complete business suite</li>
-              <li className="flex items-center gap-2">✓ Invoicing & payments</li>
-              <li className="flex items-center gap-2">✓ Customer CRM</li>
-              <li className="flex items-center gap-2">✓ Financial reporting</li>
-            </ul>
-            <Link href="/contact" className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold transition-all hover:bg-gray-200">
-              Get Notified
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Value Props */}
-      <section className="py-24 px-[5%] bg-white">
-        <div className="text-center max-w-[800px] mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Why Tradespeople Choose FixBlox</h2>
-          <p className="text-xl text-[#8B92A7]">We build powerful tools that help you win more jobs and run your business efficiently</p>
+      {/* Reviews Section */}
+      <section id="reviews" className="py-24 px-8 bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <div className="mb-6">
+            <div className="text-6xl font-bold text-white mb-2">9.96<span className="text-3xl text-white/70">/10</span></div>
+            <p className="text-xl text-white/90">Based on 586 reviews on CheckATrade</p>
           </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto">
-          {[
-            { icon: '🎯', title: 'Built for Traders', desc: 'Industry-specific solutions designed by people who understand your business. Each app is tailored to the unique needs of your trade.' },
-            { icon: '⚡', title: 'Complete Solutions', desc: 'From lead generation to job completion and invoicing. Everything you need to run a modern trade business in one place.' },
-            { icon: '💰', title: 'Simple One-Time Pricing', desc: 'Pay once, own it forever. No subscriptions, no hidden fees, and full access to your customised web app solution.' }
-          ].map((prop, index) => (
-            <div key={index} className="text-center p-8">
-              <div className="w-[90px] h-[90px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-full flex items-center justify-center text-[2.5rem] mx-auto mb-6 shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
-                {prop.icon}
-            </div>
-              <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">{prop.title}</h3>
-              <p className="text-[#8B92A7] leading-[1.7]">{prop.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" className="py-24 px-[5%] bg-[#F5F7FA]">
-        <div className="text-center max-w-[800px] mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">How FixBlox Works</h2>
-          <p className="text-xl text-[#8B92A7]">Get started with our platform in three simple steps</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto">
-          {[
-            { num: '1', title: 'Built for Tradesmen', desc: 'Industry-specific solutions created by people who understand your trade. Each tool is crafted to help you quote faster, look more professional, and win more work.' },
-            { num: '2', title: 'Complete Solutions', desc: 'From instant quoting to lead management and client communication — everything you need to run a modern trade business in one place.' },
-            { num: '3', title: 'Grow Your Business', desc: 'Start generating leads, managing jobs, and scaling your operations. All your tools in one powerful platform.' }
-          ].map((step, index) => (
-            <div key={index} className="text-center">
-              <div className="w-[90px] h-[90px] bg-gradient-to-r from-[#0066FF] to-[#00D9FF] rounded-full flex items-center justify-center text-[2.5rem] font-extrabold text-white mx-auto mb-6 shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
-                {step.num}
-          </div>
-              <h3 className="text-2xl mb-4 text-[#0A0E27] font-bold">{step.title}</h3>
-              <p className="text-[#8B92A7] leading-[1.7]">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Who It's For */}
-      <section className="py-24 px-[5%] bg-white">
-        <div className="text-center max-w-[800px] mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#0A0E27]">Built for Every Trade</h2>
-          <p className="text-xl text-[#8B92A7]">Whether you&apos;re a plumber, electrician, builder, or contractor — we have solutions for you</p>
-            </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[1000px] mx-auto">
-          {[
-            { icon: '🔧', name: 'Plumbers' },
-            { icon: '⚡', name: 'Electricians' },
-            { icon: '🏗️', name: 'Builders' },
-            { icon: '🛠️', name: 'Contractors' },
-            { icon: '🏠', name: 'Renovators' },
-            { icon: '🌡️', name: 'HVAC' },
-            { icon: '🪟', name: 'Glaziers' },
-            { icon: '🎨', name: 'Decorators' }
-          ].map((trade, index) => (
-            <div key={index} className="bg-[#F5F7FA] p-6 rounded-2xl text-center hover:bg-gradient-to-r hover:from-[#0066FF] hover:to-[#00D9FF] hover:text-white transition-all cursor-pointer group">
-              <div className="text-4xl mb-2">{trade.icon}</div>
-              <p className="font-semibold text-[#0A0E27] group-hover:text-white">{trade.name}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-24 px-[5%] bg-gradient-to-br from-[#0A0E27] to-[#1a1f3a] text-center text-white relative overflow-hidden">
-        <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(0,217,255,0.2)_0%,transparent_70%)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[pulse_3s_ease-in-out_infinite]"></div>
-        
-        <div className="relative z-10">
-          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold mb-4">Ready to Modernize Your Trade Business?</h2>
-          <p className="text-xl md:text-2xl mb-10 opacity-90 max-w-[700px] mx-auto">
-            Start generating more leads and streamline your trade business operations with professional web solutions
+          <p className="text-lg text-white/80 max-w-[800px] mx-auto mb-6 italic">
+            &ldquo;Customers consistently describe this company as professional, reliable, and highly skilled, often solving long-standing issues that others could not. The team is frequently praised for their excellent communication, responsiveness, and for leaving everything clean and tidy.&rdquo;
           </p>
-          <Link href="/quoteflow" className="inline-block bg-gradient-to-r from-[#0066FF] to-[#00D9FF] text-white px-14 py-5 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,102,255,0.4)] hover:shadow-[0_15px_40px_rgba(0,102,255,0.5)]">
-            Start with QuoteFlow
-          </Link>
+          <a 
+            href="https://www.checkatrade.com/trades/ecoflameheatingsolutions" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white text-[#FF6B35] px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-1 shadow-lg mb-12"
+          >
+            View All Reviews on CheckATrade
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
+              <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-white/90 mb-4">&ldquo;Excellent service, very professional and clean work. Highly recommend!&rdquo;</p>
+              <p className="text-white/70 text-sm">- Sarah M.</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
+              <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-white/90 mb-4">&ldquo;Fixed our boiler quickly and efficiently. Great communication throughout.&rdquo;</p>
+              <p className="text-white/70 text-sm">- James L.</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
+              <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-white/90 mb-4">&ldquo;Reliable, trustworthy, and excellent value for money. Will definitely use again.&rdquo;</p>
+              <p className="text-white/70 text-sm">- Emma R.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0A0E27] text-white py-16 px-[5%]">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
-          <div>
-            <h3 className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent mb-4">
-              FixBlox
-            </h3>
-            <p className="opacity-70 leading-[1.7]">
-              Building powerful web applications for tradespeople. Modern solutions that help you win more jobs and grow your business.
+      {/* Coverage Area Section */}
+      <section className="py-24 px-8 bg-white">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-[#1D3557] mb-6">Serving London & Surrey</h2>
+            <p className="text-gray-600 leading-relaxed text-lg mb-6">
+              Based in Sutton, Surrey, we provide expert heating and plumbing services throughout London and Surrey. Our experienced team travels extensively to ensure you get the help you need, when you need it.
             </p>
-          </div>
-          <div>
-            <h4 className="mb-4 text-lg font-semibold">Our Apps</h4>
-            <ul className="space-y-2 list-none">
-              <li><Link href="/quoteflow" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">QuoteFlow (Plumbers)</Link></li>
-              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">JobTracker (Soon)</Link></li>
-              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">TradeHub (Soon)</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="mb-4 text-lg font-semibold">Company</h4>
-            <ul className="space-y-2 list-none">
-              <li><a href="#how-it-works" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">How It Works</a></li>
-              <li><a href="#apps" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Our Apps</a></li>
-              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="mb-4 text-lg font-semibold">Support</h4>
-            <ul className="space-y-2 list-none">
-              <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Get in Touch</Link></li>
-              <li><a href="mailto:info@fixblox.com" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">info@fixblox.com</a></li>
-              <li><a href="tel:+447925990923" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">07925990923</a></li>
-            </ul>
+            <p className="text-gray-600 leading-relaxed text-lg mb-8">
+              Give us a call today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
+            </p>
+            <a href="#book-now" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
+              Check Your Postcode
+            </a>
           </div>
         </div>
-        
-        <div className="border-t border-white/10 pt-8 text-center opacity-70">
-          <p className="mb-3">&copy; 2025 FixBlox. Web app solutions for tradespeople.</p>
-          <div className="space-x-4">
-            <Link href="/terms" className="text-white/70 hover:text-white transition-colors text-sm">Terms of Service</Link>
-            <Link href="/privacy" className="text-white/70 hover:text-white transition-colors text-sm">Privacy Policy</Link>
-          </div>
-        </div>
-      </footer>
+      </section>
 
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); opacity: 0.5; }
-          50% { transform: scale(1.1); opacity: 0.8; }
-        }
-      `}</style>
-    </div>
+      {/* Book Now Section */}
+      <section id="book-now" className="py-24 px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Book Your Service Online</h2>
+            <p className="text-xl text-gray-600">Get an instant quote in seconds</p>
+          </div>
+          <div className="w-full min-h-[600px] rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] overflow-hidden">
+            <iframe 
+              src="/quoteflow/embed" 
+              className="w-full h-[600px] border-0"
+              title="Eco Flame Quote Calculator"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-8 bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-center">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="text-5xl font-bold text-white mb-4">Need Help Now?</h2>
+          <p className="text-xl text-white/90 mb-8">Our team is available 24/7 for emergencies and consultations</p>
+          <a href="tel:07921064352" className="inline-block text-5xl font-bold text-white mb-8 transition-all hover:scale-105">
+            07921 064 352
+          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="https://wa.me/447921064352?text=Hi%20I%27m%20interested%20in%20getting%20a%20quote" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Message on WhatsApp
+            </a>
+            <Link href="/contact" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#FF6B35]">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+    </EcoFlameLayout>
   )
 }

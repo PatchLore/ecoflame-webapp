@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FixBlox Custom QuoteFlow Solution",
-  description: "Get your brand new website setup with our customised QuoteFlow solution including WhatsApp link and QR code integration.",
-  metadataBase: new URL("https://www.fixblox.com"),
+  title: "EcoFlame Heating - Professional Boiler & Heating Services",
+  description: "Expert boiler installation, repairs, and heating services. Get an instant quote for your heating needs with transparent pricing.",
+  metadataBase: new URL("https://www.ecoflame.co.uk"),
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png" },
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "FixBlox Custom QuoteFlow Solution",
-    description: "Get your brand new website setup with our customised QuoteFlow solution including WhatsApp link and QR code integration.",
-    url: "https://www.fixblox.com",
-    siteName: "FixBlox",
+    title: "EcoFlame Heating - Professional Boiler & Heating Services",
+    description: "Expert boiler installation, repairs, and heating services. Get an instant quote for your heating needs with transparent pricing.",
+    url: "https://www.ecoflame.co.uk",
+    siteName: "EcoFlame Heating",
     images: [
       {
-        url: "/images/og-fixblox.png",
+        url: "/images/og-ecoflame.png",
         width: 1200,
         height: 630,
-        alt: "FixBlox Custom QuoteFlow Solution",
+        alt: "EcoFlame Heating Services",
       },
     ],
     locale: "en_GB",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FixBlox Custom QuoteFlow Solution",
-    description: "Get your brand new website setup with our customised QuoteFlow solution including WhatsApp link and QR code integration.",
-    images: ["/images/og-fixblox.png"],
+    title: "EcoFlame Heating - Professional Boiler & Heating Services",
+    description: "Expert boiler installation, repairs, and heating services. Get an instant quote for your heating needs with transparent pricing.",
+    images: ["/images/og-ecoflame.png"],
   },
 };
 

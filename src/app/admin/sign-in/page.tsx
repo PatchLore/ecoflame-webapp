@@ -74,11 +74,14 @@ export default function AdminSignIn() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-4">
+      <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-600 mb-2">QuoteFlow</h1>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Admin Sign In</h2>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-[50px] h-[50px] bg-gradient-to-br from-[#FF6B35] to-[#E63946] rounded-[50%_50%_0_50%]"></div>
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent mb-2">Eco Flame</h1>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Admin Login</h2>
           <p className="text-gray-600">Access your lead management dashboard</p>
         </div>
 
@@ -130,7 +133,7 @@ export default function AdminSignIn() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
@@ -146,7 +149,7 @@ export default function AdminSignIn() {
               type="button"
               onClick={handleSignUp}
               disabled={loading}
-              className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Create Admin Account
             </button>
@@ -156,17 +159,16 @@ export default function AdminSignIn() {
         <div className="mt-6 text-center">
           <Link
             href="/"
-            className="text-blue-600 hover:text-blue-700 text-sm"
+            className="text-[#FF6B35] hover:text-[#E63946] text-sm"
           >
-            ← Back to Quote Calculator
+            ← Back to Home
           </Link>
         </div>
 
-        <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-          <h3 className="text-sm font-medium text-gray-900 mb-2">Demo Credentials</h3>
+        <div className="mt-8 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border border-orange-100">
+          <h3 className="text-sm font-medium text-gray-900 mb-2">🔥 Eco Flame Admin</h3>
           <p className="text-xs text-gray-600">
-            For demo purposes, you can create an admin account by signing up with any email and password.
-            In production, you would set up proper admin accounts through Supabase Auth.
+            Secure login for Eco Flame staff only. If you need access, please contact your administrator.
           </p>
         </div>
       </div>

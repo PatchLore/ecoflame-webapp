@@ -7,8 +7,8 @@ export default function QuoteFlowLandingPage() {
     <div className="overflow-x-hidden bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md px-[5%] py-6 flex justify-between items-center z-[1000] shadow-[0_2px_20px_rgba(0,0,0,0.05)]">
-        <Link href="/" className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">
-          FixBlox
+        <Link href="/" className="text-[1.8rem] font-extrabold bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
+          EcoFlame
         </Link>
         <ul className="hidden md:flex gap-10 list-none">
           <li><Link href="/" className="text-[#0A0E27] no-underline font-medium hover:after:w-full relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[#0066FF] after:to-[#00D9FF] after:transition-all">Home</Link></li>
@@ -27,13 +27,13 @@ export default function QuoteFlowLandingPage() {
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
           <div>
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-md text-white rounded-full text-sm font-medium mb-6 border border-white/20">
-              QuoteFlow by FixBlox
+              Quote Calculator by EcoFlame
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-tight text-white mb-6">
-              The Plumber&apos;s Lead <span className="bg-gradient-to-r from-[#0066FF] to-[#00D9FF] bg-clip-text text-transparent">Generation System</span>
+              Instant <span className="bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">Heating Quotes</span>
             </h1>
             <p className="text-xl text-white/85 mb-8">
-              Turn website visitors into paying customers with instant, transparent quotes. Capture qualified leads automatically and manage everything from your dashboard.
+              Get transparent pricing for your boiler and heating needs in seconds. Professional service with fixed prices and no hidden fees.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
