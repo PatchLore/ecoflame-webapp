@@ -95,8 +95,8 @@ export default function QuoteFlowCalculatorEmbed() {
       postcode: data.postcode,
       urgency: data.urgency,
       jobDetails: data.jobDetails || '',
-      propertyType: data.propertyType || 'house',
-      bathrooms: data.bathrooms || '2'
+      propertyType: (data.propertyType as 'house' | 'flat' | 'commercial') || 'house',
+      bathrooms: (data.bathrooms as '1' | '2' | '3+') || '2'
     }
 
     const basePrice = serviceBasePrices[input.jobType] || 150
