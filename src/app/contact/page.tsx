@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import EcoFlameLayout from '@/components/EcoFlameLayout'
+import Link from 'next/link'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -40,12 +41,12 @@ export default function ContactPage() {
                 Thank you for contacting EcoFlame. We&apos;ll get back to you within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-1">
+                <Link href="/" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-8 py-3 rounded-full font-semibold transition-all hover:-translate-y-1">
             Back to Home
-                </a>
-                <a href="/#book-now" className="bg-transparent text-[#FF6B35] px-8 py-3 rounded-full border-2 border-[#FF6B35] font-semibold transition-all hover:bg-[#FF6B35] hover:text-white">
+                </Link>
+                <Link href="/#book-now" className="bg-transparent text-[#FF6B35] px-8 py-3 rounded-full border-2 border-[#FF6B35] font-semibold transition-all hover:bg-[#FF6B35] hover:text-white">
                   Get Quote
-                </a>
+                </Link>
               </div>
             </div>
           </div>

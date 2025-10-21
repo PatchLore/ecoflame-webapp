@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Calculator, CheckCircle } from 'lucide-react'
 import { calculateQuote, PricingInput } from '@/lib/pricing'
+import Link from 'next/link'
 import { PricingResult } from '@/lib/pricing'
 
 const urgencyOptions = [
@@ -187,12 +188,12 @@ export default function QuoteFlowCalculatorEmbed() {
               >
                 Get Another Quote
               </button>
-              <a
+              <Link
                 href="/"
                 className="block w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 Back to EcoFlame Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>

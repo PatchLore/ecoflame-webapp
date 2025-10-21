@@ -1,4 +1,5 @@
 import EcoFlameLayout from '@/components/EcoFlameLayout'
+import Link from 'next/link'
 
 export default function ServicesPage() {
   return (
@@ -177,9 +178,9 @@ export default function ServicesPage() {
               Get an instant quote or speak to our team about your heating and plumbing needs
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg">
+              <Link href="/#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg">
                 Get Instant Quote
-              </a>
+              </Link>
               <a href="tel:07921064352" className="bg-transparent text-[#FF6B35] px-10 py-4 rounded-full border-2 border-[#FF6B35] font-semibold text-lg transition-all hover:bg-[#FF6B35] hover:text-white">
                 Call: 07921 064 352
               </a>
