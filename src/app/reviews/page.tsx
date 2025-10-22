@@ -1,45 +1,28 @@
 import EcoFlameLayout from '@/components/EcoFlameLayout'
+import ReviewCard from '@/components/ReviewCard'
 import Link from 'next/link'
 
 export default function ReviewsPage() {
   return (
     <EcoFlameLayout>
-      <div className="py-24 px-8">
+      <div className="py-16 px-8">
         <div className="max-w-[1400px] mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-[#1D3557] mb-6">Customer Reviews</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          {/* Header with prominent rating badge */}
+          <div className="text-center mb-12">
+            <div className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white rounded-2xl p-8 mb-8 inline-block">
+              <div className="text-6xl font-bold mb-2">9.96<span className="text-3xl opacity-70">/10</span></div>
+              <p className="text-xl mb-4">Based on 586 reviews</p>
+              <div className="text-3xl">⭐⭐⭐⭐⭐</div>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-[#1D3557] mb-4">Customer Reviews</h1>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               See what our customers say about our heating and plumbing services. 
-              We&apos;re proud of our 9.96/10 rating based on 586+ reviews.
+              We&apos;re proud of our exceptional rating and customer satisfaction.
             </p>
-          </div>
-
-          {/* Overall Rating */}
-          <div className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white rounded-2xl p-12 text-center mb-16">
-            <div className="text-8xl font-bold mb-4">9.96<span className="text-4xl opacity-70">/10</span></div>
-            <p className="text-2xl mb-6">Based on 586 reviews on CheckATrade</p>
-            <div className="text-4xl mb-6">⭐⭐⭐⭐⭐</div>
-            <p className="text-lg opacity-90 max-w-4xl mx-auto">
-              &ldquo;Customers consistently describe this company as professional, reliable, and highly skilled, 
-              often solving long-standing issues that others could not. The team is frequently praised for their 
-              excellent communication, responsiveness, and for leaving everything clean and tidy.&rdquo;
-            </p>
-            <a 
-              href="https://www.checkatrade.com/trades/ecoflameheatingsolutions" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#FF6B35] px-8 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg mt-8"
-            >
-              View All Reviews on CheckATrade
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
           </div>
 
           {/* Featured Reviews */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
               {
                 name: 'Sarah Mitchell',
@@ -96,33 +79,16 @@ export default function ReviewsPage() {
                 verified: true
               }
             ].map((review, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h4 className="font-semibold text-[#1D3557]">{review.name}</h4>
-                    <p className="text-sm text-gray-600">{review.location}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-yellow-500 text-lg">
-                      {'⭐'.repeat(review.rating)}
-                    </div>
-                    <p className="text-sm text-gray-500">{review.date}</p>
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <span className="bg-[#FF6B35] text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {review.service}
-                  </span>
-                  {review.verified && (
-                    <span className="ml-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                      ✓ Verified
-                    </span>
-                  )}
-                </div>
-                
-                <p className="text-gray-700 leading-relaxed">&ldquo;{review.review}&rdquo;</p>
-              </div>
+              <ReviewCard
+                key={index}
+                name={review.name}
+                location={review.location}
+                rating={review.rating}
+                date={review.date}
+                service={review.service}
+                review={review.review}
+                verified={review.verified}
+              />
             ))}
           </div>
 
@@ -174,20 +140,47 @@ export default function ReviewsPage() {
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-[#1D3557] mb-6">Ready to Experience Our Service?</h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Join hundreds of satisfied customers who trust EcoFlame for their heating and plumbing needs
+          {/* Enhanced CTA Section */}
+          <div className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white rounded-2xl p-8 md:p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Experience Our Service?</h2>
+            <p className="text-lg md:text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+              Join hundreds of satisfied customers who trust EcoFlame for their heating and plumbing needs. 
+              Send your details and we&apos;ll call to confirm your visit & tailored quote.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg">
-                Get Your Quote Today
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+              <Link 
+                href="/#book-now" 
+                className="bg-white text-[#FF6B35] px-8 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              >
+                Request Your Visit & Quote
               </Link>
-              <a href="tel:07921064352" className="bg-transparent text-[#FF6B35] px-10 py-4 rounded-full border-2 border-[#FF6B35] font-semibold text-lg transition-all hover:bg-[#FF6B35] hover:text-white">
+              <a 
+                href="tel:07921064352" 
+                className="bg-transparent text-white px-8 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#FF6B35]"
+              >
                 Call: 07921 064 352
               </a>
             </div>
+
+            {/* WhatsApp Chat Button */}
+            <div className="flex justify-center">
+              <a
+                href="https://wa.me/447921064352?text=Hi%20I'm%20interested%20in%20a%20quote"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-1 shadow-lg"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.214-.372a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                </svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+
+            <p className="text-sm opacity-75 mt-4">
+              Available 24/7 for emergencies • Gas Safe registered • Fully insured
+            </p>
           </div>
         </div>
       </div>
