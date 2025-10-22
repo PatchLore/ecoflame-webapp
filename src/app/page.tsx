@@ -18,7 +18,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
-              Get Instant Quote
+              Send Your Details – We'll Call You With a Quote
             </a>
             <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
               Call Now: 07921 064 352
@@ -174,17 +174,17 @@ export default function HomePage() {
       </section>
 
       {/* Book Now Section */}
-      <section id="book-now" className="py-24 px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section id="book-now" className="py-24 px-8 bg-gray-50">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Book Your Service Online</h2>
-            <p className="text-xl text-gray-600">Get an instant quote in seconds</p>
+            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We'll Call You With a Quote</h2>
+            <p className="text-xl text-gray-600">Fill out the form below and we'll contact you to discuss your heating needs and provide a personalized quote.</p>
           </div>
-          <div className="w-full min-h-[600px] rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] overflow-hidden">
+          <div className="w-full min-h-[600px] rounded-xl shadow-lg overflow-hidden bg-white">
             <iframe 
               src="/quoteflow/embed" 
               className="w-full h-[600px] border-0"
-              title="Eco Flame Quote Calculator"
+              title="EcoFlame Quote Request Form"
             />
           </div>
         </div>

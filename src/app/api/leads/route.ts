@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
         urgency: body.urgency,
         job_details: body.job_details ?? null,
         estimated_quote: estimatedQuote,
+        client_name: 'EcoFlame',
       }]).select()
 
       if (error) {

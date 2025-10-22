@@ -172,9 +172,9 @@ export default function QuoteFlowCalculatorEmbed() {
         <div className="max-w-2xl w-full">
           <div className="bg-white rounded-xl shadow-lg p-8 text-center mb-6">
             <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Quote Request Received!</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Thanks! Someone will be in touch shortly to discuss your quote.</h1>
             <p className="text-gray-600 mb-6">
-              Thank you for choosing EcoFlame! We&apos;ll contact you within 24 hours to provide your personalized quote and discuss your heating needs.
+              We&apos;ll contact you within 24 hours to provide your personalized quote and discuss your heating needs.
             </p>
             <div className="space-y-3">
               <button
@@ -186,7 +186,7 @@ export default function QuoteFlowCalculatorEmbed() {
                 }}
                 className="block w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-3 px-4 rounded-lg hover:shadow-lg transition-all font-semibold"
               >
-                Get Another Quote
+                Request Another Quote
               </button>
               <Link
                 href="/"
