@@ -1,4 +1,4 @@
-import { createServerClient } from "@/lib/supabase-server";
+import { getServerSupabase } from "@/lib/supabase-server";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith("/admin") &&
     !req.nextUrl.pathname.startsWith("/admin/reset-password")
   ) {
-    const supabase = createServerClient();
+    const supabase = getServerSupabase();
     const {
       data: { user },
     } = await supabase.auth.getUser();
