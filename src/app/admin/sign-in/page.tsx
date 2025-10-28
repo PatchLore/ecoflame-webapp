@@ -57,35 +57,23 @@ function AdminSignInContent() {
   }
 
   const handleForgotPassword = async () => {
-    if (!email) {
-      setError('Please enter your email address first')
-      return
-    }
+    const email = prompt("Enter your email address to reset your password:");
+    if (email) {
+      const supabase = createSupabaseClient();
+      if (!supabase) {
+        alert("Database connection not available");
+        return;
+      }
 
-    setLoading(true)
-    setError('')
-
-    const supabase = createSupabaseClient()
-    if (!supabase) {
-      setError('Database connection not available')
-      setLoading(false)
-      return
-    }
-
-    try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/admin/reset-password`,
-      })
-
+      });
+      
       if (error) {
-        setError(error.message)
+        alert("Error sending reset email: " + error.message);
       } else {
-        setError('Password reset email sent! Check your inbox.')
+        alert("Password reset email sent. Please check your inbox.");
       }
-    } catch {
-      setError('An unexpected error occurred')
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -194,8 +182,7 @@ function AdminSignInContent() {
             <button
               type="button"
               onClick={handleForgotPassword}
-              disabled={loading || !email}
-              className="w-full text-sm text-[#FF6B35] hover:text-[#E63946] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="text-sm text-emerald-600 hover:underline mt-3 block text-center"
             >
               Forgot Password?
             </button>

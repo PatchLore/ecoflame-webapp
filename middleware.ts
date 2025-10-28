@@ -1,29 +1,32 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from "@/lib/supabase-server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
+  // Only protect /admin routes, but exclude /admin/reset-password
+  if (
+    req.nextUrl.pathname.startsWith("/admin") &&
+    !req.nextUrl.pathname.startsWith("/admin/reset-password")
+  ) {
+    const supabase = createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  // Create a Supabase client that can read the auth cookie in middleware
-  const supabase = createMiddlewareClient({ req, res })
+    if (!user) {
+      const redirectUrl = new URL("/admin/sign-in", req.url);
+      redirectUrl.searchParams.set("redirectedFrom", req.nextUrl.pathname);
+      return NextResponse.redirect(redirectUrl);
+    }
 
-  const { data: { user }, error } = await supabase.auth.getUser()
-
-  const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
-  const isSignIn = req.nextUrl.pathname === '/admin/sign-in'
-
-  if (isAdminRoute && !isSignIn && (!user || error)) {
-    const redirectUrl = req.nextUrl.clone()
-    redirectUrl.pathname = '/admin/sign-in'
-    redirectUrl.searchParams.set('redirectedFrom', req.nextUrl.pathname)
-    return NextResponse.redirect(redirectUrl)
+    if (user.app_metadata?.role !== "admin") {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
   }
 
-  return res
+  return NextResponse.next();
 }
 
 export const config = {
   matcher: ['/admin/:path*']
 }
-
-
