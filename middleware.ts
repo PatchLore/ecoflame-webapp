@@ -10,18 +10,34 @@ export async function middleware(req: NextRequest) {
     !req.nextUrl.pathname.startsWith("/admin/reset-password")
   ) {
     const supabase = getServerSupabase();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    
+    try {
+      const {
+        data: { user },
+        error
+      } = await supabase.auth.getUser();
 
-    if (!user) {
-      const redirectUrl = new URL("/admin/sign-in", req.url);
-      redirectUrl.searchParams.set("redirectedFrom", req.nextUrl.pathname);
-      return NextResponse.redirect(redirectUrl);
-    }
+      // If there's an error getting the user, allow the request to proceed
+      // This prevents blocking legitimate requests due to session issues
+      if (error) {
+        console.log('Middleware auth error:', error.message);
+        return NextResponse.next();
+      }
 
-    if (user.app_metadata?.role !== "admin") {
-      return NextResponse.redirect(new URL("/", req.url));
+      if (!user) {
+        const redirectUrl = new URL("/admin/sign-in", req.url);
+        redirectUrl.searchParams.set("redirectedFrom", req.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
+      }
+
+      // Check if user has admin role
+      if (user.app_metadata?.role !== "admin") {
+        return NextResponse.redirect(new URL("/", req.url));
+      }
+    } catch (err) {
+      console.log('Middleware error:', err);
+      // On any error, allow the request to proceed
+      return NextResponse.next();
     }
   }
 

@@ -52,8 +52,10 @@ function AdminSignInContent() {
         setError(`Sign in failed: ${error.message}`)
       } else if (data.user) {
         console.log('Sign in successful, redirecting...')
-        // Use Next.js router for smoother redirect
-        router.push('/admin/dashboard')
+        // Small delay to ensure session is established
+        setTimeout(() => {
+          router.push('/admin/dashboard')
+        }, 100)
       } else {
         setError('Sign in failed: No user data returned')
       }
