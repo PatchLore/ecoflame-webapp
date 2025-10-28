@@ -17,15 +17,13 @@ function AdminSignInContent() {
 
   // Check if this is a password reset redirect
   useEffect(() => {
-    const accessToken = searchParams.get('access_token')
-    const type = searchParams.get('type')
-    
-    if (type === 'recovery' && accessToken) {
+    // Check for tokens in the URL hash (Supabase puts them there)
+    const hash = window.location.hash
+    if (hash.includes('access_token') && hash.includes('type=recovery')) {
       // Redirect to reset password page with the tokens
-      const currentUrl = new URL(window.location.href)
-      router.push(`/admin/reset-password${currentUrl.hash}`)
+      router.push(`/admin/reset-password${hash}`)
     }
-  }, [searchParams, router])
+  }, [router])
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
