@@ -38,19 +38,28 @@ function AdminSignInContent() {
     }
 
     try {
+      console.log('Attempting sign in with:', email) // Debug log
+      
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: email.trim(),
+        password: password.trim(),
       })
 
+      console.log('Sign in response:', { data, error }) // Debug log
+
       if (error) {
-        setError(error.message)
+        console.error('Sign in error:', error)
+        setError(`Sign in failed: ${error.message}`)
       } else if (data.user) {
-        // Redirect to dashboard
-        window.location.href = '/admin/dashboard'
+        console.log('Sign in successful, redirecting...')
+        // Use Next.js router for smoother redirect
+        router.push('/admin/dashboard')
+      } else {
+        setError('Sign in failed: No user data returned')
       }
-    } catch {
-      setError('An unexpected error occurred')
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      setError(`An unexpected error occurred: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
       setLoading(false)
     }
