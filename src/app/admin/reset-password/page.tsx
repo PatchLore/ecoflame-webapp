@@ -33,6 +33,11 @@ export default function ResetPasswordPage() {
       return;
     }
 
+    if (!supabase) {
+      setMessage("Database connection not available");
+      return;
+    }
+
     const { error } = await supabase.auth.updateUser({
       password: newPassword,
     });
