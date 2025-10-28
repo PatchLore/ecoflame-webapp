@@ -1,31 +1,23 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { createSupabaseClient, Lead } from '@/lib/supabase-client'
-import { 
-  Search, 
-  Download, 
-  LogOut, 
-  LayoutDashboard,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  User
-} from 'lucide-react'
+import { useState, useEffect } from "react";
+import { createSupabaseClient, Lead } from "@/lib/supabase-client";
+import { useRouter } from "next/navigation";
 
 interface DashboardLead extends Lead {
   status?: 'New' | 'Contacted' | 'Completed'
 }
 
 export default function AdminDashboard() {
-  const [leads, setLeads] = useState<DashboardLead[]>([])
-  const [filteredLeads, setFilteredLeads] = useState<DashboardLead[]>([])
-  const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [statusFilter, setStatusFilter] = useState<string>('all')
-  const [serviceFilter, setServiceFilter] = useState<string>('all')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const router = useRouter();
+  const supabase = createSupabaseClient();
+  const [leads, setLeads] = useState<DashboardLead[]>([]);
+  const [filteredLeads, setFilteredLeads] = useState<DashboardLead[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [serviceFilter, setServiceFilter] = useState<string>('all');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     checkAuth()
@@ -42,16 +34,20 @@ export default function AdminDashboard() {
   }, [leads, searchTerm, statusFilter, serviceFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkAuth = async () => {
-    const supabase = createSupabaseClient()
     if (!supabase) {
-      window.location.href = '/admin/sign-in'
+      router.push('/admin/sign-in')
       return
     }
 
     const { data: { user }, error } = await supabase.auth.getUser()
     
     if (error || !user) {
-      window.location.href = '/admin/sign-in'
+      router.push('/admin/sign-in')
+      return
+    }
+
+    if (user.app_metadata?.role !== 'admin') {
+      router.push('/')
       return
     }
 
@@ -59,7 +55,6 @@ export default function AdminDashboard() {
   }
 
   const fetchLeads = async () => {
-    const supabase = createSupabaseClient()
     if (!supabase) {
       console.log('No Supabase client available')
       setLoading(false)
@@ -126,7 +121,6 @@ export default function AdminDashboard() {
   }
 
   const updateLeadStatus = async (leadId: string, newStatus: string) => {
-    const supabase = createSupabaseClient()
     if (!supabase) return
 
     try {
@@ -176,11 +170,10 @@ export default function AdminDashboard() {
   }
 
   const handleLogout = async () => {
-    const supabase = createSupabaseClient()
     if (supabase) {
       await supabase.auth.signOut()
     }
-    window.location.href = '/admin/sign-in'
+    router.push('/admin/sign-in')
   }
 
   const formatDate = (dateString: string) => {
@@ -195,7 +188,7 @@ export default function AdminDashboard() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'New': return 'bg-blue-100 text-blue-800'
+      case 'New': return 'bg-orange-100 text-orange-800'
       case 'Contacted': return 'bg-yellow-100 text-yellow-800'
       case 'Completed': return 'bg-green-100 text-green-800'
       default: return 'bg-gray-100 text-gray-800'
@@ -205,215 +198,160 @@ export default function AdminDashboard() {
   const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
       case 'emergency': return 'bg-red-100 text-red-800'
-      case 'same_day': return 'bg-yellow-100 text-yellow-800'
+      case 'urgent': return 'bg-yellow-100 text-yellow-800'
       default: return 'bg-green-100 text-green-800'
     }
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen bg-[#0B2346] flex items-center justify-center">
+        <div className="text-white text-lg">Loading dashboard...</div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg">
-        <div className="p-6">
-          <div className="flex items-center gap-2">
-            <div className="w-[30px] h-[30px] bg-gradient-to-br from-[#FF6B35] to-[#E63946] rounded-[50%_50%_0_50%]"></div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent">Eco Flame</h1>
-          </div>
-        </div>
-        
-        <nav className="mt-8">
-          <div className="px-6">
-            <div className="flex items-center px-3 py-2 text-orange-600 bg-orange-50 rounded-lg">
-              <LayoutDashboard className="h-5 w-5 mr-3" />
-              Dashboard
-            </div>
-          </div>
-        </nav>
-
-        <div className="absolute bottom-6 left-6 right-6">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center px-3 py-2 text-gray-600 hover:text-red-600 transition-colors"
-          >
-            <LogOut className="h-5 w-5 mr-3" />
-            Logout
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#0B2346] text-gray-100">
+      {/* Header */}
+      <header className="flex items-center justify-between px-6 py-4 bg-[#0B2346] border-b border-gray-700 shadow-md">
+        <h1 className="text-xl font-semibold flex items-center gap-2 text-white">
+          <span role="img" aria-label="flame">🔥</span> EcoFlame Admin Panel
+        </h1>
+        <button
+          onClick={handleLogout}
+          className="text-sm bg-[#FF5C3A] px-3 py-1.5 rounded-md hover:bg-[#E14A25] transition"
+        >
+          Logout
+        </button>
+      </header>
 
       {/* Main Content */}
-      <div className="ml-64">
-        <div className="p-8">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Lead Dashboard</h1>
-              <p className="text-gray-600 mt-2">Manage and track your plumbing leads</p>
-            </div>
-            <button
-              onClick={exportToCSV}
-              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Download className="h-4 w-4 mr-2" />
-              Export CSV
-            </button>
-          </div>
-
-          {/* Filters */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search leads..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-
-              {/* Status Filter */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="all">All Statuses</option>
-                <option value="New">New</option>
-                <option value="Contacted">Contacted</option>
-                <option value="Completed">Completed</option>
-              </select>
-
-              {/* Service Filter */}
-              <select
-                value={serviceFilter}
-                onChange={(e) => setServiceFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="all">All Services</option>
-                <option value="emergency leak repair">Emergency Leak Repair</option>
-                <option value="boiler service/repair">Boiler Service/Repair</option>
-                <option value="toilet/tap installation">Toilet/Tap Installation</option>
-                <option value="bathroom installation">Bathroom Installation</option>
-                <option value="drain unblocking">Drain Unblocking</option>
-                <option value="central heating work">Central Heating Work</option>
-              </select>
-
-              {/* Results Count */}
-              <div className="flex items-center text-gray-600">
-                <span>{filteredLeads.length} leads found</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Table */}
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            {loading ? (
-              <div className="p-8 text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-2 text-gray-600">Loading leads...</p>
-              </div>
-            ) : filteredLeads.length === 0 ? (
-              <div className="p-8 text-center">
-                <User className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-600">No leads found</p>
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Contact
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Service
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Location
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Quote
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Status
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Created
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {filteredLeads.map((lead) => (
-                      <tr key={lead.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">{lead.name}</div>
-                            <div className="text-sm text-gray-500 flex items-center">
-                              <Mail className="h-3 w-3 mr-1" />
-                              {lead.email}
-                            </div>
-                            <div className="text-sm text-gray-500 flex items-center">
-                              <Phone className="h-3 w-3 mr-1" />
-                              {lead.phone}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">{lead.job_type}</div>
-                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getUrgencyColor(lead.urgency)}`}>
-                              {lead.urgency.replace('_', ' ')}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900 flex items-center">
-                            <MapPin className="h-3 w-3 mr-1" />
-                            {lead.postcode}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">
-                            £{lead.estimated_quote}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <select
-                            value={lead.status || 'New'}
-                            onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                            className={`text-xs font-semibold rounded-full px-2 py-1 border-0 ${getStatusColor(lead.status || 'New')}`}
-                          >
-                            <option value="New">New</option>
-                            <option value="Contacted">Contacted</option>
-                            <option value="Completed">Completed</option>
-                          </select>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <div className="flex items-center">
-                            <Clock className="h-3 w-3 mr-1" />
-                            {formatDate(lead.created_at)}
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
+      <main className="max-w-7xl mx-auto p-6">
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold mb-1 text-white">
+            Lead Dashboard
+          </h2>
+          <p className="text-sm text-gray-300">
+            Manage and track your plumbing leads efficiently
+          </p>
         </div>
-      </div>
+
+        {/* Toolbar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5 bg-[#001429] border border-gray-700 rounded-lg p-4 shadow-md">
+          <input
+            type="search"
+            placeholder="Search leads..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="border border-gray-600 bg-[#0B2346] text-white rounded-md px-3 py-2 text-sm w-full sm:w-64 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF5C3A]"
+          />
+
+          <div className="flex flex-wrap gap-2">
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="border border-gray-600 bg-[#0B2346] text-white rounded-md px-2 py-1 text-sm focus:ring-2 focus:ring-[#FF5C3A]"
+            >
+              <option value="all">All Statuses</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+            <select
+              value={serviceFilter}
+              onChange={(e) => setServiceFilter(e.target.value)}
+              className="border border-gray-600 bg-[#0B2346] text-white rounded-md px-2 py-1 text-sm focus:ring-2 focus:ring-[#FF5C3A]"
+            >
+              <option value="all">All Services</option>
+              <option value="emergency leak repair">Emergency Leak Repair</option>
+              <option value="boiler service/repair">Boiler Service/Repair</option>
+              <option value="toilet/tap installation">Toilet/Tap Installation</option>
+              <option value="bathroom installation">Bathroom Installation</option>
+              <option value="drain unblocking">Drain Unblocking</option>
+              <option value="central heating work">Central Heating Work</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={exportToCSV}
+            className="bg-[#FF5C3A] text-white text-sm px-3 py-2 rounded-md hover:bg-[#E14A25] shadow-md transition"
+          >
+            Export CSV
+          </button>
+        </div>
+
+        {/* Table */}
+        <div className="overflow-x-auto rounded-xl border border-gray-700 bg-white shadow-lg text-gray-800">
+          {loading ? (
+            <div className="p-8 text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF5C3A] mx-auto"></div>
+              <p className="mt-2 text-gray-600">Loading leads...</p>
+            </div>
+          ) : filteredLeads.length === 0 ? (
+            <div className="p-8 text-center">
+              <p className="text-gray-600">No leads found</p>
+            </div>
+          ) : (
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-100 text-xs uppercase text-gray-600">
+                <tr>
+                  <th className="px-3 py-2 text-left font-semibold">Contact</th>
+                  <th className="px-3 py-2 text-left font-semibold">Service</th>
+                  <th className="px-3 py-2 text-left font-semibold">Location</th>
+                  <th className="px-3 py-2 text-left font-semibold">Quote</th>
+                  <th className="px-3 py-2 text-left font-semibold">Status</th>
+                  <th className="px-3 py-2 text-left font-semibold">Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredLeads.map((lead) => (
+                  <tr
+                    key={lead.id}
+                    className="border-t border-gray-200 hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-3 py-2">
+                      <div className="font-medium text-gray-900">{lead.name}</div>
+                      <div className="text-gray-500 text-xs">{lead.email}</div>
+                      <div className="text-gray-500 text-xs">{lead.phone}</div>
+                    </td>
+                    <td className="px-3 py-2">
+                      <div className="capitalize">{lead.job_type}</div>
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${getUrgencyColor(lead.urgency)}`}>
+                        {lead.urgency.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2">{lead.postcode}</td>
+                    <td className="px-3 py-2 font-medium">
+                      £{lead.estimated_quote}
+                    </td>
+                    <td className="px-3 py-2">
+                      <select
+                        value={lead.status || 'New'}
+                        onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
+                        className={`text-xs font-semibold rounded-full px-2 py-1 border-0 ${getStatusColor(lead.status || 'New')}`}
+                      >
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </td>
+                    <td className="px-3 py-2 text-gray-500 text-xs">
+                      {formatDate(lead.created_at)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        {/* Summary */}
+        <p className="text-sm text-gray-300 mt-4">
+          {filteredLeads.length} lead{filteredLeads.length !== 1 && "s"} found
+        </p>
+      </main>
     </div>
-  )
+  );
 }
