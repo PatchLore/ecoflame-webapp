@@ -1,16 +1,31 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createSupabaseClient } from '@/lib/supabase-client'
 import { LogIn, Eye, EyeOff } from 'lucide-react'
 
-export default function AdminSignIn() {
+function AdminSignInContent() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Check if this is a password reset redirect
+  useEffect(() => {
+    const accessToken = searchParams.get('access_token')
+    const type = searchParams.get('type')
+    
+    if (type === 'recovery' && accessToken) {
+      // Redirect to reset password page with the tokens
+      const currentUrl = new URL(window.location.href)
+      router.push(`/admin/reset-password${currentUrl.hash}`)
+    }
+  }, [searchParams, router])
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,8 +58,12 @@ export default function AdminSignIn() {
     }
   }
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError('Please enter your email address first')
+      return
+    }
+
     setLoading(true)
     setError('')
 
@@ -56,15 +75,14 @@ export default function AdminSignIn() {
     }
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/admin/reset-password`,
       })
 
       if (error) {
         setError(error.message)
-      } else if (data.user) {
-        setError('Account created! Please check your email to confirm your account, then sign in.')
+      } else {
+        setError('Password reset email sent! Check your inbox.')
       }
     } catch {
       setError('An unexpected error occurred')
@@ -72,6 +90,36 @@ export default function AdminSignIn() {
       setLoading(false)
     }
   }
+
+  // const handleSignUp = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setLoading(true)
+  //   setError('')
+
+  //   const supabase = createSupabaseClient()
+  //   if (!supabase) {
+  //     setError('Database connection not available')
+  //     setLoading(false)
+  //     return
+  //   }
+
+  //   try {
+  //     const { data, error } = await supabase.auth.signUp({
+  //       email,
+  //       password,
+  //     })
+
+  //     if (error) {
+  //       setError(error.message)
+  //     } else if (data.user) {
+  //       setError('Account created! Please check your email to confirm your account, then sign in.')
+  //     }
+  //   } catch {
+  //     setError('An unexpected error occurred')
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-4">
@@ -147,11 +195,11 @@ export default function AdminSignIn() {
             
             <button
               type="button"
-              onClick={handleSignUp}
-              disabled={loading}
-              className="w-full flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={handleForgotPassword}
+              disabled={loading || !email}
+              className="w-full text-sm text-[#FF6B35] hover:text-[#E63946] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Create Admin Account
+              Forgot Password?
             </button>
           </div>
         </form>
@@ -173,5 +221,20 @@ export default function AdminSignIn() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AdminSignIn() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF6B35] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <AdminSignInContent />
+    </Suspense>
   )
 }

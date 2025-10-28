@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Add environment variables to Vercel
-echo "https://hytiyiemoschgdkwpwti.supabase.co" | vercel env add NEXT_PUBLIC_SUPABASE_URL production
-echo "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5dGl5aWVtb3NjaGdka3dwd3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MDE2OTAsImV4cCI6MjA3NDk3NzY5MH0.4B3Jm3HXYO2QMJeBJLztJtZPVD1OJIMlBtOP6sTcd7E" | vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
-echo "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5dGl5aWVtb3NjaGdka3dwd3RpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1OTQwMTY5MCwiZXhwIjoyMDc0OTc3NjkwfQ.EOP5hS_Q5JmumbhHqAe8Aaam7ayahJ-KQ-wiUDfNOho" | vercel env add SUPABASE_SERVICE_ROLE_KEY production
-

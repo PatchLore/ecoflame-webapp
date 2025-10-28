@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true)
+
   return (
     <EcoFlameLayout>
       {/* Hero Section */}
@@ -18,7 +21,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
-              Send Your Details – We'll Call You With a Quote
+              Send Your Details – We&apos;ll Call You With a Quote
             </a>
             <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
               Call Now: 07921 064 352
@@ -177,13 +180,29 @@ export default function HomePage() {
       <section id="book-now" className="py-24 px-8 bg-gray-50">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We'll Call You With a Quote</h2>
-            <p className="text-xl text-gray-600">Fill out the form below and we'll contact you to discuss your heating needs and provide a personalized quote.</p>
+            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We&apos;ll Call You With a Quote</h2>
+            <p className="text-xl text-gray-600">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalized quote.</p>
           </div>
-          <div className="w-full min-h-[600px] rounded-xl shadow-lg overflow-hidden bg-white">
-            <iframe 
-              src="/quoteflow/embed" 
-              className="w-full h-[600px] border-0"
+          <div className="w-full flex justify-center py-10">
+            {isLoading && (
+              <div className="animate-pulse text-center py-10 text-gray-500">
+                Loading calculator...
+              </div>
+            )}
+            <iframe
+              src="/quoteflow/embed"
+              className="w-full max-w-3xl rounded-xl border-0 shadow-sm"
+              style={{
+                minHeight: "700px",
+                overflow: "visible",
+                borderRadius: "12px",
+                opacity: isLoading ? 0 : 1,
+                transition: "opacity 0.3s ease-in-out"
+              }}
+              onLoad={() => {
+                setTimeout(() => setIsLoading(false), 500) // Small delay to ensure content is ready
+              }}
+              loading="lazy"
               title="EcoFlame Quote Request Form"
             />
           </div>

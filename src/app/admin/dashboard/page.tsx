@@ -160,7 +160,7 @@ export default function AdminDashboard() {
         `"${lead.job_type}"`,
         `"${lead.postcode}"`,
         `"${lead.urgency}"`,
-        `"${lead.estimated_quote ? `£${lead.estimated_quote}` : 'Contact for quote'}"`,
+        `"£${lead.estimated_quote}"`,
         `"${lead.status || 'New'}"`,
         `"${new Date(lead.created_at).toLocaleDateString()}"`
       ].join(','))
@@ -385,7 +385,7 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm font-medium text-gray-900">
-                            {lead.estimated_quote ? `£${lead.estimated_quote}` : 'Contact for quote'}
+                            £{lead.estimated_quote}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

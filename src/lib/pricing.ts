@@ -5,8 +5,6 @@ export interface PricingInput {
   postcode: string
   urgency: 'standard' | 'same_day' | 'emergency'
   jobDetails?: string
-  propertyType?: 'house' | 'flat' | 'commercial'
-  bathrooms?: '1' | '2' | '3+'
 }
 
 export interface PricingResult {
