@@ -3,9 +3,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  // Only protect /admin routes, but exclude /admin/reset-password
+  // Only protect /admin routes, but exclude /admin/sign-in and /admin/reset-password
   if (
     req.nextUrl.pathname.startsWith("/admin") &&
+    !req.nextUrl.pathname.startsWith("/admin/sign-in") &&
     !req.nextUrl.pathname.startsWith("/admin/reset-password")
   ) {
     const supabase = getServerSupabase();
