@@ -61,19 +61,17 @@ export default function ContactPage() {
       <main className="max-w-4xl mx-auto px-6 pb-16">
         {/* CTA Row */}
         <div className="flex flex-wrap gap-3 mb-6">
-          {sitePhone ? (
-            <a
-              href={`tel:${sitePhone}`}
-              className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-[#FF5C3A] hover:bg-[#E14A25] text-white transition"
-            >
-              Call Mobile
-            </a>
-          ) : null}
+          <a
+            href={`tel:07921064352`}
+            className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-[#FF5C3A] hover:bg-[#E14A25] text-white transition"
+          >
+            Call Mobile: 07921 064 352
+          </a>
           <a
             href={`tel:02080884352`}
             className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-[#FF5C3A] hover:bg-[#E14A25] text-white transition"
           >
-            Call 0208 088 4352
+            Call Landline: 0208 088 4352
           </a>
           {siteWhatsApp ? (
             <a
@@ -167,11 +165,9 @@ export default function ContactPage() {
 
         {/* Help text */}
         <p className="text-gray-300 text-sm mt-6">
-          Prefer to talk? {sitePhone ? (<> 
-            Call us on <a className="underline" href={`tel:${sitePhone}`}>{sitePhone}</a>
-          </>) : 'Add NEXT_PUBLIC_PHONE to show a call button.'} or <a className="underline" href={`tel:02080884352`}>0208 088 4352</a>. {siteWhatsApp ? (<>
-            or WhatsApp <a className="underline" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${siteWhatsApp.replace(/[^0-9]/g, '')}`}>{siteWhatsApp}</a>
-          </>) : ' Add NEXT_PUBLIC_WHATSAPP to show WhatsApp.'}
+          Prefer to talk? Call us on <a className="underline" href={`tel:07921064352`}>07921 064 352</a> (mobile) or <a className="underline" href={`tel:02080884352`}>0208 088 4352</a> (landline). {siteWhatsApp ? (<>
+            Or WhatsApp us <a className="underline" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${siteWhatsApp.replace(/[^0-9]/g, '')}`}>{siteWhatsApp}</a>
+          </>) : ''}
         </p>
       </main>
     </div>
