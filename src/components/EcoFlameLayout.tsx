@@ -94,7 +94,7 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
               <div className="space-y-2 text-gray-400">
                 <p>📞 07921 064 352</p>
                 <p>☎️ 0208 088 4352</p>
-                <p>📧 info@ecoflame.co.uk</p>
+                <p>📧 adam@ecoflame.info</p>
                 <p>📍 Serving London & Surrey</p>
                 <p>🛡️ Gas Safe Registered</p>
               </div>

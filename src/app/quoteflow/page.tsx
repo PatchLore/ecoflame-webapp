@@ -210,7 +210,7 @@ export default function QuoteFlowLandingPage() {
             <h4 className="mb-4 text-lg font-semibold">Support</h4>
             <ul className="space-y-2 list-none">
               <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Get in Touch</Link></li>
-              <li><a href="mailto:info@fixblox.com" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">info@fixblox.com</a></li>
+              <li><a href="mailto:adam@ecoflame.info" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">adam@ecoflame.info</a></li>
               <li>
                 <a href="tel:+447925990923" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">07925990923</a>
               </li>

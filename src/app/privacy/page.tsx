@@ -258,7 +258,7 @@ export default function PrivacyPolicy() {
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">7.5 Exercising Your Rights</h3>
             <p className="text-gray-700 leading-relaxed">
-              To exercise any of these rights, please contact us at info@fixblox.com. We will respond to your request within a reasonable timeframe and in accordance with applicable law. You may also have the right to lodge a complaint with a data protection authority.
+              To exercise any of these rights, please contact us at adam@ecoflame.info. We will respond to your request within a reasonable timeframe and in accordance with applicable law. You may also have the right to lodge a complaint with a data protection authority.
             </p>
           </section>
 
@@ -296,7 +296,7 @@ export default function PrivacyPolicy() {
             <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
               <li>Clicking the &quot;unsubscribe&quot; link in any marketing email</li>
               <li>Adjusting your account communication preferences</li>
-              <li>Contacting us at info@fixblox.com</li>
+              <li>Contacting us at adam@ecoflame.info</li>
             </ul>
             <p className="text-gray-700 leading-relaxed">
               Please note that even if you opt out of marketing communications, we will still send you service-related communications that are necessary for the operation of your account.
@@ -382,7 +382,7 @@ export default function PrivacyPolicy() {
               <li><strong>Right to Non-Discrimination:</strong> You have the right not to receive discriminatory treatment for exercising your privacy rights</li>
             </ul>
             <p className="text-gray-700 leading-relaxed">
-              To exercise these rights, contact us at info@fixblox.com. We will verify your identity before processing your request.
+              To exercise these rights, contact us at adam@ecoflame.info. We will verify your identity before processing your request.
             </p>
           </section>
 
@@ -426,7 +426,7 @@ export default function PrivacyPolicy() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-gray-700 mb-2"><strong>FixBlox</strong></p>
               <p className="text-gray-700 mb-2"><strong>Data Protection Contact</strong></p>
-              <p className="text-gray-700 mb-2">Email: <a href="mailto:info@fixblox.com" className="text-[#0066FF] hover:underline">info@fixblox.com</a></p>
+              <p className="text-gray-700 mb-2">Email: <a href="mailto:adam@ecoflame.info" className="text-[#0066FF] hover:underline">adam@ecoflame.info</a></p>
               <p className="text-gray-700 mb-2">Phone: <a href="tel:+447925990923" className="text-[#0066FF] hover:underline">+44 7925 990923</a></p>
               <p className="text-gray-700">Website: <a href="https://fixblox.com" className="text-[#0066FF] hover:underline">https://fixblox.com</a></p>
             </div>

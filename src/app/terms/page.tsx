@@ -247,7 +247,7 @@ export default function TermsOfService() {
               <li><strong>Extended Support:</strong> Optional ongoing support packages available for purchase</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mb-4">
-              You can contact us at info@fixblox.com or +44 7925 990923 for support during your support period.
+              You can contact us at adam@ecoflame.info or +44 7925 990923 for support during your support period.
             </p>
 
             <h3 className="text-xl font-semibold text-[#0A0E27] mb-3">7.4 Updates and Enhancements</h3>
@@ -416,7 +416,7 @@ export default function TermsOfService() {
             </p>
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-gray-700 mb-2"><strong>FixBlox</strong></p>
-              <p className="text-gray-700 mb-2">Email: <a href="mailto:info@fixblox.com" className="text-[#0066FF] hover:underline">info@fixblox.com</a></p>
+              <p className="text-gray-700 mb-2">Email: <a href="mailto:adam@ecoflame.info" className="text-[#0066FF] hover:underline">adam@ecoflame.info</a></p>
               <p className="text-gray-700 mb-2">Phone: <a href="tel:+447925990923" className="text-[#0066FF] hover:underline">+44 7925 990923</a></p>
               <p className="text-gray-700">Website: <a href="https://fixblox.com" className="text-[#0066FF] hover:underline">https://fixblox.com</a></p>
             </div>
