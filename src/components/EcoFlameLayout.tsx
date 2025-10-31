@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -9,6 +9,8 @@ interface EcoFlameLayoutProps {
 }
 
 export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -26,6 +28,7 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
               <span className="text-2xl font-bold text-[#1D3557]">EcoFlame</span>
             </Link>
             
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <Link href="#home" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Home</Link>
               <Link href="#services" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Services</Link>
@@ -40,7 +43,42 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
                 </a>
               </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-[#1D3557] hover:text-[#FF6B35] transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+              <div className="flex flex-col space-y-4 pt-4">
+                <Link href="#home" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Home</Link>
+                <Link href="#services" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Services</Link>
+                <Link href="#reviews" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Reviews</Link>
+                <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Contact</Link>
+                <div className="flex flex-col gap-2 pt-2">
+                  <a href="tel:07921064352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold text-center">
+                    Call Mobile
+                  </a>
+                  <a href="tel:02080884352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold text-center">
+                    Call 0208 088 4352
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 

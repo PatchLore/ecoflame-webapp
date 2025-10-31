@@ -57,12 +57,9 @@ export default function AdminDashboard() {
 
   const fetchLeads = async () => {
     if (!supabase) {
-      console.log('No Supabase client available')
       setLoading(false)
       return
     }
-
-    console.log('Fetching leads from Supabase...')
     
     try {
       const { data, error } = await supabase
@@ -70,16 +67,10 @@ export default function AdminDashboard() {
         .select('*')
         .order('created_at', { ascending: false })
 
-      console.log('Supabase response:', { data, error })
-
       if (error) {
-        console.error('Error fetching leads:', error)
         setLoading(false)
         return
       }
-
-      console.log('Raw leads data:', data)
-      console.log('Number of leads:', data?.length || 0)
 
       // Add default status if not present
       const leadsWithStatus = (data || []).map(lead => ({
@@ -87,10 +78,9 @@ export default function AdminDashboard() {
         status: lead.status || 'New'
       }))
 
-      console.log('Processed leads:', leadsWithStatus)
       setLeads(leadsWithStatus)
     } catch (error) {
-      console.error('Error:', error)
+      // Silently handle errors - user will see empty state
     } finally {
       setLoading(false)
     }
@@ -131,7 +121,6 @@ export default function AdminDashboard() {
         .eq('id', leadId)
 
       if (error) {
-        console.error('Error updating lead:', error)
         return
       }
 
@@ -140,7 +129,7 @@ export default function AdminDashboard() {
         lead.id === leadId ? { ...lead, status: newStatus as 'New' | 'Contacted' | 'Completed' } : lead
       ))
     } catch (error) {
-      console.error('Error:', error)
+      // Silently handle errors
     }
   }
 
