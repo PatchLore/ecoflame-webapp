@@ -76,18 +76,11 @@ export default function QuoteEmbedPage() {
 
   // Core submission logic - extracted to be reusable
   const performSubmission = async (data: QuoteFormData) => {
-    console.log("[QuoteFlow] performSubmission called with data:", data)
-    console.log('[QuoteFlow] Sending to /api/leads...')
-    console.log('[QuoteFlow] Selected service:', selectedService, 'Selected urgency:', selectedUrgency)
-    
     // Set loading state immediately
     setIsSubmitting(true)
     
     try {
       // Normalize all fields - ensure strings, never null/undefined
-      // Log raw data first to see what we're receiving
-      console.log('[QuoteFlow] Raw form data before normalization:', data)
-      
       const payload = {
         name: (data.name ?? '').trim() || '',
         email: (data.email ?? '').trim() || '',
@@ -100,20 +93,6 @@ export default function QuoteEmbedPage() {
         source: 'ecoflame-website'
       }
       
-      // Validate payload before sending
-      console.log('[QuoteFlow] Normalized payload before sending:', payload)
-      console.log('[QuoteFlow] Payload types:', {
-        name: typeof payload.name,
-        email: typeof payload.email,
-        phone: typeof payload.phone,
-        service: typeof payload.service,
-        postcode: typeof payload.postcode,
-        urgency: typeof payload.urgency,
-        message: typeof payload.message,
-        quoteAmount: typeof payload.quoteAmount
-      })
-      
-      console.log('[QuoteFlow] Fetching /api/leads...')
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
@@ -121,21 +100,14 @@ export default function QuoteEmbedPage() {
         },
         body: JSON.stringify(payload),
       })
-      console.log('[QuoteFlow] Response:', response.status)
 
       if (response.ok) {
         setIsSubmitted(true)
       } else {
         const errorData = await response.json().catch(() => ({}))
-        console.error('Form submission error:', {
-          status: response.status,
-          statusText: response.statusText,
-          error: errorData
-        })
         throw new Error(errorData?.debug || errorData?.message || 'Failed to submit')
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
       const errorMessage = error instanceof Error ? error.message : 'There was an error submitting your request. Please try again or call us directly.'
       alert(errorMessage)
       throw error // Re-throw to allow caller to handle
@@ -146,20 +118,10 @@ export default function QuoteEmbedPage() {
 
   // Direct submission function that bypasses react-hook-form validation
   const submitDirectly = async () => {
-    console.log('[QuoteFlow] Direct submission triggered')
     const formValues = getValues()
-    console.log('[QuoteFlow] Form values:', formValues)
     
     // Validate required fields manually
     if (!selectedService || !selectedUrgency || !formValues.name || !formValues.email || !formValues.phone || !formValues.postcode) {
-      console.error('[QuoteFlow] Required fields missing:', {
-        service: selectedService,
-        urgency: selectedUrgency,
-        name: formValues.name,
-        email: formValues.email,
-        phone: formValues.phone,
-        postcode: formValues.postcode
-      })
       alert('Please fill in all required fields')
       return
     }
@@ -186,7 +148,6 @@ export default function QuoteEmbedPage() {
       event.stopPropagation()
     }
     
-    console.log("[QuoteFlow] onSubmit triggered", data)
     await performSubmission(data)
   }
 
@@ -238,19 +199,15 @@ export default function QuoteEmbedPage() {
               <form 
                 ref={formRef}
                 onSubmit={(e) => {
-                  console.log('[QuoteFlow] Form onSubmit event fired (before handleSubmit)')
                   e.preventDefault()
                   e.stopPropagation()
                   
                   // Try react-hook-form submission first
-                  const result = handleSubmit(onSubmit)(e)
-                  console.log('[QuoteFlow] handleSubmit returned:', result)
+                  handleSubmit(onSubmit)(e)
                   
                   // Check if validation failed (errors object is populated)
                   if (Object.keys(errors).length > 0) {
-                    console.log('[QuoteFlow] Validation errors:', errors)
                     // If validation failed, try direct submission as fallback
-                    console.log('[QuoteFlow] Trying direct submission as fallback...')
                     setTimeout(() => submitDirectly(), 100)
                   }
                 }} 
@@ -413,28 +370,23 @@ export default function QuoteEmbedPage() {
                   zIndex: 20
                 }}
                 onClick={async (e) => {
-                  console.log("[QuoteFlow] Submit button clicked")
                   e.preventDefault()
                   e.stopPropagation()
                   
                   // On mobile, try direct submission immediately
-                  console.log('[QuoteFlow] Attempting direct submission from button click')
                   await submitDirectly()
                 }}
                 onTouchStart={(e) => {
-                  console.log('[QuoteFlow] Submit button touched (touchStart)')
                   // Mark that we've touched the button
                   e.currentTarget.setAttribute('data-touched', 'true')
                 }}
                 onTouchEnd={async (e) => {
-                  console.log('[QuoteFlow] Submit button touch ended (touchEnd)')
                   e.preventDefault()
                   e.stopPropagation()
                   
                   // On mobile touch, try direct submission
                   const button = e.currentTarget
                   if (button.getAttribute('data-touched') === 'true') {
-                    console.log('[QuoteFlow] Attempting direct submission from touch')
                     await submitDirectly()
                   }
                 }}

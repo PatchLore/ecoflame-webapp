@@ -17,35 +17,24 @@ type JsonError = { debug: string; body?: unknown };
 
 function isLeadInput(x: unknown): x is LeadInput {
   if (!x || typeof x !== 'object') {
-    console.log('[leads] Validation failed: not an object', x);
     return false;
   }
   const o = x as Record<string, unknown>;
   const req = ['name','email','phone','postcode','service','urgency'] as const;
   
-  const issues: string[] = [];
-  for (const k of req) {
+  return req.every(k => {
     const val = o[k];
     if (val === null || val === undefined) {
-      issues.push(`${k} is null or undefined`);
-      continue;
+      return false;
     }
     if (typeof val !== 'string') {
-      issues.push(`${k} is not a string (type: ${typeof val}, value: ${val})`);
-      continue;
+      return false;
     }
     if (val.trim().length === 0) {
-      issues.push(`${k} is empty after trimming`);
-      continue;
+      return false;
     }
-  }
-  
-  if (issues.length > 0) {
-    console.log('[leads] Validation issues:', issues);
-    return false;
-  }
-  
-  return true;
+    return true;
+  });
 }
 
 // Map UI urgency labels to DB enum values
@@ -59,33 +48,25 @@ function toDbUrgency(u: string | null | undefined): 'emergency' | 'urgent' | 'st
 }
 
 export async function POST(req: Request): Promise<Response> {
-  console.log('[leads] Incoming request received');
-  
   try {
     const createServerClient = getServerSupabase;
     const supabase = createServerClient();
 
     const bodyUnknown = await req.json();
-    console.log('[leads] Incoming payload:', bodyUnknown);
-    console.log('[leads] Payload types:', Object.entries(bodyUnknown).map(([k, v]) => [k, typeof v, v === null ? 'NULL' : '']));
 
     // Normalize all fields BEFORE validation - convert null/undefined to empty strings
     const normalized: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(bodyUnknown)) {
       if (value === null || value === undefined) {
         normalized[key] = '';
-        console.log(`[leads] Normalized ${key}: null/undefined -> empty string`);
       } else if (key === 'quoteAmount' && typeof value !== 'number') {
         normalized[key] = Number(value) || 0;
-        console.log(`[leads] Normalized ${key}: ${typeof value} -> ${normalized[key]}`);
       } else if (typeof value === 'string') {
         normalized[key] = value.trim();
       } else {
         normalized[key] = value;
       }
     }
-    
-    console.log('[leads] Normalized payload:', normalized);
 
     if (!isLeadInput(normalized)) {
       // Get detailed validation error
@@ -108,7 +89,6 @@ export async function POST(req: Request): Promise<Response> {
         debug: `Invalid input: ${missing.join(', ')}`, 
         body: normalized 
       };
-      console.error('[leads] Validation failed:', err);
       return Response.json(err, { status: 400 });
     }
 
@@ -136,16 +116,11 @@ export async function POST(req: Request): Promise<Response> {
     }
     // Do not include optional columns like `source` to avoid schema cache errors
 
-    console.log('[leads] Attempting Supabase insert with:', insertCandidate);
-
     try {
       const { data, error } = await supabase.from('leads').insert([insertCandidate]).select();
 
       if (error) {
         const msg = (error as PostgrestError).message ?? 'Unknown Supabase error';
-        console.error('[leads] Database insert error:', error);
-        console.error('[leads] Error message:', msg);
-        console.error('[leads] Error details:', JSON.stringify(error, null, 2));
         return Response.json({ 
           success: false, 
           debug: msg,
@@ -154,12 +129,9 @@ export async function POST(req: Request): Promise<Response> {
         }, { status: 400 });
       }
 
-      console.log('[leads] Inserted id:', data?.[0]?.id ?? '(no id)');
       return Response.json({ success: true, data });
     } catch (dbError: unknown) {
       const dbErrorMsg = dbError instanceof Error ? dbError.message : String(dbError);
-      console.error('[leads] Database insert exception:', dbError);
-      console.error('[leads] Exception message:', dbErrorMsg);
       return Response.json({ 
         success: false, 
         debug: `Database insert exception: ${dbErrorMsg}`,
@@ -169,9 +141,6 @@ export async function POST(req: Request): Promise<Response> {
     }
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error('[leads] Unhandled error:', err);
-    console.error('[leads] Error message:', msg);
-    console.error('[leads] Error stack:', err instanceof Error ? err.stack : 'No stack trace');
     return Response.json({ 
       success: false,
       debug: msg,
