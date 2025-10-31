@@ -34,12 +34,12 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
               <Link href="#services" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Services</Link>
               <Link href="#reviews" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Reviews</Link>
               <Link href="#contact" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Contact</Link>
-              <div className="flex items-center gap-3">
-                <a href="tel:07921064352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold transition-all hover:-translate-y-1">
-                  Call Mobile
+              <div className="flex items-center gap-2 md:gap-4">
+                <a href="tel:07921064352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg">
+                  Call 07921 064 352
                 </a>
-                <a href="tel:02080884352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold transition-all hover:-translate-y-1">
-                  Call 0208 088 4352
+                <a href="tel:02080884352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg">
+                  0208 088 4352
                 </a>
               </div>
             </div>
@@ -69,11 +69,11 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
                 <Link href="#reviews" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Reviews</Link>
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Contact</Link>
                 <div className="flex flex-col gap-2 pt-2">
-                  <a href="tel:07921064352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold text-center">
-                    Call Mobile
+                  <a href="tel:07921064352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full font-semibold text-center transition-all hover:scale-105 hover:shadow-lg">
+                    Call 07921 064 352
                   </a>
-                  <a href="tel:02080884352" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-6 py-2 rounded-full font-semibold text-center">
-                    Call 0208 088 4352
+                  <a href="tel:02080884352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full font-semibold text-center transition-all hover:scale-105 hover:shadow-lg">
+                    0208 088 4352
                   </a>
                 </div>
               </div>
