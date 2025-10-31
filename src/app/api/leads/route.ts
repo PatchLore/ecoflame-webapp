@@ -176,7 +176,7 @@ export async function POST(req: Request): Promise<Response> {
       success: false,
       debug: msg,
       error: 'Unhandled exception in POST handler'
-    } satisfies JsonError, { status: 500 });
+    }, { status: 500 });
   }
 }
 
