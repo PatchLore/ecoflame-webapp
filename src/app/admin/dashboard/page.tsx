@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import { createSupabaseClient, Lead } from "@/lib/supabase-client";
 import { useRouter } from "next/navigation";
 
-interface DashboardLead extends Lead {
+type DashboardLead = Lead & {
   status?: 'New' | 'Contacted' | 'Completed'
   message?: string | null
-  job_details?: string | null
 }
 
 export default function AdminDashboard() {
