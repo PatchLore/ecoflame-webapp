@@ -193,9 +193,18 @@ export default function QuoteEmbedPage() {
           <div className="relative z-10 pointer-events-auto bg-white">
             <div className="p-6">
               <form 
-                onSubmit={handleSubmit(onSubmit)} 
+                onSubmit={(e) => {
+                  console.log('[QuoteFlow] Form onSubmit event fired (before handleSubmit)')
+                  const result = handleSubmit(onSubmit)(e)
+                  console.log('[QuoteFlow] handleSubmit returned:', result)
+                  // Check if validation failed (errors object is populated)
+                  if (Object.keys(errors).length > 0) {
+                    console.log('[QuoteFlow] Validation errors:', errors)
+                  }
+                }} 
                 className="space-y-6"
                 autoComplete="off"
+                noValidate
               >
               {/* Service Selection */}
               <div>
@@ -352,13 +361,16 @@ export default function QuoteEmbedPage() {
                   zIndex: 20
                 }}
                 onClick={(e) => {
-                  console.log("Submit button clicked")
-                  // Don't preventDefault here - let react-hook-form handle submission
-                  // This onClick is only for logging/debugging
+                  console.log("[QuoteFlow] Submit button clicked")
+                  // Don't preventDefault/stopPropagation here - let the form handle submission naturally
                 }}
                 onTouchStart={(e) => {
-                  console.log('[QuoteFlow] Submit button touched')
-                  e.stopPropagation()
+                  console.log('[QuoteFlow] Submit button touched (touchStart)')
+                  // Don't stopPropagation - allow the touch event to convert to click/submit
+                }}
+                onTouchEnd={(e) => {
+                  console.log('[QuoteFlow] Submit button touch ended (touchEnd)')
+                  // Don't stopPropagation - allow natural form submission
                 }}
               >
                 {isSubmitting ? 'Sending...' : 'Get Quote'}
