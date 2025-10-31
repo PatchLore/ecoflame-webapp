@@ -219,15 +219,17 @@ export default function HomePage() {
         <div className="max-w-[800px] mx-auto">
           <h2 className="text-5xl font-bold text-white mb-4">Need Help Now?</h2>
           <p className="text-xl text-white/90 mb-8">Our team is available 24/7 for emergencies and consultations</p>
-          <p className="mb-8 flex flex-wrap items-center justify-center gap-2 text-gray-800 font-medium">
-            <span>📞</span>
-            <span>Call us now:</span>
-            <span>Mobile</span>
-            <a href="tel:07921064352" className="text-orange-600 hover:underline">07921 064 352</a>
-            <span>or</span>
-            <span>Landline</span>
-            <a href="tel:02080884352" className="text-orange-600 hover:underline">0208 088 4352</a>
-          </p>
+          <div className="mb-8 bg-white rounded-lg px-6 py-4 inline-block">
+            <p className="flex flex-wrap items-center justify-center gap-2 text-gray-700 font-medium">
+              <span>📞</span>
+              <span>Call us now:</span>
+              <span>Mobile</span>
+              <a href="tel:07921064352" className="text-[#1D3557] hover:underline font-semibold">07921 064 352</a>
+              <span>or</span>
+              <span>Landline</span>
+              <a href="tel:02080884352" className="text-[#1D3557] hover:underline font-semibold">0208 088 4352</a>
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="https://wa.me/447921064352?text=Hi%20I%27m%20interested%20in%20getting%20a%20quote" 
