@@ -13,6 +13,11 @@ export function createSupabaseClient() {
     return null
   }
 
+  // Safe debug: log active Supabase URL (no secrets)
+  try {
+    console.log('[supabase-client] Using URL:', supabaseUrl)
+  } catch {}
+
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
       autoRefreshToken: true,
