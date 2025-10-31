@@ -16,8 +16,7 @@ export default function HomePage() {
             Professional <span className="bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent">Heating & Plumbing</span> Services
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Expert boiler installation, repairs, and heating services across London and Surrey. 
-            Gas Safe registered, fully insured, and available 24/7 for emergencies.
+            Trusted experts for boiler installation, repairs, and servicing across London and Surrey. Gas Safe registered, fully insured, and available 24/7 for emergencies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
@@ -65,37 +64,37 @@ export default function HomePage() {
                 icon: '🔥',
                 title: 'Boiler Installation',
                 description: 'Professional boiler installation and replacement services with warranty coverage.',
-                features: ['New boiler installation', 'Boiler replacement', 'System upgrades', 'Warranty included']
+                features: ['Install new boilers', 'Replace existing systems', 'Upgrade heating systems', 'Includes warranty']
               },
               {
                 icon: '🔧',
                 title: 'Boiler Repairs',
                 description: 'Expert boiler repair services to get your heating back up and running quickly.',
-                features: ['Emergency repairs', 'Fault diagnosis', 'Component replacement', 'Same-day service']
+                features: ['Repair emergencies', 'Diagnose faults', 'Replace components', 'Same-day service']
               },
               {
                 icon: '📋',
                 title: 'Boiler Servicing',
                 description: 'Regular boiler maintenance to ensure efficiency and prevent breakdowns.',
-                features: ['Annual servicing', 'Safety checks', 'Efficiency optimization', 'Preventive maintenance']
+                features: ['Annual servicing', 'Safety checks', 'Optimise efficiency', 'Preventive maintenance']
               },
               {
                 icon: '🚰',
                 title: 'Plumbing Services',
                 description: 'Complete plumbing solutions for all your water and drainage needs.',
-                features: ['Leak repairs', 'Pipe installation', 'Bathroom plumbing', 'Drainage solutions']
+                features: ['Repair leaks', 'Install pipes', 'Bathroom plumbing', 'Drainage solutions']
               },
               {
                 icon: '⚡',
                 title: 'Emergency Callouts',
                 description: '24/7 emergency heating and plumbing services when you need them most.',
-                features: ['24/7 availability', 'Rapid response', 'Emergency repairs', 'No call-out charges']
+                features: ['Available 24/7', 'Rapid response', 'Emergency repairs', 'No call-out charges']
               },
               {
                 icon: '📄',
                 title: 'Landlord Certificates',
                 description: 'Gas safety certificates and compliance services for landlords.',
-                features: ['Gas safety certificates', 'Landlord compliance', 'Property inspections', 'Documentation']
+                features: ['Gas safety certificates', 'Landlord compliance', 'Property inspections', 'Complete documentation']
               }
             ].map((service, index) => (
               <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
@@ -142,17 +141,17 @@ export default function HomePage() {
             <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
               <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-white/90 mb-4">&ldquo;Excellent service, very professional and clean work. Highly recommend!&rdquo;</p>
-              <p className="text-white/70 text-sm">- Sarah M.</p>
+              <p className="text-white/70 text-sm">&mdash; Sarah M.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
               <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-white/90 mb-4">&ldquo;Fixed our boiler quickly and efficiently. Great communication throughout.&rdquo;</p>
-              <p className="text-white/70 text-sm">- James L.</p>
+              <p className="text-white/70 text-sm">&mdash; James L.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl">
               <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-white/90 mb-4">&ldquo;Reliable, trustworthy, and excellent value for money. Will definitely use again.&rdquo;</p>
-              <p className="text-white/70 text-sm">- Emma R.</p>
+              <p className="text-white/70 text-sm">&mdash; Emma R.</p>
             </div>
           </div>
         </div>
@@ -181,7 +180,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We&apos;ll Call You With a Quote</h2>
-            <p className="text-xl text-gray-600">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalized quote.</p>
+            <p className="text-xl text-gray-600">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalised quote.</p>
           </div>
           <div className="w-full flex justify-center py-10">
             {isLoading && (

@@ -114,7 +114,7 @@ export default function QuoteEmbedPage() {
         <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
           <h2 className="text-2xl font-semibold text-[#0B2346]">Thank You!</h2>
           <p className="mt-3 text-gray-700">
-            We&apos;ve received your request and will call you within 2 hours with your personalized quote.
+            We&apos;ve received your request and will call you within 2 hours with your personalised quote.
           </p>
           <p className="mt-5 text-gray-600">Need immediate help?</p>
           <a href="tel:07921064352" className="block mt-1 text-[#FF5C3A] font-medium hover:underline">
@@ -304,7 +304,7 @@ export default function QuoteEmbedPage() {
               </button>
 
               <div className="text-center text-sm text-gray-700">
-                <p className="mb-2">We&apos;ll call you within 2 hours with your personalized quote</p>
+                <p className="mb-2">We&apos;ll call you within 2 hours with your personalised quote</p>
                 <p className="font-medium text-gray-800">
                   <span className="mr-1">📞</span>
                   Call us now: Mobile
