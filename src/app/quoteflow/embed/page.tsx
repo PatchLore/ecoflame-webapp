@@ -174,7 +174,7 @@ export default function QuoteEmbedPage() {
                         className="sr-only"
                       />
                       <div className="font-medium text-gray-900">{service.name}</div>
-                      <div className="text-sm text-gray-500">From £{service.basePrice}</div>
+                      <div className="text-sm text-gray-800">From £{service.basePrice}</div>
                     </label>
                   ))}
                 </div>
