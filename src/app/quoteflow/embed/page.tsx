@@ -235,7 +235,7 @@ export default function QuoteEmbedPage() {
                     <input
                       type="text"
                       {...register('name')}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent text-gray-900"
                       placeholder="Your full name"
                     />
                     {errors.name && (
@@ -248,7 +248,7 @@ export default function QuoteEmbedPage() {
                     <input
                       type="tel"
                       {...register('phone')}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent text-gray-900"
                       placeholder="07921 064 352"
                     />
                     {errors.phone && (
@@ -262,7 +262,7 @@ export default function QuoteEmbedPage() {
                   <input
                     type="email"
                     {...register('email')}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent text-gray-900"
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
@@ -275,7 +275,7 @@ export default function QuoteEmbedPage() {
                   <input
                     type="text"
                     {...register('postcode')}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent text-gray-900"
                     placeholder="SW1A 1AA"
                   />
                   {errors.postcode && (
@@ -288,7 +288,7 @@ export default function QuoteEmbedPage() {
                   <textarea
                     {...register('message')}
                     rows={3}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent text-gray-900"
                     placeholder="Tell us more about your heating needs..."
                   />
                 </div>
