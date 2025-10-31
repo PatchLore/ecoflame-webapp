@@ -16,16 +16,36 @@ type LeadInput = {
 type JsonError = { debug: string; body?: unknown };
 
 function isLeadInput(x: unknown): x is LeadInput {
-  if (!x || typeof x !== 'object') return false;
+  if (!x || typeof x !== 'object') {
+    console.log('[leads] Validation failed: not an object', x);
+    return false;
+  }
   const o = x as Record<string, unknown>;
   const req = ['name','email','phone','postcode','service','urgency'] as const;
-  return req.every(k => {
+  
+  const issues: string[] = [];
+  for (const k of req) {
     const val = o[k];
-    // Allow string or null/undefined, but convert to string for validation
-    if (val === null || val === undefined) return false; // Required fields must be present
-    if (typeof val !== 'string') return false;
-    return val.trim().length > 0; // Must have content after trimming
-  });
+    if (val === null || val === undefined) {
+      issues.push(`${k} is null or undefined`);
+      continue;
+    }
+    if (typeof val !== 'string') {
+      issues.push(`${k} is not a string (type: ${typeof val}, value: ${val})`);
+      continue;
+    }
+    if (val.trim().length === 0) {
+      issues.push(`${k} is empty after trimming`);
+      continue;
+    }
+  }
+  
+  if (issues.length > 0) {
+    console.log('[leads] Validation issues:', issues);
+    return false;
+  }
+  
+  return true;
 }
 
 // Map UI urgency labels to DB enum values
@@ -44,15 +64,53 @@ export async function POST(req: Request): Promise<Response> {
     const supabase = createServerClient();
 
     const bodyUnknown = await req.json();
-    console.log('[leads] Received:', bodyUnknown);
+    console.log('[leads] Raw incoming payload:', bodyUnknown);
+    console.log('[leads] Payload types:', Object.entries(bodyUnknown).map(([k, v]) => [k, typeof v, v === null ? 'NULL' : '']));
 
-    if (!isLeadInput(bodyUnknown)) {
-      const err: JsonError = { debug: 'Missing required frontend fields', body: bodyUnknown };
-      console.error('[leads]', err);
+    // Normalize all fields BEFORE validation - convert null/undefined to empty strings
+    const normalized: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(bodyUnknown)) {
+      if (value === null || value === undefined) {
+        normalized[key] = '';
+        console.log(`[leads] Normalized ${key}: null/undefined -> empty string`);
+      } else if (key === 'quoteAmount' && typeof value !== 'number') {
+        normalized[key] = Number(value) || 0;
+        console.log(`[leads] Normalized ${key}: ${typeof value} -> ${normalized[key]}`);
+      } else if (typeof value === 'string') {
+        normalized[key] = value.trim();
+      } else {
+        normalized[key] = value;
+      }
+    }
+    
+    console.log('[leads] Normalized payload:', normalized);
+
+    if (!isLeadInput(normalized)) {
+      // Get detailed validation error
+      const o = normalized as Record<string, unknown>;
+      const req = ['name','email','phone','postcode','service','urgency'] as const;
+      const missing: string[] = [];
+      
+      for (const k of req) {
+        const val = o[k];
+        if (val === null || val === undefined) {
+          missing.push(`${k} is null or undefined`);
+        } else if (typeof val !== 'string') {
+          missing.push(`${k} is ${typeof val} (expected string)`);
+        } else if (val.trim().length === 0) {
+          missing.push(`${k} is empty`);
+        }
+      }
+      
+      const err: JsonError = { 
+        debug: `Invalid input: ${missing.join(', ')}`, 
+        body: normalized 
+      };
+      console.error('[leads] Validation failed:', err);
       return Response.json(err, { status: 400 });
     }
 
-    const body: LeadInput = bodyUnknown;
+    const body: LeadInput = normalized as LeadInput;
 
     // Normalize known fields - ensure all values are strings, never null
     // Normalize UI urgency → DB values

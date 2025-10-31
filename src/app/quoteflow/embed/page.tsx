@@ -78,19 +78,33 @@ export default function QuoteEmbedPage() {
     
     try {
       // Normalize all fields - ensure strings, never null/undefined
+      // Log raw data first to see what we're receiving
+      console.log('[QuoteFlow] Raw form data before normalization:', data)
+      
       const payload = {
-        name: String(data.name ?? '').trim(),
-        email: String(data.email ?? '').trim(),
-        phone: String(data.phone ?? '').trim(),
-        service: services.find(s => s.id === data.service)?.name ?? String(data.service ?? '').trim(),
-        postcode: String(data.postcode ?? '').trim(),
-        urgency: urgencyOptions.find(u => u.id === data.urgency)?.name ?? String(data.urgency ?? '').trim(),
-        message: String(data.message ?? '').trim(),
-        quoteAmount: calculateQuote(),
+        name: (data.name ?? '').trim() || '',
+        email: (data.email ?? '').trim() || '',
+        phone: (data.phone ?? '').trim() || '',
+        service: (services.find(s => s.id === data.service)?.name ?? data.service ?? '').trim() || '',
+        postcode: (data.postcode ?? '').trim() || '',
+        urgency: (urgencyOptions.find(u => u.id === data.urgency)?.name ?? data.urgency ?? '').trim() || '',
+        message: (data.message ?? '').trim() || '',
+        quoteAmount: Number(calculateQuote()) || 0,
         source: 'ecoflame-website'
       }
       
-      console.log('[QuoteFlow] Submitting payload:', payload)
+      // Validate payload before sending
+      console.log('[QuoteFlow] Normalized payload before sending:', payload)
+      console.log('[QuoteFlow] Payload types:', {
+        name: typeof payload.name,
+        email: typeof payload.email,
+        phone: typeof payload.phone,
+        service: typeof payload.service,
+        postcode: typeof payload.postcode,
+        urgency: typeof payload.urgency,
+        message: typeof payload.message,
+        quoteAmount: typeof payload.quoteAmount
+      })
       
       const response = await fetch('/api/leads', {
         method: 'POST',
