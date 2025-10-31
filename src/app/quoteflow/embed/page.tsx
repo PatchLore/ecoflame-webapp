@@ -74,7 +74,9 @@ export default function QuoteEmbedPage() {
   }
 
   const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
-    // Prevent default form submission
+    console.log('Submitting form...')
+    
+    // Prevent default form submission (always call, not just if event exists)
     if (event) {
       event.preventDefault()
       event.stopPropagation()
@@ -114,7 +116,7 @@ export default function QuoteEmbedPage() {
         quoteAmount: typeof payload.quoteAmount
       })
       
-      console.log('[QuoteFlow] About to call fetch /api/leads')
+      console.log('[QuoteFlow] Fetching /api/leads...')
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
@@ -122,7 +124,7 @@ export default function QuoteEmbedPage() {
         },
         body: JSON.stringify(payload),
       })
-      console.log('[QuoteFlow] Fetch completed, response status:', response.status)
+      console.log('[QuoteFlow] Response:', response.status)
 
       if (response.ok) {
         setIsSubmitted(true)
@@ -190,10 +192,12 @@ export default function QuoteEmbedPage() {
           <div className="p-6">
             <form 
               onSubmit={(e) => {
+                e.preventDefault()
                 console.log('[QuoteFlow] Form onSubmit event fired')
                 handleSubmit(onSubmit)(e)
               }} 
               className="space-y-6"
+              autoComplete="off"
               noValidate
             >
               {/* Service Selection */}
@@ -341,15 +345,16 @@ export default function QuoteEmbedPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
-                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10"
-                style={{ touchAction: 'manipulation' }}
+                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10 touch-manipulation"
+                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'rgba(255, 107, 53, 0.3)' }}
                 onClick={(e) => {
                   console.log('[QuoteFlow] Submit button clicked')
                   // Ensure form validation passes before submission
                   if (!selectedService || !selectedUrgency) {
                     e.preventDefault()
+                    e.stopPropagation()
                     console.log('[QuoteFlow] Form validation failed - service or urgency not selected')
-                    return
+                    return false
                   }
                 }}
               >
@@ -381,11 +386,18 @@ export default function QuoteEmbedPage() {
           user-select: none;
           position: relative;
           z-index: 10;
+          touch-action: manipulation;
+          -webkit-touch-callout: none;
+        }
+        
+        button[type="submit"]:active {
+          transform: scale(0.95);
         }
         
         button[type="submit"]:disabled {
           cursor: not-allowed;
           touch-action: none;
+          pointer-events: none;
         }
         
         *:not(button[type="submit"]) {
