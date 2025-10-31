@@ -299,6 +299,7 @@ export default function AdminDashboard() {
                 <tr>
                   <th className="px-3 py-2 text-left font-semibold">Contact</th>
                   <th className="px-3 py-2 text-left font-semibold">Service</th>
+                  <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">Description</th>
                   <th className="px-3 py-2 text-left font-semibold">Location</th>
                   <th className="px-3 py-2 text-left font-semibold">Quote</th>
                   <th className="px-3 py-2 text-left font-semibold">Status</th>
@@ -321,6 +322,9 @@ export default function AdminDashboard() {
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${getUrgencyColor(lead.urgency)}`}>
                         {lead.urgency.replace('_', ' ')}
                       </span>
+                    </td>
+                    <td className="px-3 py-2 max-w-xs truncate text-gray-700 text-sm" title={(lead as any).message || (lead as any).job_details || "—"}>
+                      {(lead as any).message || (lead as any).job_details || "—"}
                     </td>
                     <td className="px-3 py-2">{lead.postcode}</td>
                     <td className="px-3 py-2 font-medium">
