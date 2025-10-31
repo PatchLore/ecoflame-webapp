@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 
 interface DashboardLead extends Lead {
   status?: 'New' | 'Contacted' | 'Completed'
+  message?: string | null
+  job_details?: string | null
 }
 
 export default function AdminDashboard() {
@@ -323,8 +325,8 @@ export default function AdminDashboard() {
                         {lead.urgency.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="px-3 py-2 max-w-xs truncate text-gray-700 text-sm" title={(lead as any).message || (lead as any).job_details || "—"}>
-                      {(lead as any).message || (lead as any).job_details || "—"}
+                    <td className="px-3 py-2 max-w-xs truncate text-gray-700 text-sm" title={lead.message || lead.job_details || "—"}>
+                      {lead.message || lead.job_details || "—"}
                     </td>
                     <td className="px-3 py-2">{lead.postcode}</td>
                     <td className="px-3 py-2 font-medium">
