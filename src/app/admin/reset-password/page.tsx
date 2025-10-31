@@ -22,6 +22,7 @@ export default function ResetPasswordPage() {
       window.history.replaceState({}, "", `/admin/reset-password?${params}`);
       setStage("ready");
     } else {
+      setMessage("Invalid or expired reset link. Please request a new one.");
       setStage("ready");
     }
   }, []);
