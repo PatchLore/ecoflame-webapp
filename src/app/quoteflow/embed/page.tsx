@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -38,6 +38,23 @@ export default function QuoteEmbedPage() {
   const [selectedUrgency, setSelectedUrgency] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  
+  useEffect(() => {
+    if (!isSubmitted) return
+    const timer = setTimeout(() => {
+      try {
+        // Ensure the whole page (not just the iframe) navigates
+        if (typeof window !== 'undefined' && window.top) {
+          (window.top as Window).location.href = '/'
+        } else {
+          window.location.href = '/'
+        }
+      } catch {
+        window.location.href = '/'
+      }
+    }, 4000)
+    return () => clearTimeout(timer)
+  }, [isSubmitted])
 
   const { register, handleSubmit, formState: { errors } } = useForm<QuoteFormData>({
     resolver: zodResolver(quoteSchema)
@@ -95,22 +112,30 @@ export default function QuoteEmbedPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center p-8">
         <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
-          <div className="text-6xl mb-4">✅</div>
-          <h2 className="text-2xl font-bold text-[#1D3557] mb-4">Thank You!</h2>
-            <p className="text-gray-600 mb-6">
-              We&apos;ve received your request and will call you within 2 hours with your personalized quote.
-            </p>
-          <div className="bg-[#FF6B35] text-white p-4 rounded-lg">
-            <p className="font-semibold">Need immediate help?</p>
-            <div className="flex flex-col">
-              <a href="tel:07921064352" className="text-white text-xl font-bold">
-                07921 064 352
-              </a>
-              <a href="tel:02080884352" className="text-white/90 text-base font-semibold">
-                0208 088 4352
-              </a>
-            </div>
-          </div>
+          <h2 className="text-2xl font-semibold text-[#0B2346]">Thank You!</h2>
+          <p className="mt-3 text-gray-700">
+            We&apos;ve received your request and will call you within 2 hours with your personalized quote.
+          </p>
+          <p className="mt-5 text-gray-600">Need immediate help?</p>
+          <a href="tel:07921064352" className="block mt-1 text-[#FF5C3A] font-medium hover:underline">
+            07921 064 352
+          </a>
+          <button
+            onClick={() => {
+              try {
+                if (typeof window !== 'undefined' && window.top) {
+                  (window.top as Window).location.href = '/'
+                } else {
+                  window.location.href = '/'
+                }
+              } catch {
+                window.location.href = '/'
+              }
+            }}
+            className="mt-6 bg-[#FF5C3A] text-white px-4 py-2 rounded-md hover:bg-[#E14A25]"
+          >
+            Back to Home
+          </button>
         </div>
       </div>
     )
