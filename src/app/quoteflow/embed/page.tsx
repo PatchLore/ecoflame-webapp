@@ -73,7 +73,15 @@ export default function QuoteEmbedPage() {
     return Math.round((basePrice * urgencyMultiplier) + travelFee)
   }
 
-  const onSubmit = async (data: QuoteFormData) => {
+  const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
+    // Prevent default form submission
+    if (event) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    
+    console.log('[QuoteFlow] onSubmit handler triggered')
+    console.log('[QuoteFlow] Event type:', event?.type)
     setIsSubmitting(true)
     
     try {
@@ -106,6 +114,7 @@ export default function QuoteEmbedPage() {
         quoteAmount: typeof payload.quoteAmount
       })
       
+      console.log('[QuoteFlow] About to call fetch /api/leads')
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
@@ -113,6 +122,7 @@ export default function QuoteEmbedPage() {
         },
         body: JSON.stringify(payload),
       })
+      console.log('[QuoteFlow] Fetch completed, response status:', response.status)
 
       if (response.ok) {
         setIsSubmitted(true)
@@ -178,7 +188,14 @@ export default function QuoteEmbedPage() {
           </div>
 
           <div className="p-6">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form 
+              onSubmit={(e) => {
+                console.log('[QuoteFlow] Form onSubmit event fired')
+                handleSubmit(onSubmit)(e)
+              }} 
+              className="space-y-6"
+              noValidate
+            >
               {/* Service Selection */}
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3">What service do you need?</label>
@@ -324,7 +341,17 @@ export default function QuoteEmbedPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
-                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10"
+                style={{ touchAction: 'manipulation' }}
+                onClick={(e) => {
+                  console.log('[QuoteFlow] Submit button clicked')
+                  // Ensure form validation passes before submission
+                  if (!selectedService || !selectedUrgency) {
+                    e.preventDefault()
+                    console.log('[QuoteFlow] Form validation failed - service or urgency not selected')
+                    return
+                  }
+                }}
               >
                 {isSubmitting ? 'Sending...' : 'Send My Details - Get Your Quote'}
               </button>
@@ -344,11 +371,24 @@ export default function QuoteEmbedPage() {
           touch-action: pan-y;
         }
         
-        input, select, textarea {
+        input, select, textarea, button {
           touch-action: manipulation;
         }
         
-        * {
+        button[type="submit"] {
+          cursor: pointer;
+          -webkit-tap-highlight-color: rgba(255, 107, 53, 0.3);
+          user-select: none;
+          position: relative;
+          z-index: 10;
+        }
+        
+        button[type="submit"]:disabled {
+          cursor: not-allowed;
+          touch-action: none;
+        }
+        
+        *:not(button[type="submit"]) {
           -webkit-tap-highlight-color: transparent;
         }
       `}</style>
