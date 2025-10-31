@@ -74,15 +74,17 @@ export default function QuoteEmbedPage() {
   }
 
   const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
-    // Always prevent default form submission for mobile browsers (especially Safari)
+    // ALWAYS prevent default FIRST - critical for mobile Safari to avoid page reload
     if (event) {
       event.preventDefault()
       event.stopPropagation()
     }
     
-    console.log('[QuoteFlow] onSubmit fired', data)
+    console.log("[QuoteFlow] onSubmit triggered", data)
     console.log('[QuoteFlow] Sending to /api/leads...')
     console.log('[QuoteFlow] Selected service:', selectedService, 'Selected urgency:', selectedUrgency)
+    
+    // Set loading state immediately
     setIsSubmitting(true)
     
     try {
@@ -188,17 +190,11 @@ export default function QuoteEmbedPage() {
             <p className="text-white/90">Professional heating services with transparent pricing</p>
           </div>
 
-          <div className="p-6">
+          <div className="p-6 pointer-events-auto">
             <form 
-              onSubmit={(e) => {
-                console.log('[QuoteFlow] Form onSubmit event triggered')
-                e.preventDefault()
-                e.stopPropagation()
-                handleSubmit(onSubmit)(e)
-              }} 
-              className="space-y-6"
+              onSubmit={handleSubmit(onSubmit)} 
+              className="space-y-6 pointer-events-auto"
               autoComplete="off"
-              noValidate
             >
               {/* Service Selection */}
               <div>
@@ -345,23 +341,23 @@ export default function QuoteEmbedPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
-                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10"
+                className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold mt-4 cursor-pointer touch-manipulation active:scale-95 z-20 relative pointer-events-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ 
                   touchAction: 'manipulation',
                   WebkitTapHighlightColor: 'rgba(255, 107, 53, 0.3)',
                   position: 'relative',
-                  zIndex: 10
+                  zIndex: 20
                 }}
                 onTouchStart={(e) => {
                   console.log('[QuoteFlow] Submit button touched')
                   e.stopPropagation()
                 }}
-                onMouseDown={(e) => {
+                onClick={(e) => {
                   console.log('[QuoteFlow] Submit button clicked')
                   e.stopPropagation()
                 }}
               >
-                {isSubmitting ? 'Sending...' : 'Send My Details - Get Your Quote'}
+                {isSubmitting ? 'Sending...' : 'Get Quote'}
               </button>
 
               <div className="text-center text-sm text-gray-800 mt-6">
@@ -388,9 +384,10 @@ export default function QuoteEmbedPage() {
           -webkit-tap-highlight-color: rgba(255, 107, 53, 0.3);
           user-select: none;
           position: relative;
-          z-index: 10;
+          z-index: 20;
           touch-action: manipulation;
           -webkit-touch-callout: none;
+          pointer-events: auto;
         }
         
         button[type="submit"]:active {
@@ -401,6 +398,10 @@ export default function QuoteEmbedPage() {
           cursor: not-allowed;
           touch-action: none;
           pointer-events: none;
+        }
+        
+        button[type="submit"]:not(:disabled) {
+          pointer-events: auto;
         }
         
         *:not(button[type="submit"]) {
