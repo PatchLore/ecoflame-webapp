@@ -23,14 +23,9 @@ export default function HomePage() {
             <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
               Send Your Details – We&apos;ll Call You With a Quote
             </a>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
-                Call Mobile: 07921 064 352
-              </a>
-              <a href="tel:02080884352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
-                Call 0208 088 4352
-              </a>
-            </div>
+            <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
+              Call now
+            </a>
           </div>
           
           {/* Trust Indicators */}
@@ -172,7 +167,7 @@ export default function HomePage() {
               Based in Sutton, Surrey, we provide expert heating and plumbing services throughout London and Surrey. Our experienced team travels extensively to ensure you get the help you need, when you need it.
             </p>
             <p className="text-gray-600 leading-relaxed text-lg mb-8">
-              Give us a call today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
+              Get in touch today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
             </p>
             <a href="#book-now" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
               Check Your Postcode
