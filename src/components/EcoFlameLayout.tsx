@@ -141,7 +141,7 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
           </div>
           
           <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 EcoFlame Heating Solutions. All rights reserved.</p>
+            <p>&copy; 2025 EcoFlame Heating Solutions. All rights reserved.</p>
           </div>
         </div>
       </footer>
