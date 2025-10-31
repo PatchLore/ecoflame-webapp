@@ -106,14 +106,6 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
                 Professional heating and plumbing services across London and Surrey. 
                 Gas Safe registered, fully insured, and available 24/7.
               </p>
-              <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
-                <a href="tel:07921064352" className="text-[#FF6B35] hover:text-[#E63946] transition-colors">
-                  📞 07921 064 352
-                </a>
-                <a href="tel:02080884352" className="text-[#FF6B35] hover:text-[#E63946] transition-colors">
-                  ☎️ 0208 088 4352
-                </a>
-              </div>
             </div>
             
             <div>
@@ -128,13 +120,22 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
             </div>
             
             <div>
-              <h3 className="text-xl font-bold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-gray-400">
-                <p>📞 07921 064 352</p>
-                <p>☎️ 0208 088 4352</p>
-                <p>📧 adam@ecoflame.info</p>
-                <p>📍 Serving London & Surrey</p>
-                <p>🛡️ Gas Safe Registered</p>
+              <h3 className="text-xl font-bold mb-4">Contact</h3>
+              <div className="text-center md:text-left text-white text-sm md:text-base space-y-1">
+                <p>
+                  📞 <a href="tel:07921064352" className="text-[#F97316] hover:underline font-medium transition-colors">
+                    07921 064 352
+                  </a> &nbsp;|&nbsp;
+                  <a href="tel:02080884352" className="text-[#F97316] hover:underline font-medium transition-colors">
+                    0208 088 4352
+                  </a>
+                </p>
+                <p>
+                  📧 <a href="mailto:adam@ecoflame.info" className="text-[#F97316] hover:underline font-medium transition-colors">
+                    adam@ecoflame.info
+                  </a>
+                </p>
+                <p>📍 Serving London & Surrey | 🛡️ Gas Safe Registered</p>
               </div>
             </div>
           </div>
