@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -38,6 +38,7 @@ export default function QuoteEmbedPage() {
   const [selectedUrgency, setSelectedUrgency] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
   
   useEffect(() => {
     if (!isSubmitted) return
@@ -56,7 +57,7 @@ export default function QuoteEmbedPage() {
     return () => clearTimeout(timer)
   }, [isSubmitted])
 
-  const { register, handleSubmit, formState: { errors } } = useForm<QuoteFormData>({
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm<QuoteFormData>({
     resolver: zodResolver(quoteSchema)
   })
 
@@ -73,14 +74,9 @@ export default function QuoteEmbedPage() {
     return Math.round((basePrice * urgencyMultiplier) + travelFee)
   }
 
-  const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
-    // ALWAYS prevent default FIRST - critical for mobile Safari to avoid page reload
-    if (event) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    
-    console.log("[QuoteFlow] onSubmit triggered", data)
+  // Core submission logic - extracted to be reusable
+  const performSubmission = async (data: QuoteFormData) => {
+    console.log("[QuoteFlow] performSubmission called with data:", data)
     console.log('[QuoteFlow] Sending to /api/leads...')
     console.log('[QuoteFlow] Selected service:', selectedService, 'Selected urgency:', selectedUrgency)
     
@@ -142,9 +138,56 @@ export default function QuoteEmbedPage() {
       console.error('Error submitting form:', error)
       const errorMessage = error instanceof Error ? error.message : 'There was an error submitting your request. Please try again or call us directly.'
       alert(errorMessage)
+      throw error // Re-throw to allow caller to handle
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // Direct submission function that bypasses react-hook-form validation
+  const submitDirectly = async () => {
+    console.log('[QuoteFlow] Direct submission triggered')
+    const formValues = getValues()
+    console.log('[QuoteFlow] Form values:', formValues)
+    
+    // Validate required fields manually
+    if (!selectedService || !selectedUrgency || !formValues.name || !formValues.email || !formValues.phone || !formValues.postcode) {
+      console.error('[QuoteFlow] Required fields missing:', {
+        service: selectedService,
+        urgency: selectedUrgency,
+        name: formValues.name,
+        email: formValues.email,
+        phone: formValues.phone,
+        postcode: formValues.postcode
+      })
+      alert('Please fill in all required fields')
+      return
+    }
+    
+    // Use performSubmission with direct data
+    const data: QuoteFormData = {
+      service: selectedService,
+      urgency: selectedUrgency,
+      name: formValues.name,
+      email: formValues.email,
+      phone: formValues.phone,
+      postcode: formValues.postcode,
+      message: formValues.message || ''
+    }
+    
+    await performSubmission(data)
+  }
+
+  // React-hook-form onSubmit handler
+  const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
+    // ALWAYS prevent default FIRST - critical for mobile Safari to avoid page reload
+    if (event) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    
+    console.log("[QuoteFlow] onSubmit triggered", data)
+    await performSubmission(data)
   }
 
   if (isSubmitted) {
@@ -193,13 +236,22 @@ export default function QuoteEmbedPage() {
           <div className="relative z-10 pointer-events-auto bg-white">
             <div className="p-6">
               <form 
+                ref={formRef}
                 onSubmit={(e) => {
                   console.log('[QuoteFlow] Form onSubmit event fired (before handleSubmit)')
+                  e.preventDefault()
+                  e.stopPropagation()
+                  
+                  // Try react-hook-form submission first
                   const result = handleSubmit(onSubmit)(e)
                   console.log('[QuoteFlow] handleSubmit returned:', result)
+                  
                   // Check if validation failed (errors object is populated)
                   if (Object.keys(errors).length > 0) {
                     console.log('[QuoteFlow] Validation errors:', errors)
+                    // If validation failed, try direct submission as fallback
+                    console.log('[QuoteFlow] Trying direct submission as fallback...')
+                    setTimeout(() => submitDirectly(), 100)
                   }
                 }} 
                 className="space-y-6"
@@ -349,7 +401,7 @@ export default function QuoteEmbedPage() {
 
               {/* Submit Button */}
               <button
-                type="submit"
+                type="button"
                 role="button"
                 aria-pressed={isSubmitting ? "true" : "false"}
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
@@ -360,17 +412,31 @@ export default function QuoteEmbedPage() {
                   position: 'relative',
                   zIndex: 20
                 }}
-                onClick={(e) => {
+                onClick={async (e) => {
                   console.log("[QuoteFlow] Submit button clicked")
-                  // Don't preventDefault/stopPropagation here - let the form handle submission naturally
+                  e.preventDefault()
+                  e.stopPropagation()
+                  
+                  // On mobile, try direct submission immediately
+                  console.log('[QuoteFlow] Attempting direct submission from button click')
+                  await submitDirectly()
                 }}
                 onTouchStart={(e) => {
                   console.log('[QuoteFlow] Submit button touched (touchStart)')
-                  // Don't stopPropagation - allow the touch event to convert to click/submit
+                  // Mark that we've touched the button
+                  e.currentTarget.setAttribute('data-touched', 'true')
                 }}
-                onTouchEnd={(e) => {
+                onTouchEnd={async (e) => {
                   console.log('[QuoteFlow] Submit button touch ended (touchEnd)')
-                  // Don't stopPropagation - allow natural form submission
+                  e.preventDefault()
+                  e.stopPropagation()
+                  
+                  // On mobile touch, try direct submission
+                  const button = e.currentTarget
+                  if (button.getAttribute('data-touched') === 'true') {
+                    console.log('[QuoteFlow] Attempting direct submission from touch')
+                    await submitDirectly()
+                  }
                 }}
               >
                 {isSubmitting ? 'Sending...' : 'Get Quote'}
