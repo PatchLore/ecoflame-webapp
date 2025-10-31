@@ -303,16 +303,8 @@ export default function QuoteEmbedPage() {
                 {isSubmitting ? 'Sending...' : 'Send My Details - Get Your Quote'}
               </button>
 
-              <div className="text-center text-sm text-gray-800">
-                <p className="mb-2">We&apos;ll call you within 2 hours with your personalised quote</p>
-                <p className="font-medium text-gray-800">
-                  <span className="mr-1">📞</span>
-                  Call us now: Mobile
-                  <a href="tel:07921064352" className="ml-1 text-[#1D3557] hover:underline">07921 064 352</a>
-                  <span className="mx-1">or</span>
-                  Landline
-                  <a href="tel:02080884352" className="ml-1 text-[#1D3557] hover:underline">0208 088 4352</a>
-                </p>
+              <div className="text-center text-sm text-gray-800 mt-6">
+                <p>We&apos;ll call you within 2 hours with your personalised quote</p>
               </div>
             </form>
           </div>
