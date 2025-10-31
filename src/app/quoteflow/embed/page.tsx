@@ -155,7 +155,7 @@ export default function QuoteEmbedPage() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* Service Selection */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">What service do you need?</label>
+                <label className="block text-sm font-semibold text-gray-800 mb-3">What service do you need?</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {services.map((service) => (
                     <label
@@ -185,7 +185,7 @@ export default function QuoteEmbedPage() {
 
               {/* Urgency Selection */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">When do you need this service?</label>
+                <label className="block text-sm font-semibold text-gray-800 mb-3">When do you need this service?</label>
                 <div className="grid grid-cols-2 gap-3">
                   {urgencyOptions.map((urgency) => (
                     <label
@@ -231,7 +231,7 @@ export default function QuoteEmbedPage() {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                    <label className="block text-sm font-medium text-gray-800 mb-1">Full Name *</label>
                     <input
                       type="text"
                       {...register('name')}
@@ -244,7 +244,7 @@ export default function QuoteEmbedPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                    <label className="block text-sm font-medium text-gray-800 mb-1">Phone Number *</label>
                     <input
                       type="tel"
                       {...register('phone')}
@@ -258,7 +258,7 @@ export default function QuoteEmbedPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                  <label className="block text-sm font-medium text-gray-800 mb-1">Email Address *</label>
                   <input
                     type="email"
                     {...register('email')}
@@ -271,7 +271,7 @@ export default function QuoteEmbedPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Postcode *</label>
+                  <label className="block text-sm font-medium text-gray-800 mb-1">Postcode *</label>
                   <input
                     type="text"
                     {...register('postcode')}
@@ -284,7 +284,7 @@ export default function QuoteEmbedPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Additional Details (Optional)</label>
+                  <label className="block text-sm font-medium text-gray-800 mb-1">Additional Details (Optional)</label>
                   <textarea
                     {...register('message')}
                     rows={3}
@@ -303,7 +303,7 @@ export default function QuoteEmbedPage() {
                 {isSubmitting ? 'Sending...' : 'Send My Details - Get Your Quote'}
               </button>
 
-              <div className="text-center text-sm text-gray-700">
+              <div className="text-center text-sm text-gray-800">
                 <p className="mb-2">We&apos;ll call you within 2 hours with your personalised quote</p>
                 <p className="font-medium text-gray-800">
                   <span className="mr-1">📞</span>

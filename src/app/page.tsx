@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-[#1D3557] mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto">
               Complete heating and plumbing solutions for homes and businesses across London and Surrey
             </p>
           </div>
@@ -100,10 +100,10 @@ export default function HomePage() {
               <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
                 <div className="text-5xl mb-4">{service.icon}</div>
                 <h3 className="text-2xl font-bold text-[#1D3557] mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <p className="text-gray-800 mb-6">{service.description}</p>
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-gray-700">
+                    <li key={featureIndex} className="flex items-center text-sm text-gray-800">
                       <span className="text-[#FF6B35] mr-2">✓</span>
                       {feature}
                     </li>
@@ -162,10 +162,10 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto text-center">
           <div className="mb-12">
             <h2 className="text-4xl font-bold text-[#1D3557] mb-6">Serving London & Surrey</h2>
-            <p className="text-gray-600 leading-relaxed text-lg mb-6">
+            <p className="text-gray-800 leading-relaxed text-lg mb-6">
               Based in Sutton, Surrey, we provide expert heating and plumbing services throughout London and Surrey. Our experienced team travels extensively to ensure you get the help you need, when you need it.
             </p>
-            <p className="text-gray-600 leading-relaxed text-lg mb-8">
+            <p className="text-gray-800 leading-relaxed text-lg mb-8">
               Get in touch today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
             </p>
             <a href="#book-now" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
@@ -180,7 +180,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We&apos;ll Call You With a Quote</h2>
-            <p className="text-xl text-gray-600">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalised quote.</p>
+            <p className="text-xl text-gray-800">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalised quote.</p>
           </div>
           <div className="w-full flex justify-center py-10">
             {isLoading && (
