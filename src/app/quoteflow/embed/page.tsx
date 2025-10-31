@@ -74,16 +74,15 @@ export default function QuoteEmbedPage() {
   }
 
   const onSubmit = async (data: QuoteFormData, event?: React.BaseSyntheticEvent) => {
-    console.log('Submitting form...')
-    
-    // Prevent default form submission (always call, not just if event exists)
+    // Always prevent default form submission for mobile browsers (especially Safari)
     if (event) {
       event.preventDefault()
       event.stopPropagation()
     }
     
-    console.log('[QuoteFlow] onSubmit handler triggered')
-    console.log('[QuoteFlow] Event type:', event?.type)
+    console.log('[QuoteFlow] onSubmit fired', data)
+    console.log('[QuoteFlow] Sending to /api/leads...')
+    console.log('[QuoteFlow] Selected service:', selectedService, 'Selected urgency:', selectedUrgency)
     setIsSubmitting(true)
     
     try {
@@ -192,8 +191,9 @@ export default function QuoteEmbedPage() {
           <div className="p-6">
             <form 
               onSubmit={(e) => {
+                console.log('[QuoteFlow] Form onSubmit event triggered')
                 e.preventDefault()
-                console.log('[QuoteFlow] Form onSubmit event fired')
+                e.stopPropagation()
                 handleSubmit(onSubmit)(e)
               }} 
               className="space-y-6"
@@ -345,17 +345,20 @@ export default function QuoteEmbedPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
-                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10 touch-manipulation"
-                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'rgba(255, 107, 53, 0.3)' }}
-                onClick={(e) => {
+                className="w-full bg-gradient-to-r from-[#FF6B35] to-[#E63946] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer relative z-10"
+                style={{ 
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'rgba(255, 107, 53, 0.3)',
+                  position: 'relative',
+                  zIndex: 10
+                }}
+                onTouchStart={(e) => {
+                  console.log('[QuoteFlow] Submit button touched')
+                  e.stopPropagation()
+                }}
+                onMouseDown={(e) => {
                   console.log('[QuoteFlow] Submit button clicked')
-                  // Ensure form validation passes before submission
-                  if (!selectedService || !selectedUrgency) {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    console.log('[QuoteFlow] Form validation failed - service or urgency not selected')
-                    return false
-                  }
+                  e.stopPropagation()
                 }}
               >
                 {isSubmitting ? 'Sending...' : 'Send My Details - Get Your Quote'}
