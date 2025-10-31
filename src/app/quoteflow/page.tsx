@@ -211,7 +211,12 @@ export default function QuoteFlowLandingPage() {
             <ul className="space-y-2 list-none">
               <li><Link href="/contact" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">Get in Touch</Link></li>
               <li><a href="mailto:info@fixblox.com" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">info@fixblox.com</a></li>
-              <li><a href="tel:+447925990923" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">07925990923</a></li>
+              <li>
+                <a href="tel:+447925990923" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">07925990923</a>
+              </li>
+              <li>
+                <a href="tel:02080884352" className="text-white/70 no-underline block transition-all hover:text-white hover:pl-1">0208 088 4352</a>
+              </li>
             </ul>
           </div>
         </div>

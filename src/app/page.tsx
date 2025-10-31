@@ -23,9 +23,14 @@ export default function HomePage() {
             <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
               Send Your Details – We&apos;ll Call You With a Quote
             </a>
-            <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
-              Call Now: 07921 064 352
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
+                Call Mobile: 07921 064 352
+              </a>
+              <a href="tel:02080884352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
+                Call 0208 088 4352
+              </a>
+            </div>
           </div>
           
           {/* Trust Indicators */}
@@ -214,9 +219,14 @@ export default function HomePage() {
         <div className="max-w-[800px] mx-auto">
           <h2 className="text-5xl font-bold text-white mb-4">Need Help Now?</h2>
           <p className="text-xl text-white/90 mb-8">Our team is available 24/7 for emergencies and consultations</p>
-          <a href="tel:07921064352" className="inline-block text-5xl font-bold text-white mb-8 transition-all hover:scale-105">
-            07921 064 352
-          </a>
+          <div className="flex flex-col gap-2 mb-8">
+            <a href="tel:07921064352" className="inline-block text-5xl font-bold text-white transition-all hover:scale-105">
+              07921 064 352
+            </a>
+            <a href="tel:02080884352" className="inline-block text-2xl font-semibold text-white/90 transition-all hover:scale-105">
+              0208 088 4352
+            </a>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="https://wa.me/447921064352?text=Hi%20I%27m%20interested%20in%20getting%20a%20quote" 

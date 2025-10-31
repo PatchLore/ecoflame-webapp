@@ -102,9 +102,14 @@ export default function QuoteEmbedPage() {
             </p>
           <div className="bg-[#FF6B35] text-white p-4 rounded-lg">
             <p className="font-semibold">Need immediate help?</p>
-            <a href="tel:07921064352" className="text-white text-xl font-bold">
-              07921 064 352
-            </a>
+            <div className="flex flex-col">
+              <a href="tel:07921064352" className="text-white text-xl font-bold">
+                07921 064 352
+              </a>
+              <a href="tel:02080884352" className="text-white/90 text-base font-semibold">
+                0208 088 4352
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -275,11 +280,14 @@ export default function QuoteEmbedPage() {
 
               <div className="text-center text-sm text-gray-500">
                 <p>We&apos;ll call you within 2 hours with your personalized quote</p>
-                <p className="mt-1">
+                <div className="mt-1 flex flex-col items-center gap-1">
                   <a href="tel:07921064352" className="text-[#FF6B35] font-semibold">
                     Or call us now: 07921 064 352
                   </a>
-                </p>
+                  <a href="tel:02080884352" className="text-[#FF6B35] font-semibold">
+                    Or landline: 0208 088 4352
+                  </a>
+                </div>
               </div>
             </form>
           </div>
