@@ -190,12 +190,13 @@ export default function QuoteEmbedPage() {
             <p className="text-white/90">Professional heating services with transparent pricing</p>
           </div>
 
-          <div className="p-6 pointer-events-auto">
-            <form 
-              onSubmit={handleSubmit(onSubmit)} 
-              className="space-y-6 pointer-events-auto"
-              autoComplete="off"
-            >
+          <div className="relative z-10 pointer-events-auto bg-white">
+            <div className="p-6">
+              <form 
+                onSubmit={handleSubmit(onSubmit)} 
+                className="space-y-6"
+                autoComplete="off"
+              >
               {/* Service Selection */}
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3">What service do you need?</label>
@@ -340,20 +341,23 @@ export default function QuoteEmbedPage() {
               {/* Submit Button */}
               <button
                 type="submit"
+                role="button"
+                aria-pressed={isSubmitting ? "true" : "false"}
                 disabled={isSubmitting || !selectedService || !selectedUrgency}
-                className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold mt-4 cursor-pointer touch-manipulation active:scale-95 z-20 relative pointer-events-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold mt-4 cursor-pointer pointer-events-auto touch-manipulation active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ 
                   touchAction: 'manipulation',
                   WebkitTapHighlightColor: 'rgba(255, 107, 53, 0.3)',
                   position: 'relative',
                   zIndex: 20
                 }}
+                onClick={(e) => {
+                  console.log("Submit button clicked")
+                  // Don't preventDefault here - let react-hook-form handle submission
+                  // This onClick is only for logging/debugging
+                }}
                 onTouchStart={(e) => {
                   console.log('[QuoteFlow] Submit button touched')
-                  e.stopPropagation()
-                }}
-                onClick={(e) => {
-                  console.log('[QuoteFlow] Submit button clicked')
                   e.stopPropagation()
                 }}
               >
@@ -364,6 +368,7 @@ export default function QuoteEmbedPage() {
                 <p>We&apos;ll call you within 2 hours with your personalised quote</p>
               </div>
             </form>
+            </div>
           </div>
         </div>
       </div>

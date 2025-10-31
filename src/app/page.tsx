@@ -191,6 +191,7 @@ export default function HomePage() {
             <iframe
               src="/quoteflow/embed"
               className="w-full max-w-3xl rounded-xl border-0 shadow-sm"
+              allow="forms; scripts; same-origin"
               style={{
                 minHeight: "700px",
                 overflow: "visible",
