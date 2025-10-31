@@ -14,7 +14,20 @@ export default function ContactPage() {
 
   const sitePhone = process.env.NEXT_PUBLIC_PHONE
   const siteWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP
-  const waNumber = (siteWhatsApp || '447921064352').replace(/[^0-9]/g, '')
+  // Normalize WhatsApp number: remove leading 0, ensure country code 44, strip non-digits
+  const normalizeWhatsApp = (num: string | undefined): string => {
+    if (!num) return '447921064352'
+    let cleaned = num.replace(/[^0-9]/g, '')
+    // If starts with 0, replace with 44 (UK country code)
+    if (cleaned.startsWith('0')) {
+      cleaned = '44' + cleaned.slice(1)
+    } else if (!cleaned.startsWith('44')) {
+      // If doesn't start with country code and doesn't start with 0, add it
+      cleaned = '44' + cleaned
+    }
+    return cleaned
+  }
+  const waNumber = normalizeWhatsApp(siteWhatsApp)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -75,7 +88,7 @@ export default function ContactPage() {
             Call Landline: 0208 088 4352
           </a>
           <a
-            href={`https://wa.me/${waNumber}`}
+            href={`https://wa.me/${waNumber}?text=Hi%20I%27m%20interested%20in%20getting%20a%20quote`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-[#25D366] hover:bg-[#1DA851] text-white transition"
