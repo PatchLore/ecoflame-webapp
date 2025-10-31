@@ -19,11 +19,18 @@ function isLeadInput(x: unknown): x is LeadInput {
   if (!x || typeof x !== 'object') return false;
   const o = x as Record<string, unknown>;
   const req = ['name','email','phone','postcode','service','urgency'] as const;
-  return req.every(k => typeof o[k] === 'string' && (o[k] as string).trim().length > 0);
+  return req.every(k => {
+    const val = o[k];
+    // Allow string or null/undefined, but convert to string for validation
+    if (val === null || val === undefined) return false; // Required fields must be present
+    if (typeof val !== 'string') return false;
+    return val.trim().length > 0; // Must have content after trimming
+  });
 }
 
 // Map UI urgency labels to DB enum values
-function toDbUrgency(u: string): 'emergency' | 'urgent' | 'standard' {
+function toDbUrgency(u: string | null | undefined): 'emergency' | 'urgent' | 'standard' {
+  if (!u || typeof u !== 'string') return 'standard'; // Safety fallback
   const s = u.trim().toLowerCase();
   if (['same day', 'today', 'asap', 'immediately', 'emergency'].includes(s)) return 'emergency';
   if (['next day', 'tomorrow', 'urgent', '48h', '2 days'].includes(s)) return 'urgent';
@@ -47,19 +54,20 @@ export async function POST(req: Request): Promise<Response> {
 
     const body: LeadInput = bodyUnknown;
 
-    // Normalize known fields
+    // Normalize known fields - ensure all values are strings, never null
     // Normalize UI urgency → DB values
     const dbUrgency = toDbUrgency(body.urgency);
 
     // Map frontend → DB columns we know exist from historical rows
+    // Use nullish coalescing and trim to ensure clean string values
     const insertCandidate: Record<string, string> = {
-      name: body.name,
-      email: body.email,
-      phone: body.phone,
-      job_type: body.service,
-      postcode: body.postcode,
+      name: (body.name ?? '').trim(),
+      email: (body.email ?? '').trim(),
+      phone: (body.phone ?? '').trim(),
+      job_type: (body.service ?? '').trim(),
+      postcode: (body.postcode ?? '').trim(),
       urgency: dbUrgency,
-      job_details: body.message ?? '',
+      job_details: (body.message ?? '').trim(),
       status: 'New',
     };
 
