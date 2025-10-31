@@ -6,13 +6,34 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const quoteSchema = z.object({
-  service: z.string().min(1, 'Please select a service'),
-  urgency: z.string().min(1, 'Please select urgency'),
-  postcode: z.string().min(1, 'Please enter your postcode'),
-  name: z.string().min(1, 'Please enter your name'),
-  email: z.string().email('Please enter a valid email'),
-  phone: z.string().min(1, 'Please enter your phone number'),
-  message: z.string().optional()
+  service: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().min(1, 'Please select a service')
+  ),
+  urgency: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().min(1, 'Please select urgency')
+  ),
+  postcode: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().min(1, 'Please enter your postcode')
+  ),
+  name: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().min(1, 'Please enter your name')
+  ),
+  email: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().email('Please enter a valid email')
+  ),
+  phone: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().min(1, 'Please enter your phone number')
+  ),
+  message: z.preprocess(
+    (val) => (val === null || val === undefined ? '' : String(val)),
+    z.string().optional()
+  )
 })
 
 type QuoteFormData = z.infer<typeof quoteSchema>
@@ -77,32 +98,44 @@ export default function QuoteEmbedPage() {
     setIsSubmitting(true)
     
     try {
+      // Normalize all fields - ensure strings, never null/undefined
+      const payload = {
+        name: String(data.name ?? '').trim(),
+        email: String(data.email ?? '').trim(),
+        phone: String(data.phone ?? '').trim(),
+        service: services.find(s => s.id === data.service)?.name ?? String(data.service ?? '').trim(),
+        postcode: String(data.postcode ?? '').trim(),
+        urgency: urgencyOptions.find(u => u.id === data.urgency)?.name ?? String(data.urgency ?? '').trim(),
+        message: String(data.message ?? '').trim(),
+        quoteAmount: calculateQuote(),
+        source: 'ecoflame-website'
+      }
+      
+      console.log('[QuoteFlow] Submitting payload:', payload)
+      
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: data.name?.trim() ?? '',
-          email: data.email?.trim() ?? '',
-          phone: data.phone?.trim() ?? '',
-          service: services.find(s => s.id === data.service)?.name ?? data.service ?? '',
-          postcode: data.postcode?.trim() ?? '',
-          urgency: urgencyOptions.find(u => u.id === data.urgency)?.name ?? data.urgency ?? '',
-          message: data.message?.trim() ?? '',
-          quoteAmount: calculateQuote(),
-          source: 'ecoflame-website'
-        }),
+        body: JSON.stringify(payload),
       })
 
       if (response.ok) {
         setIsSubmitted(true)
       } else {
-        throw new Error('Failed to submit')
+        const errorData = await response.json().catch(() => ({}))
+        console.error('Form submission error:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorData
+        })
+        throw new Error(errorData?.debug || errorData?.message || 'Failed to submit')
       }
     } catch (error) {
       console.error('Error submitting form:', error)
-      alert('There was an error submitting your request. Please try again or call us directly.')
+      const errorMessage = error instanceof Error ? error.message : 'There was an error submitting your request. Please try again or call us directly.'
+      alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
