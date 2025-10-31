@@ -6,34 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const quoteSchema = z.object({
-  service: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().min(1, 'Please select a service')
-  ),
-  urgency: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().min(1, 'Please select urgency')
-  ),
-  postcode: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().min(1, 'Please enter your postcode')
-  ),
-  name: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().min(1, 'Please enter your name')
-  ),
-  email: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().email('Please enter a valid email')
-  ),
-  phone: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().min(1, 'Please enter your phone number')
-  ),
-  message: z.preprocess(
-    (val) => (val === null || val === undefined ? '' : String(val)),
-    z.string().optional()
-  )
+  service: z.string().min(1, 'Please select a service'),
+  urgency: z.string().min(1, 'Please select urgency'),
+  postcode: z.string().min(1, 'Please enter your postcode'),
+  name: z.string().min(1, 'Please enter your name'),
+  email: z.string().email('Please enter a valid email'),
+  phone: z.string().min(1, 'Please enter your phone number'),
+  message: z.string().optional()
 })
 
 type QuoteFormData = z.infer<typeof quoteSchema>
