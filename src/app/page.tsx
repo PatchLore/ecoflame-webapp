@@ -219,14 +219,15 @@ export default function HomePage() {
         <div className="max-w-[800px] mx-auto">
           <h2 className="text-5xl font-bold text-white mb-4">Need Help Now?</h2>
           <p className="text-xl text-white/90 mb-8">Our team is available 24/7 for emergencies and consultations</p>
-          <div className="flex flex-col gap-2 mb-8">
-            <a href="tel:07921064352" className="inline-block text-5xl font-bold text-white transition-all hover:scale-105">
-              07921 064 352
-            </a>
-            <a href="tel:02080884352" className="inline-block text-2xl font-semibold text-white/90 transition-all hover:scale-105">
-              0208 088 4352
-            </a>
-          </div>
+          <p className="mb-8 flex flex-wrap items-center justify-center gap-2 text-gray-800 font-medium">
+            <span>📞</span>
+            <span>Call us now:</span>
+            <span>Mobile</span>
+            <a href="tel:07921064352" className="text-orange-600 hover:underline">07921 064 352</a>
+            <span>or</span>
+            <span>Landline</span>
+            <a href="tel:02080884352" className="text-orange-600 hover:underline">0208 088 4352</a>
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="https://wa.me/447921064352?text=Hi%20I%27m%20interested%20in%20getting%20a%20quote" 
