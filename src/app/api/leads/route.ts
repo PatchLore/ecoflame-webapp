@@ -59,12 +59,14 @@ function toDbUrgency(u: string | null | undefined): 'emergency' | 'urgent' | 'st
 }
 
 export async function POST(req: Request): Promise<Response> {
+  console.log('[leads] Incoming request received');
+  
   try {
     const createServerClient = getServerSupabase;
     const supabase = createServerClient();
 
     const bodyUnknown = await req.json();
-    console.log('[leads] Raw incoming payload:', bodyUnknown);
+    console.log('[leads] Incoming payload:', bodyUnknown);
     console.log('[leads] Payload types:', Object.entries(bodyUnknown).map(([k, v]) => [k, typeof v, v === null ? 'NULL' : '']));
 
     // Normalize all fields BEFORE validation - convert null/undefined to empty strings
@@ -134,20 +136,47 @@ export async function POST(req: Request): Promise<Response> {
     }
     // Do not include optional columns like `source` to avoid schema cache errors
 
-    const { data, error } = await supabase.from('leads').insert([insertCandidate]).select();
+    console.log('[leads] Attempting Supabase insert with:', insertCandidate);
 
-    if (error) {
-      const msg = (error as PostgrestError).message ?? 'Unknown Supabase error';
-      console.error('[leads] Database insert error:', msg);
-      return Response.json({ debug: `DB insert failed: ${msg}` } satisfies JsonError, { status: 400 });
+    try {
+      const { data, error } = await supabase.from('leads').insert([insertCandidate]).select();
+
+      if (error) {
+        const msg = (error as PostgrestError).message ?? 'Unknown Supabase error';
+        console.error('[leads] Database insert error:', error);
+        console.error('[leads] Error message:', msg);
+        console.error('[leads] Error details:', JSON.stringify(error, null, 2));
+        return Response.json({ 
+          success: false, 
+          debug: msg,
+          payload: body,
+          insertCandidate: insertCandidate
+        }, { status: 400 });
+      }
+
+      console.log('[leads] Inserted id:', data?.[0]?.id ?? '(no id)');
+      return Response.json({ success: true, data });
+    } catch (dbError: unknown) {
+      const dbErrorMsg = dbError instanceof Error ? dbError.message : String(dbError);
+      console.error('[leads] Database insert exception:', dbError);
+      console.error('[leads] Exception message:', dbErrorMsg);
+      return Response.json({ 
+        success: false, 
+        debug: `Database insert exception: ${dbErrorMsg}`,
+        payload: body,
+        insertCandidate: insertCandidate
+      }, { status: 500 });
     }
-
-    console.log('[leads] Inserted id:', data?.[0]?.id ?? '(no id)');
-    return Response.json({ success: true, data });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error('[leads] Unhandled error:', msg);
-    return Response.json({ debug: msg } satisfies JsonError, { status: 500 });
+    console.error('[leads] Unhandled error:', err);
+    console.error('[leads] Error message:', msg);
+    console.error('[leads] Error stack:', err instanceof Error ? err.stack : 'No stack trace');
+    return Response.json({ 
+      success: false,
+      debug: msg,
+      error: 'Unhandled exception in POST handler'
+    } satisfies JsonError, { status: 500 });
   }
 }
 
