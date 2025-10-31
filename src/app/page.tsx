@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <EcoFlameLayout>
       {/* Hero Section */}
-      <section id="home" className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-8 py-20">
+      <section id="home" className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-8 pt-28 pb-20 md:py-20">
         <div className="max-w-[1400px] mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Professional <span className="bg-gradient-to-r from-[#FF6B35] to-[#E63946] bg-clip-text text-transparent">Heating & Plumbing</span> Services
