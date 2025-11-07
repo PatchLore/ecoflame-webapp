@@ -153,7 +153,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Coverage Area Section */}
+      {/* Coverage Area & CTA Section */}
       <section className="py-24 px-8 bg-white">
         <div className="max-w-[1400px] mx-auto text-center">
           <div className="mb-12">
@@ -164,21 +164,8 @@ export default function HomePage() {
             <p className="text-gray-800 leading-relaxed text-lg mb-8">
               Get in touch today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
             </p>
-            <Link href="/get-quote" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
-              Get an Instant Quote
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Get Quote CTA Section */}
-      <section className="py-24 px-8 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <div className="mb-12">
-            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Get an Instant Quote</h2>
-            <p className="text-xl text-gray-800 mb-8">Use our quick quote tool to get a fast estimate for your EcoFlame service.</p>
             <Link href="/get-quote" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
-              Get Your Quote Now
+              Get an Instant Quote
             </Link>
           </div>
         </div>
