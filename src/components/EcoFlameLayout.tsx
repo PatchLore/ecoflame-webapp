@@ -218,11 +218,11 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
             <div>
               <h3 className="text-xl font-bold mb-4">Services</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="#services" className="hover:text-white transition-colors">Boiler Installation</Link></li>
-                <li><Link href="#services" className="hover:text-white transition-colors">Boiler Repairs</Link></li>
-                <li><Link href="#services" className="hover:text-white transition-colors">Boiler Servicing</Link></li>
-                <li><Link href="#services" className="hover:text-white transition-colors">Plumbing Services</Link></li>
-                <li><Link href="#services" className="hover:text-white transition-colors">Emergency Callouts</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Boiler Installation</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Boiler Repairs</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Boiler Servicing</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Plumbing Services</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Emergency Callouts</Link></li>
               </ul>
             </div>
             
