@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "setup": "echo 'Setting up Quote Calculator...' && echo '1. Copy .env.local.example to .env.local' && echo '2. Update your Supabase credentials in .env.local' && echo '3. Run the SQL schema in your Supabase dashboard' && echo '4. Run npm run dev to start the application'"
