@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 
+// Services page for EcoFlame heating and plumbing services
 export default function ServicesPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 pt-28 md:pt-32 pb-20">
