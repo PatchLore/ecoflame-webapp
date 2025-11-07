@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import Link from 'next/link'
-import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 const quoteSchema = z.object({
   service: z.string().min(1, 'Please select a service'),
@@ -130,8 +129,7 @@ export default function GetQuotePage() {
 
   if (isSubmitted) {
     return (
-      <EcoFlameLayout>
-        <div className="max-w-5xl mx-auto px-4 pt-28 md:pt-32 pb-20">
+      <div className="max-w-5xl mx-auto px-4 pt-28 md:pt-32 pb-20">
           <div className="bg-white rounded-2xl p-8 max-w-md mx-auto text-center shadow-lg">
             <h2 className="text-2xl font-semibold text-[#0B2346] mb-4">Thank You!</h2>
             <p className="mt-3 text-gray-700 mb-4">
@@ -149,13 +147,11 @@ export default function GetQuotePage() {
             </Link>
           </div>
         </div>
-      </EcoFlameLayout>
     )
   }
 
   return (
-    <EcoFlameLayout>
-      <div className="max-w-5xl mx-auto px-4 pt-28 md:pt-32 pb-20">
+    <div className="max-w-5xl mx-auto px-4 pt-28 md:pt-32 pb-20">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-[#1D3557] mb-4">Get an Instant Quote</h1>
           <p className="text-xl text-gray-800">Use our quick quote tool to get a fast estimate for your EcoFlame service.</p>
@@ -347,7 +343,6 @@ export default function GetQuotePage() {
           </div>
         </div>
       </div>
-    </EcoFlameLayout>
   )
 }
 

@@ -1,10 +1,8 @@
 'use client'
 
-import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 export default function PrivacyPolicy() {
   return (
-    <EcoFlameLayout>
       <div className="min-h-screen bg-white pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-8">
           <h1 className="text-5xl font-bold text-[#1D3557] mb-4">Privacy Policy</h1>
@@ -95,6 +93,5 @@ export default function PrivacyPolicy() {
           </div>
         </div>
       </div>
-    </EcoFlameLayout>
   )
 }

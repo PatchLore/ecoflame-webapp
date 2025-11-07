@@ -66,7 +66,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B2346] text-gray-100">
+    <div className="min-h-screen bg-[#0B2346] text-gray-100 pt-20">
       <header className="px-6 py-10 text-center">
         <h1 className="text-3xl font-semibold text-white">Contact EcoFlame</h1>
         <p className="mt-2 text-gray-300">Fast, friendly plumbing & heating support</p>

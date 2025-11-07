@@ -1,12 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 export default function HomePage() {
-
   return (
-    <EcoFlameLayout>
+    <>
       {/* Hero Section */}
       <section id="home" className="min-h-screen bg-gradient-to-br from-[#0A0E27] to-[#1D3557] flex items-center justify-center px-8 pt-28 pb-20 md:py-20">
         <div className="max-w-[1400px] mx-auto text-center">
@@ -209,6 +207,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </EcoFlameLayout>
+    </>
   )
 }
