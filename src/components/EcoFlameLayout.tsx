@@ -3,6 +3,7 @@
 import { ReactNode, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 interface EcoFlameLayoutProps {
   children: ReactNode
@@ -10,6 +11,15 @@ interface EcoFlameLayoutProps {
 
 export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Determine if a link is active
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/'
+    }
+    return pathname === path || pathname?.startsWith(path + '/')
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -30,10 +40,56 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="#home" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Home</Link>
-              <Link href="#services" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Services</Link>
-              <Link href="#reviews" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Reviews</Link>
-              <Link href="#contact" className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Contact</Link>
+              <Link 
+                href="/" 
+                className={`transition-colors ${
+                  isActive('/') 
+                    ? 'text-[#FF6B35] font-semibold' 
+                    : 'text-[#1D3557] hover:text-[#FF6B35]'
+                }`}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/services" 
+                className={`transition-colors ${
+                  isActive('/services') 
+                    ? 'text-[#FF6B35] font-semibold' 
+                    : 'text-[#1D3557] hover:text-[#FF6B35]'
+                }`}
+              >
+                Services
+              </Link>
+              <Link 
+                href="/reviews" 
+                className={`transition-colors ${
+                  isActive('/reviews') 
+                    ? 'text-[#FF6B35] font-semibold' 
+                    : 'text-[#1D3557] hover:text-[#FF6B35]'
+                }`}
+              >
+                Reviews
+              </Link>
+              <Link 
+                href="/contact" 
+                className={`transition-colors ${
+                  isActive('/contact') 
+                    ? 'text-[#FF6B35] font-semibold' 
+                    : 'text-[#1D3557] hover:text-[#FF6B35]'
+                }`}
+              >
+                Contact
+              </Link>
+              <Link 
+                href="/get-quote" 
+                className={`transition-colors ${
+                  isActive('/get-quote') 
+                    ? 'text-[#FF6B35] font-semibold' 
+                    : 'text-[#1D3557] hover:text-[#FF6B35]'
+                }`}
+              >
+                Get Quote
+              </Link>
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 md:gap-4">
                 <a href="tel:07921064352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold px-5 py-2.5 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 w-full sm:w-auto text-center">
                   📞 Call 07921 064 352
@@ -64,10 +120,61 @@ export default function EcoFlameLayout({ children }: EcoFlameLayoutProps) {
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
               <div className="flex flex-col space-y-4 pt-4">
-                <Link href="#home" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Home</Link>
-                <Link href="#services" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Services</Link>
-                <Link href="#reviews" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Reviews</Link>
-                <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[#1D3557] hover:text-[#FF6B35] transition-colors">Contact</Link>
+                <Link 
+                  href="/" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className={`transition-colors ${
+                    isActive('/') 
+                      ? 'text-[#FF6B35] font-semibold' 
+                      : 'text-[#1D3557] hover:text-[#FF6B35]'
+                  }`}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/services" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className={`transition-colors ${
+                    isActive('/services') 
+                      ? 'text-[#FF6B35] font-semibold' 
+                      : 'text-[#1D3557] hover:text-[#FF6B35]'
+                  }`}
+                >
+                  Services
+                </Link>
+                <Link 
+                  href="/reviews" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className={`transition-colors ${
+                    isActive('/reviews') 
+                      ? 'text-[#FF6B35] font-semibold' 
+                      : 'text-[#1D3557] hover:text-[#FF6B35]'
+                  }`}
+                >
+                  Reviews
+                </Link>
+                <Link 
+                  href="/contact" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className={`transition-colors ${
+                    isActive('/contact') 
+                      ? 'text-[#FF6B35] font-semibold' 
+                      : 'text-[#1D3557] hover:text-[#FF6B35]'
+                  }`}
+                >
+                  Contact
+                </Link>
+                <Link 
+                  href="/get-quote" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className={`transition-colors ${
+                    isActive('/get-quote') 
+                      ? 'text-[#FF6B35] font-semibold' 
+                      : 'text-[#1D3557] hover:text-[#FF6B35]'
+                  }`}
+                >
+                  Get Quote
+                </Link>
                 <div className="flex flex-col gap-2 mt-2">
                   <a href="tel:07921064352" className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold px-5 py-2.5 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 w-full text-center">
                     📞 Call 07921 064 352
