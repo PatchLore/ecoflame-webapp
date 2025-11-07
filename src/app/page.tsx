@@ -1,11 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import EcoFlameLayout from '@/components/EcoFlameLayout'
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true)
 
   return (
     <EcoFlameLayout>
@@ -19,9 +17,9 @@ export default function HomePage() {
             Trusted experts for boiler installation, repairs, and servicing across London and Surrey. Gas Safe registered, fully insured, and available 24/7 for emergencies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a href="#book-now" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
-              Send Your Details – We&apos;ll Call You With a Quote
-            </a>
+            <Link href="/get-quote" className="bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
+              Get an Instant Quote
+            </Link>
             <a href="tel:07921064352" className="bg-transparent text-white px-10 py-4 rounded-full border-2 border-white font-semibold text-lg transition-all hover:bg-white hover:text-[#0A0E27]">
               Call now
             </a>
@@ -168,43 +166,22 @@ export default function HomePage() {
             <p className="text-gray-800 leading-relaxed text-lg mb-8">
               Get in touch today to find out if we can reach you. We&apos;re constantly expanding our coverage area to serve more customers.
             </p>
-            <a href="#book-now" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
-              Check Your Postcode
-            </a>
+            <Link href="/get-quote" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold transition-all hover:-translate-y-1">
+              Get an Instant Quote
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Book Now Section */}
-      <section id="book-now" className="py-24 px-8 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Send Your Details – We&apos;ll Call You With a Quote</h2>
-            <p className="text-xl text-gray-800">Fill out the form below and we&apos;ll contact you to discuss your heating needs and provide a personalised quote.</p>
-          </div>
-          <div className="w-full flex justify-center py-10">
-            {isLoading && (
-              <div className="animate-pulse text-center py-10 text-gray-500">
-                Loading calculator...
-              </div>
-            )}
-            <iframe
-              src="/quoteflow/embed"
-              className="w-full max-w-3xl rounded-xl border-0 shadow-sm"
-              allow="forms; scripts; same-origin"
-              style={{
-                minHeight: "700px",
-                overflow: "visible",
-                borderRadius: "12px",
-                opacity: isLoading ? 0 : 1,
-                transition: "opacity 0.3s ease-in-out"
-              }}
-              onLoad={() => {
-                setTimeout(() => setIsLoading(false), 500) // Small delay to ensure content is ready
-              }}
-              loading="lazy"
-              title="EcoFlame Quote Request Form"
-            />
+      {/* Get Quote CTA Section */}
+      <section className="py-24 px-8 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <div className="mb-12">
+            <h2 className="text-5xl font-bold text-[#1D3557] mb-4">Get an Instant Quote</h2>
+            <p className="text-xl text-gray-800 mb-8">Use our quick quote tool to get a fast estimate for your EcoFlame service.</p>
+            <Link href="/get-quote" className="inline-block bg-gradient-to-br from-[#FF6B35] to-[#E63946] text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 shadow-[0_10px_30px_rgba(255,107,53,0.4)] hover:shadow-[0_15px_40px_rgba(255,107,53,0.5)]">
+              Get Your Quote Now
+            </Link>
           </div>
         </div>
       </section>

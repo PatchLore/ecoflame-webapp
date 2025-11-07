@@ -13,10 +13,6 @@ export function getServerSupabase() {
     })
     throw new Error('Supabase server credentials are not configured')
   }
-  // Safe debug: log active Supabase URL (no secrets)
-  try {
-    console.log('[supabase-server] Using URL:', supabaseUrl)
-  } catch {}
   return createClient(supabaseUrl, serviceRoleKey)
 }
 
